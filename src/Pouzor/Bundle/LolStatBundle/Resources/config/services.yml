@@ -1,0 +1,7 @@
+parameters:
+#    pouzor_lol_stat.example.class: Pouzor\Bundle\LolStatBundle\Example
+
+services:
+#    pouzor_lol_stat.example:
+#        class: %pouzor_lol_stat.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

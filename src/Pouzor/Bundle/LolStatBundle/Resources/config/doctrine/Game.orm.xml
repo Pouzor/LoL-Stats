@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Pouzor\Bundle\LolStatBundle\Entity\Game" table="game">
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idMatch" type="bigint" column="id_match" nullable="true"/>
+    <field name="idUser" type="bigint" column="id_user" nullable="true"/>
+    <field name="premadesize" type="bigint" column="premadesize" nullable="true"/>
+    <field name="ranked" type="boolean" column="ranked" nullable="true"/>
+    <field name="matchType" type="string" column="match_type" length="255" nullable="true"/>
+    <field name="matchDate" type="string" column="match_date" length="255" nullable="true"/>
+    <field name="idChampion" type="bigint" column="id_champion" nullable="false"/>
+    <field name="gold" type="bigint" column="gold" nullable="true"/>
+    <field name="timeDead" type="bigint" column="time_dead" nullable="true"/>
+    <field name="killed" type="bigint" column="killed" nullable="true"/>
+    <field name="death" type="bigint" column="death" nullable="true"/>
+    <field name="assist" type="bigint" column="assist" nullable="true"/>
+    <field name="elochange" type="bigint" column="elochange" nullable="true"/>
+    <field name="ipearned" type="bigint" column="ipearned" nullable="true"/>
+    <field name="queuetype" type="string" column="queueType" length="255" nullable="true"/>
+    <field name="damagetochampion" type="bigint" column="damagetochampion" nullable="true"/>
+    <field name="minionsKilled" type="bigint" column="minions_killed" nullable="true"/>
+    <field name="totalDamageTaken" type="bigint" column="total_damage_taken" nullable="true"/>
+    <field name="turretsKilled" type="bigint" column="turrets_killed" nullable="true"/>
+    <field name="win" type="bigint" column="win" nullable="true"/>
+    <field name="item0" type="string" column="item0" length="255" nullable="true"/>
+    <field name="item1" type="string" column="item1" length="255" nullable="true"/>
+    <field name="item2" type="string" column="item2" length="255" nullable="true"/>
+    <field name="item3" type="string" column="item3" length="255" nullable="true"/>
+    <field name="item4" type="string" column="item4" length="255" nullable="true"/>
+    <field name="item5" type="string" column="item5" length="255" nullable="true"/>
+  </entity>
+</doctrine-mapping>

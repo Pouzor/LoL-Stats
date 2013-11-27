@@ -1,0 +1,5 @@
+pouzor_lol_stat:
+    resource: "@PouzorLolStatBundle/Controller"
+    prefix:   /
+    type:      annotation    
+
