@@ -4,7 +4,81 @@
 
 <h3>{{summoner.name}}</h3>
 
-<br />
-test
+
+<div class="row">
+
+	<div class="col-md-5">
+		<br />
+		<h4>Nombre de match enregistré</h4>
+
+
+		<table class="table table-condensed table-striped table-bordered table-hover" style="width: 300px">
+			<thead>
+				<tr>
+					<th>TOTAL</th><th>{{ stats["total"] }}</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr>
+					<td>Faille de l'invocateur</td><td>{{ stats["invocateur"] }}</td>
+				</tr>
+				<tr>
+					<td>RANKED</td><td>{{ stats["ranked"] }}</td>
+				</tr>
+				<tr>
+					<td>Aram</td><td>{{ stats["aram"] }}</td>
+				</tr>
+				<tr>
+					<td>Dominion</td><td>{{ stats["dominion"] }}</td>
+				</tr>
+				<tr>
+					<td>3 V 3</td><td>{{ stats["3V3"] }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<div class="col-md-7">
+		<br />
+		<h4>Ration WinRate</h4>
+
+		<ul class="nav nav-tabs nav-justified">
+			<li class="active dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" href="#">
+					Faille Invocateur <span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="#Tout" data-toggle="tab">Tout</a></li>
+					<li><a href="#normal" data-toggle="tab">Normal</a></li>
+					<li><a href="#ranked" data-toggle="tab">Ranked</a></li>
+				</ul>
+			</li>
+
+
+			<li><a href="#aram" data-toggle="tab">Aram</a></li>
+			<li><a href="#dominion" data-toggle="tab">Dominion</a></li>
+			<li><a href="#3v3" data-toggle="tab">3 v 3</a></li>
+		</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="Tout">.1.</div>
+  <div class="tab-pane fade" id="normal">.2.</div>
+  <div class="tab-pane fade" id="ranked">.3.</div>
+  <div class="tab-pane fade" id="aram">.4.</div>
+  <div class="tab-pane fade" id="dominion">.5.</div>
+  <div class="tab-pane fade" id="3v3">.6.</div>
+</div>
+
+
+	</div>
+
+
+
+</div>
+
+
 
 {% endblock body %}

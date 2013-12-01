@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Game
- *
- * @ORM\Table()
  * @ORM\Entity(repositoryClass="Pouzor\Bundle\LolStatBundle\Repository\GameRepository")
+ * @ORM\Table()
  */
 class Game
 {
@@ -161,6 +160,10 @@ class Game
      */
     private $item5;
 
+    /**
+     * @var string
+     */
+    private $item6;
 
     /**
      * Set idMatch
@@ -758,5 +761,28 @@ class Game
     public function getItem5()
     {
         return $this->item5;
+    }
+
+    /**
+     * Set item6
+     *
+     * @param string $item6
+     * @return Game
+     */
+    public function setItem6($item6)
+    {
+        $this->item6 = $item6;
+    
+        return $this;
+    }
+
+    /**
+     * Get item6
+     *
+     * @return string 
+     */
+    public function getItem6()
+    {
+        return $this->item6;
     }
 }

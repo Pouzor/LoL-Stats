@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Pouzor\Bundle\LolStatBundle\Repository\GameRepository;
+
 class SummonerController extends Controller
 {
 
@@ -17,9 +19,11 @@ class SummonerController extends Controller
 	*/
 	public function showAction($id) {
 
-		$summoner = $this->getDoctrine()->getRepository("PouzorLolStatBundle:User")->find($id);
+		$summoner = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:User")->find($id);
+		$stats = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($id);
 
-		return array("summoner" => $summoner);
+
+		return array("summoner" => $summoner, "stats" => $stats);
 	}
 
 }

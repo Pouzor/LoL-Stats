@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Pouzor\Bundle\LolStatBundle\Entity\Game" table="game">
+  <entity name="Pouzor\Bundle\LolStatBundle\Entity\Game" table="game" repository-class="Pouzor\Bundle\LolStatBundle\Repository\GameRepository">
     <id name="id" type="bigint" column="id">
       <generator strategy="IDENTITY"/>
     </id>
@@ -30,5 +30,6 @@
     <field name="item3" type="string" column="item3" length="255" nullable="true"/>
     <field name="item4" type="string" column="item4" length="255" nullable="true"/>
     <field name="item5" type="string" column="item5" length="255" nullable="true"/>
+    <field name="item6" type="string" column="item6" length="255" nullable="true"/>
   </entity>
 </doctrine-mapping>

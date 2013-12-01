@@ -1,3 +1,0 @@
-pouzor_lol_stat_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: PouzorLolStatBundle:Default:index }

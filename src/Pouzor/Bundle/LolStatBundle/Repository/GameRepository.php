@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class GameRepository extends EntityRepository
 {
+
+	public function getCountStatsGlobal($id) {
+		
+		$stats = array();
+
+		$stats["total"] = count($this->findBy(array('idUser' => $id)));
+		$stats["invocateur"] = count($this->findBy(array('idUser' => $id, "matchType" => "CLASSIC")));
+		$stats["ranked"] = count($this->findBy(array('idUser' => $id, "ranked" => 1)));
+		$stats["aram"] = count($this->findBy(array('idUser' => $id, "matchType" => "ARAM")));
+		$stats["dominion"] = count($this->findBy(array('idUser' => $id, "matchType" => "DOMINION")));
+		$stats["3V3"] = "TODO";
+                
+        return $stats;
+	}
+
 }
