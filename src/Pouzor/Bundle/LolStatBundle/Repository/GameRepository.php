@@ -41,7 +41,7 @@ class GameRepository extends EntityRepository
             ->orderBy("RATE", "DESC")
             ->setParameter("user", $id)
             ->setParameter("type", $type)
-
+            ->having("NB_GAME >= 5")
             ->addGroupBy("c.id");
 
         if ($ranked != "all")

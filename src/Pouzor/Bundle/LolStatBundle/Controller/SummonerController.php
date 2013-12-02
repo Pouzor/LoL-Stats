@@ -26,7 +26,7 @@ class SummonerController extends Controller
 
 
 
-		return array("summoner" => $summoner, "stats" => $stats);
+		return array("summoner" => $summoner, "stats" => $stats, "winrates" => $winRates);
 	}
 
 }
