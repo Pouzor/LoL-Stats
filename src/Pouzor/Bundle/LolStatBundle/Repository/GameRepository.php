@@ -25,24 +25,24 @@ class GameRepository extends EntityRepository
 		$stats["3V3"] = "TODO";
 
         return $stats;
-	}
+    }
 
 
     public function getWinRatesQuery($id, $type, $ranked = "all") {
         $qBuilder = $this->getEntityManager()
-            ->createQueryBuilder()
-            ->from("PouzorLolStatBundle:Champion", "c")
-            ->select('c.id, c.name, SUM(g.win) AS NB_WIN, COUNT(g.id) AS NB_GAME, (SUM(g.win)/COUNT(g.id))*100 AS RATE')
-            ->leftJoin("c.games", "g")
-            ->where("g.idUser = :user")
-            ->andWhere("g.matchType = :type")
+        ->createQueryBuilder()
+        ->from("PouzorLolStatBundle:Champion", "c")
+        ->select('c.id, c.name, SUM(g.win) AS NB_WIN, COUNT(g.id) AS NB_GAME, (SUM(g.win)/COUNT(g.id))*100 AS RATE')
+        ->leftJoin("c.games", "g")
+        ->where("g.idUser = :user")
+        ->andWhere("g.matchType = :type")
 
-            ->setMaxResults(5)
-            ->orderBy("RATE", "DESC")
-            ->setParameter("user", $id)
-            ->setParameter("type", $type)
-            ->having("NB_GAME >= 5")
-            ->addGroupBy("c.id");
+        ->setMaxResults(5)
+        ->orderBy("RATE", "DESC")
+        ->setParameter("user", $id)
+        ->setParameter("type", $type)
+        ->having("NB_GAME >= 5")
+        ->addGroupBy("c.id");
 
         if ($ranked != "all")
             $qBuilder->andWhere("g.ranked = :ranked")->setParameter("ranked", $ranked);
@@ -63,5 +63,30 @@ class GameRepository extends EntityRepository
 
         return $rates;
     }
+
+
+    public function getRecentGames($id, $time = null) {
+        $qBuilder = $this->getEntityManager()
+        ->createQueryBuilder()
+        ->from("PouzorLolStatBundle:Game", "g")
+        ->select('g, c')
+        ->leftJoin("g.idChampion", "c")
+        ->orderBy("g.matchDate", "DESC")
+        ->where("g.idUser = :user")
+        ->setMaxResults(10)
+        ->setParameter("user", $id)
+        ;
+
+        if ($time != null) {
+            $qBuilder->andWhere("g.matchDate < :time")
+            ->setParameter("time", $time);
+
+        }    
+
+
+        return $qBuilder->getQuery()->getArrayResult();
+
+    }
+
 
 }

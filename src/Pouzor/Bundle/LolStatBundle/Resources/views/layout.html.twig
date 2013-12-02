@@ -11,6 +11,15 @@
 
     {% endblock %}
 
+
+    {% block javascripts %}
+    <script src="{{ asset('bundles/pouzorlolstat/js/jquery-2.0.3.min.js') }}"></script>
+    <script src="{{ asset('bundles/pouzorlolstat/js/jquery-ui.custom.min.js') }}?v=22"></script>
+    
+    <script src="{{ asset('bundles/pouzorlolstat/js/bootstrap.min.js') }}?v=22"></script>
+
+    {% endblock %}
+
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
 </head>
@@ -47,12 +56,5 @@
         
     </div>
 
-    {% block javascripts %}
-    <script src="{{ asset('bundles/pouzorlolstat/js/jquery-2.0.3.min.js') }}"></script>
-    <script src="{{ asset('bundles/pouzorlolstat/js/jquery-ui.custom.min.js') }}?v=22"></script>
-    
-    <script src="{{ asset('bundles/pouzorlolstat/js/bootstrap.min.js') }}?v=22"></script>
-
-    {% endblock %}
 </body>
 </html>
