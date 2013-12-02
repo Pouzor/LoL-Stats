@@ -42,10 +42,31 @@ class ApiController extends Controller
 	public function getAggregatedStatsAction() {
 
 
-		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAggregatedStats/"."38883435");
+		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAggregatedStats/"."33151520");
 
 		print_r($data);die();
 
 		return array();
 	}
+
+
+
+	/**
+	* Get LAST 10 match for the summoners
+	* 
+	* @Template()
+	* @Route("/getRecentGames")
+	*
+	*/
+	public function getRecentGamesAction() {
+
+
+		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/"."33151520");
+
+		print_r($data);die();
+
+		return array();
+	}
+
+
 }
