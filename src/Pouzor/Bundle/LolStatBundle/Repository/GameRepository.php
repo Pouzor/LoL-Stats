@@ -23,8 +23,45 @@ class GameRepository extends EntityRepository
 		$stats["aram"] = count($this->findBy(array('idUser' => $id, "matchType" => "ARAM")));
 		$stats["dominion"] = count($this->findBy(array('idUser' => $id, "matchType" => "DOMINION")));
 		$stats["3V3"] = "TODO";
-                
+
         return $stats;
 	}
+
+
+    public function getWinRatesQuery($id, $type, $ranked = "all") {
+        $qBuilder = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->from("PouzorLolStatBundle:Champion", "c")
+            ->select('c.id, c.name, SUM(g.win) AS NB_WIN, COUNT(g.id) AS NB_GAME, (SUM(g.win)/COUNT(g.id))*100 AS RATE')
+            ->leftJoin("c.games", "g")
+            ->where("g.idUser = :user")
+            ->andWhere("g.matchType = :type")
+
+            ->setMaxResults(5)
+            ->orderBy("RATE", "DESC")
+            ->setParameter("user", $id)
+            ->setParameter("type", $type)
+
+            ->addGroupBy("c.id");
+
+        if ($ranked != "all")
+            $qBuilder->andWhere("g.ranked = :ranked")->setParameter("ranked", $ranked);
+
+        return $qBuilder->getQuery()->getResult();
+    }
+
+
+    public function getWinRates($id) {
+        $rates = array();
+
+        $rates["invoc"] = $this->getWinRatesQuery($id, "CLASSIC", "all");
+        $rates["normal"] = $this->getWinRatesQuery($id, "CLASSIC", "0");
+        $rates["ranked"] = $this->getWinRatesQuery($id, "CLASSIC", "1");
+        $rates["aram"] = $this->getWinRatesQuery($id, "ARAM", "all");
+        $rates["dominion"] = $this->getWinRatesQuery($id, "DOMINION", "all");
+
+
+        return $rates;
+    }
 
 }

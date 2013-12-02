@@ -21,6 +21,20 @@ class Champion
      */
     private $id;
 
+    /**
+     * @var Collection Games
+     *
+     * @ORM\OneToMany(targetEntity="Pouzor\LolStatBundle\Entity\Game", mappedBy="idChampion", cascade={"all"})
+     */
+    private $games;
+
+
+
+    public function __construct() {
+        $this->games = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
 
     /**
      * Get id

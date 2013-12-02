@@ -22,6 +22,9 @@ class SummonerController extends Controller
 		$summoner = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:User")->find($id);
 		$stats = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($id);
 
+        $winRates = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Game")->getWinRates($id);
+
+
 
 		return array("summoner" => $summoner, "stats" => $stats);
 	}

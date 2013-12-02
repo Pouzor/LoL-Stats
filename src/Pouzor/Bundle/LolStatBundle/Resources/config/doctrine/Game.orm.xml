@@ -10,7 +10,11 @@
     <field name="ranked" type="boolean" column="ranked" nullable="true"/>
     <field name="matchType" type="string" column="match_type" length="255" nullable="true"/>
     <field name="matchDate" type="string" column="match_date" length="255" nullable="true"/>
-    <field name="idChampion" type="bigint" column="id_champion" nullable="false"/>
+
+
+    <many-to-one field="idChampion" target-entity="Champion" inversed-by="games">
+        <join-column name="id_champion" referenced-column-name="id" />
+            </many-to-one>
     <field name="gold" type="bigint" column="gold" nullable="true"/>
     <field name="timeDead" type="bigint" column="time_dead" nullable="true"/>
     <field name="killed" type="bigint" column="killed" nullable="true"/>
