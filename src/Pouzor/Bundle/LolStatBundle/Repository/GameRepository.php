@@ -65,7 +65,7 @@ class GameRepository extends EntityRepository
     }
 
 
-    public function getRecentGames($id, $time = null, $filter = null, $order = 1) {
+    public function getRecentGames($id, $offset = 0, $filter = null, $order = 1) {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Game", "g")
@@ -73,20 +73,18 @@ class GameRepository extends EntityRepository
         ->leftJoin("g.idChampion", "c")
         ->orderBy("g.matchDate", "DESC")
         ->where("g.idUser = :user")
+        ->setFirstResult($offset)
         ->setMaxResults(10)
         ->setParameter("user", $id)
         ;
 
-        if ($time != null && $time != 0 && $order == 1) {
-            $qBuilder->andWhere("g.matchDate < :time")
-            ->orderBy("g.matchDate", "DESC")
-            ->setParameter("time", $time);
-
+        if ($order == 1) {
+            $qBuilder->orderBy("g.matchDate", "DESC");
         }    
-
 
         if ($order != 1) {
           $qBuilder->orderBy("g.$order", "DESC");  
+          
         }
 
         if ($filter) {

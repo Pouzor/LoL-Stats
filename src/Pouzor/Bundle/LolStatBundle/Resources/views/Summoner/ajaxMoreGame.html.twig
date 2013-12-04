@@ -1,9 +1,4 @@
-{% set last = "" %}
 {% for game in games %}
 	{% include "PouzorLolStatBundle:Summoner:_tableGame.html.twig" with { 'game' : game } %}
-	{% set last = game["matchDate"] %}
-{% endfor %}
 
-<script type="text/javascript">
-	last = {{ last }};
-</script>
+{% endfor %}

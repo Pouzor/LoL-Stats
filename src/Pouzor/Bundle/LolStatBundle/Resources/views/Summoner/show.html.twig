@@ -222,7 +222,7 @@
     </div>
 <br/><br/>
     <script type="text/javascript">
-        var last = {{ last }};
+        var offset = 0
 
         function getFilter() {
             
@@ -239,10 +239,11 @@
         }
 
         $("#more_game").click(function () {
+            offset += 10;
             $.ajax({
                 type: "POST",
                 url: "{{ path('ajax_more_game') }}",
-                data: {time: last, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val()}
+                data: {offset: offset, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val()}
             }).done(function (msg) {
 
                         $("#game_container").append(msg);
@@ -253,7 +254,7 @@
               $.ajax({
                 type: "POST",
                 url: "{{ path('ajax_more_game') }}",
-                data: {time: "0", id: "{{ id }}", filter: getFilter() }
+                data: {offset: 0, id: "{{ id }}", filter: getFilter() }
             }).done(function (msg) {
 
                         $("#game_container").html(msg);
@@ -265,7 +266,7 @@
             $.ajax({
                 type: "POST",
                 url: "{{ path('ajax_more_game') }}",
-                data: {time: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
+                data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
             }).done(function (msg) {
 
                         $("#game_container").html(msg);
