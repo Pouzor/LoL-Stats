@@ -1,0 +1,15 @@
+<table class="table table-condensed table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Champion</th><th>Win</th><th>Loose</th><th>Win Rate</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in datas %}
+    <tr>
+        <td>{{ data["name"] }}</td><td>{{ data["NB_WIN"] }}</td><td>{{ data["NB_GAME"] - data["NB_WIN"] }}</td><td>{{ data["RATE"] | number_format}}%</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<span class="text-muted">*Note : 5 Parties minimun</span>
