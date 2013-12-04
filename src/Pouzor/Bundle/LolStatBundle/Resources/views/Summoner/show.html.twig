@@ -212,6 +212,8 @@
                     <select class="form-control" name="order" id="match_order">
                         <option value="matchDate">Date</option>
                         <option value="killed">Kills</option>
+                        <option value="death">Deaths</option>
+                        <option value="assist">Assists</option>
                     </select>
                 </td>
             </tr>
@@ -254,7 +256,7 @@
               $.ajax({
                 type: "POST",
                 url: "{{ path('ajax_more_game') }}",
-                data: {offset: 0, id: "{{ id }}", filter: getFilter() }
+                data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
             }).done(function (msg) {
 
                         $("#game_container").html(msg);
