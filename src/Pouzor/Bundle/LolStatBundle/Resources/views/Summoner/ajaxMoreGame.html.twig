@@ -1,6 +1,3 @@
 {% for game in games %}
-<tr>
-	<td>{{ game.matchDate | date('d/m/Y H:i')}}</td><td>{{ game.idChampion.name }}</td><td>{% if game.win == 1 %}VICTOIRE{% else %}DEFAITE{% endif %}</td>
-	<td>{{ game.killed }}</td><td>{{ game.death }}</td><td>{{ game.assist }}</td><td>{{ game.matchType }}</td>	
-</tr>
+	{% include "PouzorLolStatBundle:Summoner:_tableGame.html.twig" with { 'game' : game } %}
 {% endfor %}
