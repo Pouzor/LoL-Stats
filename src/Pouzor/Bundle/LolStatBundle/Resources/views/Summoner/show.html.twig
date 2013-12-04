@@ -205,6 +205,7 @@
     </div>
 
     <script type="text/javascript">
+        var last = {{ last }};
 
         function getFilter() {
             
@@ -224,7 +225,7 @@
             $.ajax({
                 type: "POST",
                 url: "{{ path('ajax_more_game') }}",
-                data: {time: "{{last}}", id: "{{ id }}"}
+                data: {time: last, id: "{{ id }}", filter: getFilter()}
             }).done(function (msg) {
 
                         $("#game_container").append(msg);
