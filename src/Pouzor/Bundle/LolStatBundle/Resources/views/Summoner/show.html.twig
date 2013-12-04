@@ -141,7 +141,7 @@
             </thead>
             <tbody>
             <tr>
-                <td style="vertical-align: middle">Types</td>
+                <td style="vertical-align: middle">Type</td>
                 <td>
                     <select class="form-control" name="types" id="types">
                         <option value="">Tout</option>
@@ -180,6 +180,20 @@
                         {% for champ in champions %}
                             <option value="{{ champ["id"] }}">{{ champ["name"] }}</option>
                         {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: middle">Role</td>
+                <td>
+                    <select class="form-control" name="role">
+                        <option value="">Tout</option>
+                        <option value="ADC">ADC</option>
+                        <option value="SUPP">Supp</option>
+                        <option value="MID">Mid</option>
+                        <option value="TOP">Top</option>
+                        <option value="JUNG">Jungler</option>
+
                     </select>
                 </td>
             </tr>
