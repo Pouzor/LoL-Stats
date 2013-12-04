@@ -1,4 +1,10 @@
 <tr class="{% if game.win == 1 %}success{% else %}danger{% endif %}">
-	<td>{{ game.matchDate | date('d/m/Y H:i')}}</td><td>{{ game.idChampion.name }}</td><td>{% if game.win == 1 %}VICTOIRE{% else %}DEFAITE{% endif %}</td>
-	<td>{{ game.killed }}</td><td>{{ game.death }}</td><td>{{ game.assist }}</td><td>{{ game.matchType }}</td>
+	<td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
+    <td>{{ game.idChampion.name }}</td>
+    <td>{% if game.win == 1 %}VICTOIRE{% else %}DEFAITE{% endif %}</td>
+	<td>{{ game.killed }}</td>
+    <td>{{ game.death }}</td>
+    <td>{{ game.assist }}</td>
+    <td>{{ game.matchType }}</td>
+    <td>{% if game.ranked == 1 %}RANKED{% else %}{% endif %}</td>
 </tr>

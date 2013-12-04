@@ -13,28 +13,34 @@ class SummonerController extends Controller
 
 	/**
 	*
+    * Show all stats about one Summoner
 	* @Template()
 	* @Route("/show/{id}", name="show_sommoner")
 	*
 	*/
 	public function showAction($id) {
+        $em = $this->getDoctrine()->getManager();
+		$summoner = $em->getRepository("PouzorLolStatBundle:User")->find($id);
+		$stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($id);
+		$games = $em->getRepository("PouzorLolStatBundle:Game")->getRecentGames($id);
 
-		$summoner = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:User")->find($id);
-		$stats = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($id);
-		$games = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Game")->getRecentGames($id);
-		
+        $winRates = $em->getRepository("PouzorLolStatBundle:Game")->getWinRates($id);
+        $champions = $em->getRepository("PouzorLolStatBundle:Champion")->findAllOrdered();
 
-        $winRates = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Game")->getWinRates($id);
-
-
-
-		return array("summoner" => $summoner, "stats" => $stats, "winrates" => $winRates, "games" => $games, "id" => $id);
+		return array(
+            "summoner" => $summoner,
+            "stats" => $stats,
+            "winrates" => $winRates,
+            "games" => $games, "id" => $id,
+            "champions" => $champions
+        );
 	}
 
 
 
 	/**
 	*
+    * Load more match history about a summoner
 	* @Template()
 	* @Route("/ajaxMoreGame", name="ajax_more_game")
 	*

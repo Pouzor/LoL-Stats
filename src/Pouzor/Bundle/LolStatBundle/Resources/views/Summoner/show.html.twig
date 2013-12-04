@@ -2,24 +2,24 @@
 
 {% block body %}
 
-<h3>{{ summoner.name }}</h3>
+    <h3>{{ summoner.name }}</h3>
 
 
-<div class="row">
+    <div class="row">
 
-    <div class="col-md-5">
-        <br/>
-        <h4>Nombre de match enregistré</h4>
+        <div class="col-md-5">
+            <br/>
+            <h4>Nombre de match enregistrés</h4>
 
 
-        <table class="table table-condensed table-striped table-bordered table-hover" style="width: 300px">
-            <thead>
+            <table class="table table-condensed table-striped table-bordered table-hover" style="width: 300px">
+                <thead>
                 <tr>
                     <th>TOTAL</th>
                     <th>{{ stats["total"] }}</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
 
                 <tr>
                     <td>Faille de l'invocateur</td>
@@ -41,104 +41,169 @@
                     <td>3 V 3</td>
                     <td>{{ stats["3V3"] }}</td>
                 </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-7">
+            <br/>
+            <h4>Ratio WinRate</h4>
+
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" href="#">
+                        Faille Invocateur <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#Tout" data-toggle="tab">Tout</a></li>
+                        <li><a href="#normal" data-toggle="tab">Normal</a></li>
+                        <li><a href="#ranked" data-toggle="tab">Ranked</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="#aram" data-toggle="tab">Aram</a></li>
+                <li><a href="#dominion" data-toggle="tab">Dominion</a></li>
+                <li><a href="#3v3" data-toggle="tab">3 v 3</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="Tout">
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["invoc"] } %}
+                </div>
+                <div class="tab-pane fade" id="normal">
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["normal"] } %}
+                </div>
+                <div class="tab-pane fade" id="ranked">
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["ranked"] } %}
+                </div>
+                <div class="tab-pane fade" id="aram">
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["aram"] } %}
+                </div>
+                <div class="tab-pane fade" id="dominion">
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["dominion"] } %}
+                </div>
+                <div class="tab-pane fade" id="3v3">
+                    TODO
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <h4 id="match_history">Dernières parties</h4>
+
+    <div class="row">
+        <table class="table table-condensed table-striped table-bordered table-hover col-md-8" style="width:800px" >
+            <thead>
+            <tr>
+                <th class="text-center">Date</th>
+                <th class="text-center">Champion</th>
+                <th class="text-center">Victory ?</th>
+                <th class="text-center">Kill</th>
+                <th class="text-center">Death</th>
+                <th class="text-center">Assist</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Ranked</th>
+            </tr>
+            </thead>
+            <tbody id="game_container">
+            {% set last = 0 %}
+            {% for game in games %}
+                {% set last = game.matchDate %}
+                {% include "PouzorLolStatBundle:Summoner:_tableGame.html.twig" with { 'game' : game } %}
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td style="text-align:center" colspan="7">
+                    <a href="#more" id="more_game">
+                        Show more <span class="caret"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#match_history"># Top</a>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+        <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px">
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center">Filtres</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="vertical-align: middle">Types</td>
+                <td>
+                    <select class="form-control" name="types" id="types">
+                        <option value="">Tout</option>
+                        <option value="CLASSIC">Faille de l'invocateur</option>
+                        <option value="ARAM">ARAM</option>
+                        <option value="DOMINION">DOMINION</option>
+                        <option value="3v3">3v3</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: middle">Ranked</td>
+                <td>
+                    <select class="form-control" name="ranked" id="">
+                        <option value="">Tout</option>
+                        <option value="0">Non</option>
+                        <option value="1">Oui</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: middle">Victoire</td>
+                <td>
+                    <select class="form-control" name="victory" id="">
+                        <option value="">Tout</option>
+                        <option value="1">Oui</option>
+                        <option value="0">Non</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: middle">Champion</td>
+                <td>
+                    <select class="form-control" name="champion" id="">
+                        <option value="">Tout</option>
+                        {% for champ in champions %}
+                            <option value="{{ champ["id"] }}">{{ champ["name"] }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
             </tbody>
         </table>
 
+
+        <br/><br/>
     </div>
 
-    <div class="col-md-7">
-        <br/>
-        <h4>Ration WinRate</h4>
+    <script type="text/javascript">
 
-        <ul class="nav nav-tabs nav-justified">
-            <li class="active dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" href="#">
-                    Faille Invocateur <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#Tout" data-toggle="tab">Tout</a></li>
-                    <li><a href="#normal" data-toggle="tab">Normal</a></li>
-                    <li><a href="#ranked" data-toggle="tab">Ranked</a></li>
-                </ul>
-            </li>
+        $("#more_game").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "{{ path('ajax_more_game') }}",
+                data: {time: "{{last}}", id: "{{ id }}"}
+            }).done(function (msg) {
 
+                        $("#game_container").append(msg);
+                    });
+        })
 
-            <li><a href="#aram" data-toggle="tab">Aram</a></li>
-            <li><a href="#dominion" data-toggle="tab">Dominion</a></li>
-            <li><a href="#3v3" data-toggle="tab">3 v 3</a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane fade in active" id="Tout">
-                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["invoc"] } %}
-            </div>
-            <div class="tab-pane fade" id="normal">
-                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["normal"] } %}
-            </div>
-            <div class="tab-pane fade" id="ranked">
-                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["ranked"] } %}
-            </div>
-            <div class="tab-pane fade" id="aram">
-                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["aram"] } %}
-            </div>
-            <div class="tab-pane fade" id="dominion">
-                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["dominion"] } %}
-            </div>
-            <div class="tab-pane fade" id="3v3">
-                TODO
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
-
-
-<h4>Dernières parties</h4>
-
-
-<table class="table table-condensed table-striped table-bordered table-hover" style="width: 800px">
-    <thead>
-        <tr>
-            <th>Date</th><th>Champion</th><th>Victory ?</th><th>Kill</th><th>Death</th><th>Assist</th><th>Type</th>
-        </tr>
-    </thead>
-    <tbody id="game_container">
-        {% set last = 0 %}
-        {% for game in games %}
-        {% set last = game.matchDate %}
-        {% include "PouzorLolStatBundle:Summoner:_tableGame.html.twig" with { 'game' : game } %}
-        {% endfor %}
-    </tbody>
-    <tfoot>
-        <tr>
-            <td style="text-align:center" colspan="7">
-                <a href="#more" id="more_game">
-                    Show more <span class="caret"></span>
-                </a>
-            </td>
-        </tr>
-    </tfoot>
-</table>
-<br /><br />
-
-
-<script type="text/javascript">
-
-$("#more_game").click(function() {
-    $.ajax({
-        type: "POST",
-        url: "{{ path('ajax_more_game') }}",
-        data: {time: "{{last}}", id: "{{ id }}"}
-    }).done(function(msg) {
-
-        $("#game_container").append(msg);
-    });
-})
-
-</script>
+    </script>
 
 
 

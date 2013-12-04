@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class ChampionRepository extends EntityRepository
 {
+    public function findAllOrdered() {
+        $qBuilder = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->from("PouzorLolStatBundle:Champion", "c")
+            ->select('c')
+            ->orderBy("c.name", "ASC");
+
+
+        return $qBuilder->getQuery()->getArrayResult();
+    }
 }
