@@ -200,10 +200,27 @@
             </tbody>
         </table>
 
+        <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="order_table">
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center">Ordre</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <select class="form-control" name="order" id="match_order">
+                        <option value="matchDate">Date</option>
+                        <option value="killed">Kills</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
         <br/><br/>
     </div>
-
+<br/><br/>
     <script type="text/javascript">
         var last = {{ last }};
 
@@ -225,7 +242,7 @@
             $.ajax({
                 type: "POST",
                 url: "{{ path('ajax_more_game') }}",
-                data: {time: last, id: "{{ id }}", filter: getFilter()}
+                data: {time: last, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val()}
             }).done(function (msg) {
 
                         $("#game_container").append(msg);
@@ -243,6 +260,18 @@
                     });
         });  
         
+
+        $("#match_order").change(function() {
+            $.ajax({
+                type: "POST",
+                url: "{{ path('ajax_more_game') }}",
+                data: {time: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
+            }).done(function (msg) {
+
+                        $("#game_container").html(msg);
+                    });
+        });
+
 
     </script>
 
