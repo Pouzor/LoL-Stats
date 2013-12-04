@@ -46,9 +46,10 @@ class SummonerController extends Controller
 	*
 	*/
 	public function ajaxMoreGameAction(Request $request) {
+
 		$games = $this->getDoctrine()->getManager()
 		->getRepository("PouzorLolStatBundle:Game")
-		->getRecentGames($request->request->get("id"), $request->request->get("time"));
+		->getRecentGames($request->request->get("id"), $request->request->get("time"), $request->request->get("filter"));
 
 		return array("games" => $games);	
 	}

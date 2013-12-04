@@ -65,7 +65,7 @@ class GameRepository extends EntityRepository
     }
 
 
-    public function getRecentGames($id, $time = null) {
+    public function getRecentGames($id, $time = null, $filter = null) {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Game", "g")
@@ -77,11 +77,33 @@ class GameRepository extends EntityRepository
         ->setParameter("user", $id)
         ;
 
-        if ($time != null) {
+        if ($time != null && $time != 0) {
             $qBuilder->andWhere("g.matchDate < :time")
             ->setParameter("time", $time);
 
         }    
+
+
+        if ($filter) {
+            $filters = json_decode($filter, true);
+
+            foreach ($filters as $f) {
+                foreach ($f as $k => $v) {
+                    if ($v == "all")
+                        continue;
+                    if ($k != "role") {
+                        $qBuilder->andWhere("g.$k = :$k")
+                        ->setParameter($k, $v);
+                    }
+                    else {
+                        $qBuilder->andWhere("c.position = :$k")
+                        ->setParameter($k, $v);
+                    }
+                }
+            }
+
+
+        }
 
 
         return $qBuilder->getQuery()->getArrayResult();

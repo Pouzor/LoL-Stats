@@ -133,7 +133,7 @@
             </tfoot>
         </table>
 
-        <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px">
+        <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="filter_table">
             <thead>
                 <tr>
                     <th colspan="2" class="text-center">Filtres</th>
@@ -143,8 +143,8 @@
             <tr>
                 <td style="vertical-align: middle">Type</td>
                 <td>
-                    <select class="form-control" name="types" id="types">
-                        <option value="">Tout</option>
+                    <select class="form-control" name="matchType" id="types">
+                        <option value="all">Tout</option>
                         <option value="CLASSIC">Faille de l'invocateur</option>
                         <option value="ARAM">ARAM</option>
                         <option value="DOMINION">DOMINION</option>
@@ -156,7 +156,7 @@
                 <td style="vertical-align: middle">Ranked</td>
                 <td>
                     <select class="form-control" name="ranked" id="">
-                        <option value="">Tout</option>
+                        <option value="all">Tout</option>
                         <option value="0">Non</option>
                         <option value="1">Oui</option>
                     </select>
@@ -165,8 +165,8 @@
             <tr>
                 <td style="vertical-align: middle">Victoire</td>
                 <td>
-                    <select class="form-control" name="victory" id="">
-                        <option value="">Tout</option>
+                    <select class="form-control" name="win" id="">
+                        <option value="all">Tout</option>
                         <option value="1">Oui</option>
                         <option value="0">Non</option>
                     </select>
@@ -175,8 +175,8 @@
             <tr>
                 <td style="vertical-align: middle">Champion</td>
                 <td>
-                    <select class="form-control" name="champion" id="">
-                        <option value="">Tout</option>
+                    <select class="form-control" name="idChampion" id="">
+                        <option value="all">Tout</option>
                         {% for champ in champions %}
                             <option value="{{ champ["id"] }}">{{ champ["name"] }}</option>
                         {% endfor %}
@@ -187,7 +187,7 @@
                 <td style="vertical-align: middle">Role</td>
                 <td>
                     <select class="form-control" name="role">
-                        <option value="">Tout</option>
+                        <option value="all">Tout</option>
                         <option value="ADC">ADC</option>
                         <option value="SUPP">Supp</option>
                         <option value="MID">Mid</option>
@@ -206,6 +206,20 @@
 
     <script type="text/javascript">
 
+        function getFilter() {
+            
+            filter = new Array();
+            
+            $("#filter_table select").each(function() {
+                var obj = {};
+                obj[$(this).attr("name")] = $(this).val(); 
+                filter.push(obj);
+               
+            }) 
+
+            return JSON.stringify(filter, null, 2);   
+        }
+
         $("#more_game").click(function () {
             $.ajax({
                 type: "POST",
@@ -215,7 +229,19 @@
 
                         $("#game_container").append(msg);
                     });
-        })
+        });
+
+        $("#filter_table select").change(function() {
+              $.ajax({
+                type: "POST",
+                url: "{{ path('ajax_more_game') }}",
+                data: {time: "0", id: "{{ id }}", filter: getFilter() }
+            }).done(function (msg) {
+
+                        $("#game_container").html(msg);
+                    });
+        });  
+        
 
     </script>
 
