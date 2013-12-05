@@ -83,7 +83,7 @@ print_r($response);die();
 
       //  $data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/33151520");
 
-        print_r($response);die();
+        print_r($response->__get("raw_body"));die();
 
         return array();
     }
