@@ -5,6 +5,7 @@ namespace Pouzor\Bundle\LolStatBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Unirest\Unirest;
 
 /**
 *
@@ -53,20 +54,39 @@ class ApiController extends Controller
 
 	/**
 	* Get LAST 10 match for the summoners
-	* 
+	*
 	* @Template()
 	* @Route("/getRecentGames")
 	*
 	*/
 	public function getRecentGamesAction() {
 
+/*
+        $response = Unirest::get(
+                                 "https://scalpweb-lolapi.p.mashape.com/getSummonerMatchHistory/euw/Pouzor",
+                                 array(
+                                       "X-Mashape-Authorization" => "FyMpFNXeHZ5AEYbTrbvuuscIFtk0Hdg4"
+                                       ),
+                                 null
+                                 );
 
-		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/"."33151520");
+print_r($response);die();
+*/
 
-		print_r($data);die();
+        $response = Unirest::get(
+                                 "https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/33151520",
+                                 array(
+                                       "X-Mashape-Authorization" => "FyMpFNXeHZ5AEYbTrbvuuscIFtk0Hdg4"
+                                       ),
+                                 null
+                                 );
 
-		return array();
-	}
+      //  $data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/33151520");
+
+        print_r($response);die();
+
+        return array();
+    }
 
 	/**
 	*
@@ -82,7 +102,7 @@ class ApiController extends Controller
 
 		return array();
 	}
-	
+
 
 
 
