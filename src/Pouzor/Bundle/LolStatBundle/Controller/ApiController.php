@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ApiController extends Controller
 {
 
-
+    private $json = null;
 
 	/**
 	*
@@ -35,6 +35,20 @@ class ApiController extends Controller
 	}
 
 
+    /**
+    *
+    * @Route("/showJson", name="showJson")
+    *
+    */
+    public function showJsonAction($json) {
+
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+
 	/**
 	*
 	* @Template()
@@ -44,13 +58,13 @@ class ApiController extends Controller
 	public function getAggregatedStatsAction() {
 
 
-		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAggregatedStats/"."33151520");
+		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAggregatedStats/"."33151520");
 
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
 
-        return $response;
-	}
+
+        $this->redirect($this->generateUrl("showJson"));
+
+    }
 
 
 
@@ -72,15 +86,10 @@ class ApiController extends Controller
                                  null
                                  );
 
-      //  $data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/33151520");
-
-
-
-        $response = new Response($response->__get("raw_body"));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        $this->redirect($this->generateUrl("showJson"));
     }
+
+
 
 	/**
 	*
@@ -90,13 +99,10 @@ class ApiController extends Controller
 	*
 	*/
 	public function getAllPublicSummonerDataByAccountAction() {
-		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAllPublicSummonerDataByAccount/"."33151520");
+		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAllPublicSummonerDataByAccount/"."33151520");
 
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-	}
+        $this->redirect($this->generateUrl("showJson"));
+    }
 
 
 
@@ -109,13 +115,10 @@ class ApiController extends Controller
 	*
 	*/
 	public function getLeagueForPlayerAction() {
-		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getLeagueForPlayer/"."33151520");
+		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getLeagueForPlayer/"."33151520");
 
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-	}
+        $this->redirect($this->generateUrl("showJson"));
+    }
 
 	/**
 	*
@@ -125,13 +128,10 @@ class ApiController extends Controller
 	*
 	*/
 	public function retrievePlayerStatsByAccountIdAction() {
-		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrievePlayerStatsByAccountId/"."33151520");
+		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrievePlayerStatsByAccountId/"."33151520");
 
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-	}
+        $this->redirect($this->generateUrl("showJson"));
+    }
 
 
 	/**
@@ -142,13 +142,10 @@ class ApiController extends Controller
 	*
 	*/
 	public function retrieveTopPlayedChampionsAction() {
-		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrieveTopPlayedChampions/"."33151520");
+		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrieveTopPlayedChampions/"."33151520");
 
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-	}
+        $this->redirect($this->generateUrl("showJson"));
+    }
 
 
 }
