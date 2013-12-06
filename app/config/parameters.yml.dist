@@ -15,3 +15,5 @@ parameters:
     secret:            PouzorSecrete
 
     mashape_key:       SetTheValue
+    user_password: userpass
+    admin_password: adminpass
