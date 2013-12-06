@@ -26,7 +26,7 @@
                     <td>{{ stats["invocateur"]["nb"] }} <span style="font-size:10px">({{ stats["invocateur"]["win"] }}/{{ stats["invocateur"]["loose"] }})</span></td>
                 </tr>
                 <tr>
-                    <td>RANKED</td>
+                    <td> - RANKED</td>
                     <td>{{ stats["ranked"]["nb"] }} <span style="font-size:10px">({{ stats["ranked"]["win"] }}/{{ stats["ranked"]["loose"] }})</span></td>
                 </tr>
                 <tr>
@@ -71,19 +71,19 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="Tout">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["invoc"] } %}
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["invoc"], "summoner": summoner } %}
                 </div>
                 <div class="tab-pane fade" id="normal">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["normal"] } %}
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["normal"], "summoner": summoner } %}
                 </div>
                 <div class="tab-pane fade" id="ranked">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["ranked"] } %}
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["ranked"], "summoner": summoner } %}
                 </div>
                 <div class="tab-pane fade" id="aram">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["aram"] } %}
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["aram"], "summoner": summoner } %}
                 </div>
                 <div class="tab-pane fade" id="dominion">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["dominion"] } %}
+                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["dominion"], "summoner": summoner } %}
                 </div>
                 <div class="tab-pane fade" id="3v3">
                     TODO

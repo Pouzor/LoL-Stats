@@ -1,6 +1,7 @@
 <tr class="{% if game.win == 1 %}success{% else %}danger{% endif %}">
 	<td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
-    <td>{{ game.idChampion.name }}</td>
+
+    <td><a href="{{ path("show_sommoner_champion", {"userId" : game.idUser, "champName" : game.idChampion.name})}}"> {{ game.idChampion.name }}</a></td>
     <td>{% if game.win == 1 %}VICTOIRE{% else %}DEFAITE{% endif %}</td>
 	<td>{{ game.killed }}</td>
     <td>{{ game.death }}</td>

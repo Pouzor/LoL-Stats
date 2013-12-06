@@ -13,15 +13,15 @@ use Doctrine\ORM\EntityRepository;
 class GameRepository extends EntityRepository
 {
 
-	public function getCountStatsGlobal($id) {
+	public function getCountStatsGlobal($id, $champName = null) {
 		
 		$stats = array();
 
-		$stats["total"] = $this->getCountGameStats($id);
-		$stats["invocateur"] = $this->getCountGameStats($id, "matchType", "CLASSIC");
-		$stats["ranked"] = $this->getCountGameStats($id, "ranked", 1);
-		$stats["aram"] = $this->getCountGameStats($id, "matchType", "ARAM");
-		$stats["dominion"] = $this->getCountGameStats($id, "matchType", "DOMINION");
+		$stats["total"] = $this->getCountGameStats($id, $champName);
+		$stats["invocateur"] = $this->getCountGameStats($id, $champName, "matchType", "CLASSIC");
+		$stats["ranked"] = $this->getCountGameStats($id, $champName, "ranked", 1);
+		$stats["aram"] = $this->getCountGameStats($id, $champName, "matchType", "ARAM");
+		$stats["dominion"] = $this->getCountGameStats($id, $champName, "matchType", "DOMINION");
 		$stats["3V3"] = "TODO";
 
         return $stats;
@@ -29,7 +29,7 @@ class GameRepository extends EntityRepository
 
 
 
-    public function getCountGameStats($id, $criteria = null, $value = null) {
+    public function getCountGameStats($id, $champName = null, $criteria = null, $value = null) {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Game", "g")
@@ -41,6 +41,12 @@ class GameRepository extends EntityRepository
         if ($criteria !== null) {
             $qBuilder->andWhere("g.$criteria = :value")
             ->setParameter("value", $value);  
+        }
+
+        if ($champName !== null) {
+          $qBuilder->leftJoin("g.idChampion", "c")
+          ->andWhere("c.name = :name")
+          ->setParameter("name", $champName);  
         }
 
         return $qBuilder->getQuery()->getSingleResult();
@@ -84,7 +90,7 @@ class GameRepository extends EntityRepository
     }
 
 
-    public function getRecentGames($id, $offset = 0, $filter = null, $order = 1) {
+    public function getRecentGames($id, $champName = 0, $offset = 0, $filter = null, $order = 1) {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Game", "g")
@@ -96,6 +102,11 @@ class GameRepository extends EntityRepository
         ->setMaxResults(10)
         ->setParameter("user", $id)
         ;
+
+        if ($champName !== 0) {
+           $qBuilder->andWhere("c.name = :name")
+           ->setParameter("name", $champName); 
+        }
 
         if ($order == 1) {
             $qBuilder->orderBy("g.matchDate", "DESC");

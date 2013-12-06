@@ -50,7 +50,7 @@ class SummonerController extends Controller
 
 		$games = $this->getDoctrine()->getManager()
 		->getRepository("PouzorLolStatBundle:Game")
-		->getRecentGames($request->request->get("id"), $request->request->get("offset"), $request->request->get("filter"), $request->request->get("order", 1));
+		->getRecentGames($request->request->get("id"), 0, $request->request->get("offset"), $request->request->get("filter"), $request->request->get("order", 1));
 
 		return array("games" => $games);
 	}
