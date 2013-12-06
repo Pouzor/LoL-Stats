@@ -70,7 +70,7 @@ class ApiController extends Controller
 
 	/**
 	*
-	* Pulls all data about a summoner
+	* RUNE PAGES
 	* @Template()
 	* @Route("/getAllPublicSummonerDataByAccount")
 	*
@@ -103,7 +103,7 @@ class ApiController extends Controller
 
 	/**
 	*
-	* Pulls all data about a summoner
+	* Get all total kill, assist etc... by type
 	* @Template()
 	* @Route("/retrievePlayerStatsByAccountId")
 	*
@@ -119,7 +119,7 @@ class ApiController extends Controller
 
 	/**
 	*
-	* Pulls all data about a summoner
+	* Get trop 5 champ with special stats (penta, max k/d/a etc...)
 	* @Template()
 	* @Route("/retrieveTopPlayedChampions")
 	*
