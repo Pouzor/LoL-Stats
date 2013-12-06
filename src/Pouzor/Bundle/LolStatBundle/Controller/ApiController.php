@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Unirest\Unirest;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
 *
@@ -45,9 +46,10 @@ class ApiController extends Controller
 
 		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAggregatedStats/"."33151520");
 
-		print_r($data);die();
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
 
-		return array();
+        return $response;
 	}
 
 
@@ -61,31 +63,23 @@ class ApiController extends Controller
 	*/
 	public function getRecentGamesAction() {
 
-/*
-        $response = Unirest::get(
-                                 "https://scalpweb-lolapi.p.mashape.com/getSummonerMatchHistory/euw/Pouzor",
-                                 array(
-                                       "X-Mashape-Authorization" => "FyMpFNXeHZ5AEYbTrbvuuscIFtk0Hdg4"
-                                       ),
-                                 null
-                                 );
-
-print_r($response);die();
-*/
 
         $response = Unirest::get(
                                  "https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/33151520",
                                  array(
-                                       "X-Mashape-Authorization" => "FyMpFNXeHZ5AEYbTrbvuuscIFtk0Hdg4"
+                                       "X-Mashape-Authorization" => $this->container->getParameter('mashape_key')
                                        ),
                                  null
                                  );
 
       //  $data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/33151520");
 
-        print_r($response->__get("raw_body"));die();
 
-        return array();
+
+        $response = new Response($response->__get("raw_body"));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
 	/**
@@ -98,9 +92,10 @@ print_r($response);die();
 	public function getAllPublicSummonerDataByAccountAction() {
 		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAllPublicSummonerDataByAccount/"."33151520");
 
-		print_r($data);die();
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
 
-		return array();
+        return $response;
 	}
 
 
@@ -116,9 +111,10 @@ print_r($response);die();
 	public function getLeagueForPlayerAction() {
 		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getLeagueForPlayer/"."33151520");
 
-		print_r($data);die();
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
 
-		return array();
+        return $response;
 	}
 
 	/**
@@ -131,9 +127,10 @@ print_r($response);die();
 	public function retrievePlayerStatsByAccountIdAction() {
 		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrievePlayerStatsByAccountId/"."33151520");
 
-		print_r($data);die();
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
 
-		return array();
+        return $response;
 	}
 
 
@@ -147,9 +144,10 @@ print_r($response);die();
 	public function retrieveTopPlayedChampionsAction() {
 		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrieveTopPlayedChampions/"."33151520");
 
-		print_r($data);die();
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
 
-		return array();
+        return $response;
 	}
 
 
