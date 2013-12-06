@@ -16,26 +16,26 @@
                 <thead>
                 <tr>
                     <th>TOTAL</th>
-                    <th>{{ stats["total"] }}</th>
+                    <th>{{ stats["total"]["nb"] }} <span style="font-size:10px">({{ stats["total"]["win"] }}/{{ stats["total"]["loose"] }})</span></th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <tr>
                     <td>Faille de l'invocateur</td>
-                    <td>{{ stats["invocateur"] }}</td>
+                    <td>{{ stats["invocateur"]["nb"] }} <span style="font-size:10px">({{ stats["invocateur"]["win"] }}/{{ stats["invocateur"]["loose"] }})</span></td>
                 </tr>
                 <tr>
                     <td>RANKED</td>
-                    <td>{{ stats["ranked"] }}</td>
+                    <td>{{ stats["ranked"]["nb"] }} <span style="font-size:10px">({{ stats["ranked"]["win"] }}/{{ stats["ranked"]["loose"] }})</span></td>
                 </tr>
                 <tr>
                     <td>Aram</td>
-                    <td>{{ stats["aram"] }}</td>
+                    <td>{{ stats["aram"]["nb"] }} <span style="font-size:10px">({{ stats["aram"]["win"] }}/{{ stats["aram"]["loose"] }})</span></td>
                 </tr>
                 <tr>
                     <td>Dominion</td>
-                    <td>{{ stats["dominion"] }}</td>
+                    <td>{{ stats["dominion"]["nb"] }} <span style="font-size:10px">({{ stats["dominion"]["win"] }}/{{ stats["dominion"]["loose"] }})</span></td>
                 </tr>
                 <tr>
                     <td>3 V 3</td>

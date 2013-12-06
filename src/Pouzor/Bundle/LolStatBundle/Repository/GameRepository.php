@@ -17,16 +17,35 @@ class GameRepository extends EntityRepository
 		
 		$stats = array();
 
-		$stats["total"] = count($this->findBy(array('idUser' => $id)));
-		$stats["invocateur"] = count($this->findBy(array('idUser' => $id, "matchType" => "CLASSIC")));
-		$stats["ranked"] = count($this->findBy(array('idUser' => $id, "ranked" => 1)));
-		$stats["aram"] = count($this->findBy(array('idUser' => $id, "matchType" => "ARAM")));
-		$stats["dominion"] = count($this->findBy(array('idUser' => $id, "matchType" => "DOMINION")));
+		$stats["total"] = $this->getCountGameStats($id);
+		$stats["invocateur"] = $this->getCountGameStats($id, "matchType", "CLASSIC");
+		$stats["ranked"] = $this->getCountGameStats($id, "ranked", 1);
+		$stats["aram"] = $this->getCountGameStats($id, "matchType", "ARAM");
+		$stats["dominion"] = $this->getCountGameStats($id, "matchType", "DOMINION");
 		$stats["3V3"] = "TODO";
 
         return $stats;
     }
 
+
+
+    public function getCountGameStats($id, $criteria = null, $value = null) {
+        $qBuilder = $this->getEntityManager()
+        ->createQueryBuilder()
+        ->from("PouzorLolStatBundle:Game", "g")
+        ->select("COUNT(g.id) as nb, SUM(g.win) as win, COUNT(g.id)-SUM(g.win) as loose")
+        ->where("g.idUser = :user")
+        ->setParameter("user", $id);
+
+
+        if ($criteria !== null) {
+            $qBuilder->andWhere("g.$criteria = :value")
+            ->setParameter("value", $value);  
+        }
+
+        return $qBuilder->getQuery()->getSingleResult();
+
+    }
 
     public function getWinRatesQuery($id, $type, $ranked = "all") {
         $qBuilder = $this->getEntityManager()
@@ -85,33 +104,33 @@ class GameRepository extends EntityRepository
         if ($order != 1) {
           $qBuilder->orderBy("g.$order", "DESC");  
           
-        }
+      }
 
-        if ($filter) {
-            $filters = json_decode($filter, true);
+      if ($filter) {
+        $filters = json_decode($filter, true);
 
-            foreach ($filters as $f) {
-                foreach ($f as $k => $v) {
-                    if ($v == "all")
-                        continue;
-                    if ($k != "role") {
-                        $qBuilder->andWhere("g.$k = :$k")
-                        ->setParameter($k, $v);
-                    }
-                    else {
-                        $qBuilder->andWhere("c.position = :$k")
-                        ->setParameter($k, $v);
-                    }
+        foreach ($filters as $f) {
+            foreach ($f as $k => $v) {
+                if ($v == "all")
+                    continue;
+                if ($k != "role") {
+                    $qBuilder->andWhere("g.$k = :$k")
+                    ->setParameter($k, $v);
+                }
+                else {
+                    $qBuilder->andWhere("c.position = :$k")
+                    ->setParameter($k, $v);
                 }
             }
-
-
         }
 
 
-        return $qBuilder->getQuery()->getArrayResult();
-
     }
+
+
+    return $qBuilder->getQuery()->getArrayResult();
+
+}
 
 
 }
