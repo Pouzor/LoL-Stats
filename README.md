@@ -1,4 +1,4 @@
-LoL-Stats
+LoL-Stats [![SensioLabsInsight](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe/big.png)](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe)
 =========
 
 Base on Free API https://www.mashape.com/timtastic/league-of-legends-3
