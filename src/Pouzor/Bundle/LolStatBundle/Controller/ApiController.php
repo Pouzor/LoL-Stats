@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ApiController extends Controller
 {
 
-    private $json = null;
+
 
 	/**
 	*
@@ -35,36 +35,27 @@ class ApiController extends Controller
 	}
 
 
-    /**
-    *
-    * @Route("/showJson", name="showJson")
-    *
-    */
-    public function showJsonAction($json) {
-
-        $response = new Response($json);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
 
 	/**
 	*
 	* @Template()
 	* @Route("/getAggregatedStats")
+    * @Method({"GET"})
 	*
 	*/
 	public function getAggregatedStatsAction() {
 
 
-		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAggregatedStats/"."33151520");
+		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAggregatedStats/"."33151520");
+
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
 
 
 
-        $this->redirect($this->generateUrl("showJson"));
-
-    }
+	}
 
 
 
@@ -73,6 +64,7 @@ class ApiController extends Controller
 	*
 	* @Template()
 	* @Route("/getRecentGames")
+    * @Method({"GET"})
 	*
 	*/
 	public function getRecentGamesAction() {
@@ -86,7 +78,14 @@ class ApiController extends Controller
                                  null
                                  );
 
-        $this->redirect($this->generateUrl("showJson"));
+
+
+
+
+        $response = new Response($response->__get("raw_body"));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
 
@@ -96,13 +95,17 @@ class ApiController extends Controller
 	* Pulls all data about a summoner
 	* @Template()
 	* @Route("/getAllPublicSummonerDataByAccount")
+    * @Method({"GET"})
 	*
 	*/
 	public function getAllPublicSummonerDataByAccountAction() {
-		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAllPublicSummonerDataByAccount/"."33151520");
+		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getAllPublicSummonerDataByAccount/"."33151520");
 
-        $this->redirect($this->generateUrl("showJson"));
-    }
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+	}
 
 
 
@@ -112,26 +115,34 @@ class ApiController extends Controller
 	* Pulls all data about a summoner
 	* @Template()
 	* @Route("/getLeagueForPlayer")
+    * @Method({"GET"})
 	*
 	*/
 	public function getLeagueForPlayerAction() {
-		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getLeagueForPlayer/"."33151520");
+		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getLeagueForPlayer/"."33151520");
 
-        $this->redirect($this->generateUrl("showJson"));
-    }
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+	}
 
 	/**
 	*
 	* Pulls all data about a summoner
 	* @Template()
 	* @Route("/retrievePlayerStatsByAccountId")
+    * @Method({"GET"})
 	*
 	*/
 	public function retrievePlayerStatsByAccountIdAction() {
-		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrievePlayerStatsByAccountId/"."33151520");
+		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrievePlayerStatsByAccountId/"."33151520");
 
-        $this->redirect($this->generateUrl("showJson"));
-    }
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+	}
 
 
 	/**
@@ -139,13 +150,17 @@ class ApiController extends Controller
 	* Pulls all data about a summoner
 	* @Template()
 	* @Route("/retrieveTopPlayedChampions")
+    * @Method({"GET"})
 	*
 	*/
 	public function retrieveTopPlayedChampionsAction() {
-		$this->json = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrieveTopPlayedChampions/"."33151520");
+		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/retrieveTopPlayedChampions/"."33151520");
 
-        $this->redirect($this->generateUrl("showJson"));
-    }
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+	}
 
 
 }
