@@ -6,7 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use Pouzor\Bundle\LolStatBundle\Repository\GameRepository;
+
+
 
 class SummonerController extends Controller
 {
@@ -51,7 +52,7 @@ class SummonerController extends Controller
 		->getRepository("PouzorLolStatBundle:Game")
 		->getRecentGames($request->request->get("id"), $request->request->get("offset"), $request->request->get("filter"), $request->request->get("order", 1));
 
-		return array("games" => $games);	
+		return array("games" => $games);
 	}
 
 }
