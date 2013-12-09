@@ -13,6 +13,7 @@ class ChampionController extends Controller
     * Show all stats about a champion for a Summoner
 	* @Template()
 	* @Route("/show/{userId}/champion/{champName}", name="show_sommoner_champion")
+    * @Method({"GET"})
 	*
 	*/
 	public function showSummonerAction($userId, $champName) {
@@ -23,9 +24,9 @@ class ChampionController extends Controller
 		$stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($userId, $champName);
 
 		return array(
-			"games" => $games, 
-			"summoner" => $summoner, 
-			"champName" => $champName, 
+			"games" => $games,
+			"summoner" => $summoner,
+			"champName" => $champName,
 			"stats" => $stats);
 	}
 }

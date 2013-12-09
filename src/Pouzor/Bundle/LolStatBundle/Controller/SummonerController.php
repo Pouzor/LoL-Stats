@@ -17,6 +17,7 @@ class SummonerController extends Controller
     * Show all stats about one Summoner
 	* @Template()
 	* @Route("/show/{id}", name="show_sommoner")
+    * @Method({"GET"})
 	*
 	*/
 	public function showAction($id) {
@@ -44,6 +45,7 @@ class SummonerController extends Controller
     * Load more match history about a summoner
 	* @Template()
 	* @Route("/ajaxMoreGame", name="ajax_more_game")
+    * @Method({"GET"})
 	*
 	*/
 	public function ajaxMoreGameAction(Request $request) {
