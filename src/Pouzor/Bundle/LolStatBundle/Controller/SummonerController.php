@@ -46,7 +46,7 @@ class SummonerController extends Controller
     * Load more match history about a summoner
 	* @Template()
 	* @Route("/ajaxMoreGame", name="ajax_more_game")
-    * @Method({"GET"})
+    * @Method({"POST"})
 	*
 	*/
 	public function ajaxMoreGameAction(Request $request) {
