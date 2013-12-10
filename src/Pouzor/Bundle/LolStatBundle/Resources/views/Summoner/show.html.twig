@@ -243,7 +243,7 @@
         $("#more_game").click(function () {
             offset += 10;
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "{{ path('ajax_more_game') }}",
                 data: {offset: offset, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val()}
             }).done(function (msg) {
@@ -254,7 +254,7 @@
 
         $("#filter_table select").change(function() {
               $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "{{ path('ajax_more_game') }}",
                 data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
             }).done(function (msg) {
@@ -266,7 +266,7 @@
 
         $("#match_order").change(function() {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "{{ path('ajax_more_game') }}",
                 data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
             }).done(function (msg) {
