@@ -30,7 +30,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         $output = curl_exec($ch);
         curl_close($ch);
-        
+
         return $output;
   
     }
@@ -221,7 +221,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
 
 
           }
-          $output->writeln("Ajout de $nb match pour ".$summ->getName());
+          $output->writeln(date("H:i d-m-Y")." - Ajout de $nb match pour ".$summ->getName());
 
 
       }
