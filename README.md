@@ -16,6 +16,9 @@ Installation:
 - Use composer install
 - Use db on data/sql for try on real data or fill with your own data
 
+TODO:
+- Insert the API mashape for fill the data
+
 Evolution : 
  - Migrate Mysql Database into MongoDB for more scalling and evolution
  - Use our own Node.js server API
