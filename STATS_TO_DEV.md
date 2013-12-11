@@ -32,6 +32,12 @@ Résumé d'un match
  - Extra Kill
  - ....
 
+Link :
+
+List champ + item
+- http://ddragon.leagueoflegends.com/tool/euw/en_US
+- http://pastebin.com/B9jWRDCB
+
 
 
 **TODO**
