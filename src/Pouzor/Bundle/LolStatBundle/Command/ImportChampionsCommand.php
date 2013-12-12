@@ -36,7 +36,7 @@ class ImportChampionsCommand extends ContainerAwareCommand
         $json = file_get_contents($file);
 
         if (!$json) {
-            $output->writeln("Error opening file");
+            $output->writeln("<error>Error opening file</error>");
             return;
         }
 
@@ -44,7 +44,7 @@ class ImportChampionsCommand extends ContainerAwareCommand
 
 
         if (!isset($json["data"]) || !is_array($json["data"])) {
-            $output->writeln("Error in file");
+            $output->writeln("<error>Error in file</error>");
             return;
         }    
 
