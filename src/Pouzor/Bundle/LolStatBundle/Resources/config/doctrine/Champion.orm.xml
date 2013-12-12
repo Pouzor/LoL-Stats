@@ -5,6 +5,8 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="name" type="string" column="name" length="255" nullable="true"/>
+    <field name="title" type="string" column="title" length="255" nullable="true"/>
+    <field name="blurb" type="string" column="blurb" length="50000" nullable="true"/>
     <field name="position" type="string" column="position" length="255" nullable="true"/>
       <one-to-many field="games" target-entity="Pouzor\Bundle\LolStatBundle\Entity\Game" mapped-by="idChampion">
           <cascade>

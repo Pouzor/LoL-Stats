@@ -55,6 +55,7 @@ class Champion
     {
         return $this->id;
     }
+    
     /**
      * @var string
      */
@@ -110,5 +111,94 @@ class Champion
     public function getPosition()
     {
         return $this->position;
+    }
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @var string
+     */
+    private $blurb;
+
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Champion
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set blurb
+     *
+     * @param string $blurb
+     * @return Champion
+     */
+    public function setBlurb($blurb)
+    {
+        $this->blurb = $blurb;
+    
+        return $this;
+    }
+
+    /**
+     * Get blurb
+     *
+     * @return string 
+     */
+    public function getBlurb()
+    {
+        return $this->blurb;
+    }
+
+    /**
+     * Add games
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Game $games
+     * @return Champion
+     */
+    public function addGame(\Pouzor\Bundle\LolStatBundle\Entity\Game $games)
+    {
+        $this->games[] = $games;
+    
+        return $this;
+    }
+
+    /**
+     * Remove games
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Game $games
+     */
+    public function removeGame(\Pouzor\Bundle\LolStatBundle\Entity\Game $games)
+    {
+        $this->games->removeElement($games);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGames()
+    {
+        return $this->games;
     }
 }
