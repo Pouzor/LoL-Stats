@@ -1,13 +1,20 @@
-<table class="table table-condensed table-striped table-bordered table-hover">
-    <thead>
+<table class="table table-condensed table-striped table-bordered table-hover text-center">
+    <thead >
     <tr>
-        <th>Champion</th><th>Win</th><th>Loose</th><th>Win Rate</th>
+        <th class="text-center col-md-2">Champion</th><th class="text-center">Win</th><th class="text-center">Loose</th><th class="text-center">Win Rate</th>
     </tr>
     </thead>
     <tbody>
     {% for data in datas %}
     <tr>
-        <td><a href="{{ path("show_sommoner_champion", {"userId" : summoner.id, "champName" : data["name"]})}}"> {{ data["name"] }}</a></td><td>{{ data["NB_WIN"] }}</td><td>{{ data["NB_GAME"] - data["NB_WIN"] }}</td><td>{{ data["RATE"] | number_format}}%</td>
+        <td>
+            <a href="{{ path("show_sommoner_champion", {"userId" : summoner.id, "champName" : data["name"]})}}"> 
+                
+                <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ data["name"] | replace({' ': ''}) ~ '.png') }}" title="{{ data["name"] }}" />
+            </a>
+        </td>
+            <td>{{ data["NB_WIN"] }}</td>
+        <td>{{ data["NB_GAME"] - data["NB_WIN"] }}</td><td>{{ data["RATE"] | number_format}}%</td>
     </tr>
     {% endfor %}
     </tbody>
