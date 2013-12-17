@@ -24,6 +24,8 @@ class ChampionController extends Controller
 		$games = $em->getRepository("PouzorLolStatBundle:Game")->getRecentGames($userId, $champName);
 		$stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($userId, $champName);
 
+		$items;
+
 		return array(
 			"games" => $games,
 			"summoner" => $summoner,
