@@ -14,7 +14,7 @@
 
     <many-to-one field="idChampion" target-entity="Champion" inversed-by="games">
         <join-column name="id_champion" referenced-column-name="id" />
-            </many-to-one>
+    </many-to-one>
     <field name="gold" type="bigint" column="gold" nullable="true"/>
     <field name="timeDead" type="bigint" column="time_dead" nullable="true"/>
     <field name="killed" type="bigint" column="killed" nullable="true"/>
@@ -28,7 +28,11 @@
     <field name="totalDamageTaken" type="bigint" column="total_damage_taken" nullable="true"/>
     <field name="turretsKilled" type="bigint" column="turrets_killed" nullable="true"/>
     <field name="win" type="bigint" column="win" nullable="true"/>
-    <field name="item0" type="string" column="item0" length="255" nullable="true"/>
+
+
+      <many-to-one field="item0" target-entity="Item" inversed-by="games">
+          <join-column name="item0" referenced-column-name="id" nullable="true"/>
+      </many-to-one>
     <field name="item1" type="string" column="item1" length="255" nullable="true"/>
     <field name="item2" type="string" column="item2" length="255" nullable="true"/>
     <field name="item3" type="string" column="item3" length="255" nullable="true"/>

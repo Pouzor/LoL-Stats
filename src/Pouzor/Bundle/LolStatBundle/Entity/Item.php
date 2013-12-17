@@ -175,4 +175,49 @@ class Item
     {
         return $this->totalCost;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $games;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->games = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add games
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Game $games
+     * @return Item
+     */
+    public function addGame(\Pouzor\Bundle\LolStatBundle\Entity\Game $games)
+    {
+        $this->games[] = $games;
+    
+        return $this;
+    }
+
+    /**
+     * Remove games
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Game $games
+     */
+    public function removeGame(\Pouzor\Bundle\LolStatBundle\Entity\Game $games)
+    {
+        $this->games->removeElement($games);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
 }
