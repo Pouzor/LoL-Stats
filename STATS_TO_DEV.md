@@ -2,21 +2,23 @@
 
  *Dashboard :*
 
- - Nombre de game dans chaque type dans le systeme (ARAM, NORMAL, RANK, DOMINION...) 
+ - ~~Nombre de game dans chaque type dans le systeme (ARAM, NORMAL, RANK, DOMINION...)~~
  
- - Historique des 10 derniers match + ajax + Page complete -> Plus options style filtre par Role (supp / Mid ...)
+ - ~~Historique des 10 derniers match + ajax~~ + Page complete -> Plus options style filtre par Role (supp / Mid ...)
 
  - 10 Champions le plus jouer (Tab par type) + Ajax + Page complete -> Plus options style filtre par Role (supp / Mid ...)
  
- - 10 Champions Win/rate (Tab par type) + Ajax + Page complete -> Plus options style filtre par Role (supp / Mid ...)
+ - ~~10 Champions Win/rate (Tab par type)~~ + Ajax + Page complete -> Plus options style filtre par Role (supp / Mid ...)
  
  - 10 Champions Top KDA (Tab par type)  + Ajax + Page complete -> Plus options style filtre par Role (supp / Mid ...)
 
 
 
 
-Par champ :
- -
+Par champion :
+ - Stats winrate/nb/ratio
+ - Historique complet
+ - Itemisation (%win par objet)
 
 
 
@@ -29,6 +31,12 @@ Résumé d'un match
  - Turret
  - Extra Kill
  - ....
+
+Link :
+
+List champ + item
+- http://ddragon.leagueoflegends.com/tool/euw/en_US
+- http://pastebin.com/B9jWRDCB
 
 
 

@@ -16,11 +16,14 @@ Installation:
 - Use composer install
 - Use db on data/sql for try on real data or fill with your own data
 
-TODO:
-- Insert the API mashape for fill the data
+Use:
+- Get Mashape Api key on https://www.mashape.com and configure it on parameters.yml
+- Import recent game with the command ./app/console pouzor:getMatch
+
 
 Evolution : 
  - Migrate Mysql Database into MongoDB for more scalling and evolution
  - Use our own Node.js server API
+ - Fetch and save more infos (player infos...)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe/big.png)](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe)
