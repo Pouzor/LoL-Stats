@@ -1,12 +1,11 @@
-<tr>
+<tr >
     <td>
-        <img src="{{ asset('bundles/pouzorlolstat/images/item/' ~ item["item"]["id"] ~ '.png') }}" style="width: 36px"/>
+        <img src="{{ asset('bundles/pouzorlolstat/images/item/' ~ item["item"]["id"] ~ '.png') }}" class="table_item_pict "/>
+        {{ item["item"]["name"] }}
     </td>
-    <td>{{ item["item"]["name"] }}</td>
-    <td>{{ item["nb"] }}</td>
-    <td>{{ item["rate"] | number_format }}%</td>
-    <td>{{ item["item"]["totalCost"] }}g</td>
-    <td></td>
-    <td></td>
-    <td></td>
+
+    <td class="text-center">{{ item["nb"] }} ({{ (item["nb"] / total)*100 }}%)</td>
+    <td class="text-center">{{ item["rate"] | number_format }}%</td>
+    <td class="text-center">{{ item["item"]["totalCost"] }}g</td>
+    <td class="text-center"> {{ item["K"] | number_format(1) ~ " / " ~ item["D"] | number_format(1) ~ " / " ~ item["A"] | number_format(1) }}</td>
 </tr>

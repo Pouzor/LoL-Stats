@@ -34,9 +34,9 @@ Résumé d'un match
 
 Link :
 
-List champ + item
+List champ + item + icon
 - http://ddragon.leagueoflegends.com/tool/euw/en_US
-- http://pastebin.com/B9jWRDCB
+
 
 
 

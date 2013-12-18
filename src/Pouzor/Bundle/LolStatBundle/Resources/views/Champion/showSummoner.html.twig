@@ -2,23 +2,27 @@
 
 {% block body %}
 
-    <h3>{{ summoner.name }} - {{ champName }}</h3>
+<h3>{{ summoner.name }} - {{ champName }}</h3>
 
 
-    <div class="row">
-        <div class="col-md-5">
-            <br/>
-            <h4>Nombre de match enregistrés</h4>
+<div class="row">
+    <div class="col-md-5">
+        <br/>
+        <h4>Nombre de match enregistrés</h4>
 
 
-            <table class="table table-condensed table-striped table-bordered table-hover" style="width: 300px">
-                <thead>
+        <table class="table table-condensed table-striped table-bordered table-hover" style="width: 300px">
+            <thead>
                 <tr>
-                    <th>TOTAL</th>
-                    <th>{{ stats["total"]["nb"] }} <span style="font-size:10px">({{ stats["total"]["win"] }}/{{ stats["total"]["loose"] }})</span></th>
+                    <th class="text-center">
+                        TOTAL
+                    </th>
+                    <th class="text-center">
+                        {{ stats["total"]["nb"] }} <span style="font-size:10px">({{ stats["total"]["win"] }}/{{ stats["total"]["loose"] }})</span>
+                    </th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
 
                 <tr>
                     <td>Faille de l'invocateur</td>
@@ -40,38 +44,38 @@
                     <td>3 V 3</td>
                     <td>{{ stats["3V3"] }}</td>
                 </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <!-- Stats global par type (KDA)-->
-
-    </div>
-
-    <h4 id="match_history">Items les plus utilisés</h4>
-
-    <div class="row">
-        <table class="table table-condensed table-striped table-bordered table-hover col-md-8" style="width:800px">
-            <thead>
-            <tr>
-                <th>Picture</th>
-                <th>Nom</th>
-                <th>Nb</th>
-                <th>WinRate</th>
-                <th>Coût</th>
-                <th>Stats</th>
-                <th>Passive</th>
-                <th>Active</th>
-            </tr>
-            {% for item in items %}
-                {% include "PouzorLolStatBundle:Champion:_tableItem.html.twig" with { 'item' : item } %}
-            {% endfor %}
-            </thead>
-            <tbody>
-
             </tbody>
         </table>
+
     </div>
+    <!-- Stats global par type (KDA)-->
+
+</div>
+
+<h4 id="match_history">Items les plus utilisés</h4>
+
+<div class="row">
+    <table class="table table-condensed table-striped table-bordered table-hover col-md-8" style="width:800px">
+        <thead>
+            <tr>
+                <th class="text-center">Item</th>
+                <th class="text-center">Nb match</th>
+                <th class="text-center">WinRate</th>
+                <th class="text-center">Coût</th>
+                <th class="text-center">K / D / A</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            {% include "PouzorLolStatBundle:Champion:_tableItem.html.twig" with { 'item' : item, "total" : stats["total"]["nb"] } %}
+            {% endfor %}
+
+            
+
+        </tbody>
+    </table>
+</div>
 
 
 {% endblock body %}

@@ -1,3 +1,14 @@
+thead tr {
+	background-color: #333;
+	color: white;
+}
+
+
 .table_champ_pict {
 	width: 40px;
 }
+
+.table_item_pict {
+	width: 36px;
+
+} 
