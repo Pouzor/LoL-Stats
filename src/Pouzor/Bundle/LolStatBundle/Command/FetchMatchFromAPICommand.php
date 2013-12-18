@@ -139,25 +139,25 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
                       case "TRUE_DAMAGE_TAKEN":
                       break;
                       case "ITEM0":
-                      $m->setItem0($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
+                      $m->addItem($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
                       break;
                       case "ITEM1":
-                      $m->setItem1($d["value"]);//TODO
+                      $m->addItem($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
                       break;
                       case "ITEM2":
-                      $m->setItem2($d["value"]);
+                      $m->addItem($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
                       break;
                       case "ITEM3":
-                      $m->setItem3($d["value"]);
+                      $m->addItem($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
                       break;
                       case "ITEM4":
-                      $m->setItem4($d["value"]);
+                      $m->addItem($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
                       break;
                       case "ITEM5":
-                      $m->setItem5($d["value"]);
+                      $m->addItem($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
                       break;
                       case "ITEM6":
-                      $m->setItem6($d["value"]);
+                      $m->addItem($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
                       break;
                       case "PHYSICAL_DAMAGE_DEALT_TO_CHAMPIONS":
                       break;

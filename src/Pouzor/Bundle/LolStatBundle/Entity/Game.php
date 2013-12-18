@@ -611,9 +611,10 @@ class Game
      * @param \Pouzor\Bundle\LolStatBundle\Entity\Item $items
      * @return Game
      */
-    public function addItem(\Pouzor\Bundle\LolStatBundle\Entity\Item $items)
+    public function addItem(\Pouzor\Bundle\LolStatBundle\Entity\Item $item)
     {
-        $this->items[] = $items;
+        $item->addGame($this);
+        $this->items[] = $item;
 
         return $this;
     }
