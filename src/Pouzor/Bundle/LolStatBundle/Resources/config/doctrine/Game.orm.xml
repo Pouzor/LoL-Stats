@@ -29,23 +29,7 @@
     <field name="turretsKilled" type="bigint" column="turrets_killed" nullable="true"/>
     <field name="win" type="bigint" column="win" nullable="true"/>
 
-
-    <many-to-one field="item0" target-entity="Item" inversed-by="games">
-        <join-column name="item0" referenced-column-name="id" nullable="true"/>
-    </many-to-one>
-
-    <many-to-one field="item1" target-entity="Item" inversed-by="games">
-        <join-column name="item1" referenced-column-name="id" nullable="true"/>
-    </many-to-one>
-
-
-    <field name="item2" type="string" column="item2" length="255" nullable="true"/>
-    <field name="item3" type="string" column="item3" length="255" nullable="true"/>
-    <field name="item4" type="string" column="item4" length="255" nullable="true"/>
-    <field name="item5" type="string" column="item5" length="255" nullable="true"/>
-    <field name="item6" type="string" column="item6" length="255" nullable="true"/>
-
-    <many-to-many field="items" target-entity="Item">
+    <many-to-many field="items" target-entity="Item" inversed-by="games">
         <cascade>
             <cascade-all/>
         </cascade>

@@ -24,7 +24,7 @@ class Game
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -130,40 +130,7 @@ class Game
      */
     private $win;
 
-    /**
-     * @var string
-     */
-    private $item0;
 
-    /**
-     * @var string
-     */
-    private $item1;
-
-    /**
-     * @var string
-     */
-    private $item2;
-
-    /**
-     * @var string
-     */
-    private $item3;
-
-    /**
-     * @var string
-     */
-    private $item4;
-
-    /**
-     * @var string
-     */
-    private $item5;
-
-    /**
-     * @var string
-     */
-    private $item6;
 
     /**
      * Set idMatch
@@ -174,14 +141,14 @@ class Game
     public function setIdMatch($idMatch)
     {
         $this->idMatch = $idMatch;
-    
+
         return $this;
     }
 
     /**
      * Get idMatch
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdMatch()
     {
@@ -197,14 +164,14 @@ class Game
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
-    
+
         return $this;
     }
 
     /**
      * Get idUser
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdUser()
     {
@@ -220,14 +187,14 @@ class Game
     public function setPremadesize($premadesize)
     {
         $this->premadesize = $premadesize;
-    
+
         return $this;
     }
 
     /**
      * Get premadesize
      *
-     * @return integer 
+     * @return integer
      */
     public function getPremadesize()
     {
@@ -243,14 +210,14 @@ class Game
     public function setRanked($ranked)
     {
         $this->ranked = $ranked;
-    
+
         return $this;
     }
 
     /**
      * Get ranked
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRanked()
     {
@@ -266,14 +233,14 @@ class Game
     public function setMatchType($matchType)
     {
         $this->matchType = $matchType;
-    
+
         return $this;
     }
 
     /**
      * Get matchType
      *
-     * @return string 
+     * @return string
      */
     public function getMatchType()
     {
@@ -289,14 +256,14 @@ class Game
     public function setMatchDate($matchDate)
     {
         $this->matchDate = $matchDate;
-    
+
         return $this;
     }
 
     /**
      * Get matchDate
      *
-     * @return string 
+     * @return string
      */
     public function getMatchDate()
     {
@@ -312,14 +279,14 @@ class Game
     public function setIdChampion($idChampion)
     {
         $this->idChampion = $idChampion;
-    
+
         return $this;
     }
 
     /**
      * Get idChampion
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdChampion()
     {
@@ -335,14 +302,14 @@ class Game
     public function setGold($gold)
     {
         $this->gold = $gold;
-    
+
         return $this;
     }
 
     /**
      * Get gold
      *
-     * @return integer 
+     * @return integer
      */
     public function getGold()
     {
@@ -358,14 +325,14 @@ class Game
     public function setTimeDead($timeDead)
     {
         $this->timeDead = $timeDead;
-    
+
         return $this;
     }
 
     /**
      * Get timeDead
      *
-     * @return integer 
+     * @return integer
      */
     public function getTimeDead()
     {
@@ -381,14 +348,14 @@ class Game
     public function setKilled($killed)
     {
         $this->killed = $killed;
-    
+
         return $this;
     }
 
     /**
      * Get killed
      *
-     * @return integer 
+     * @return integer
      */
     public function getKilled()
     {
@@ -404,14 +371,14 @@ class Game
     public function setDeath($death)
     {
         $this->death = $death;
-    
+
         return $this;
     }
 
     /**
      * Get death
      *
-     * @return integer 
+     * @return integer
      */
     public function getDeath()
     {
@@ -427,14 +394,14 @@ class Game
     public function setAssist($assist)
     {
         $this->assist = $assist;
-    
+
         return $this;
     }
 
     /**
      * Get assist
      *
-     * @return integer 
+     * @return integer
      */
     public function getAssist()
     {
@@ -450,14 +417,14 @@ class Game
     public function setElochange($elochange)
     {
         $this->elochange = $elochange;
-    
+
         return $this;
     }
 
     /**
      * Get elochange
      *
-     * @return integer 
+     * @return integer
      */
     public function getElochange()
     {
@@ -473,14 +440,14 @@ class Game
     public function setIpearned($ipearned)
     {
         $this->ipearned = $ipearned;
-    
+
         return $this;
     }
 
     /**
      * Get ipearned
      *
-     * @return integer 
+     * @return integer
      */
     public function getIpearned()
     {
@@ -496,14 +463,14 @@ class Game
     public function setQueuetype($queuetype)
     {
         $this->queuetype = $queuetype;
-    
+
         return $this;
     }
 
     /**
      * Get queuetype
      *
-     * @return string 
+     * @return string
      */
     public function getQueuetype()
     {
@@ -519,14 +486,14 @@ class Game
     public function setDamagetochampion($damagetochampion)
     {
         $this->damagetochampion = $damagetochampion;
-    
+
         return $this;
     }
 
     /**
      * Get damagetochampion
      *
-     * @return integer 
+     * @return integer
      */
     public function getDamagetochampion()
     {
@@ -542,14 +509,14 @@ class Game
     public function setMinionsKilled($minionsKilled)
     {
         $this->minionsKilled = $minionsKilled;
-    
+
         return $this;
     }
 
     /**
      * Get minionsKilled
      *
-     * @return integer 
+     * @return integer
      */
     public function getMinionsKilled()
     {
@@ -565,14 +532,14 @@ class Game
     public function setTotalDamageTaken($totalDamageTaken)
     {
         $this->totalDamageTaken = $totalDamageTaken;
-    
+
         return $this;
     }
 
     /**
      * Get totalDamageTaken
      *
-     * @return integer 
+     * @return integer
      */
     public function getTotalDamageTaken()
     {
@@ -588,14 +555,14 @@ class Game
     public function setTurretsKilled($turretsKilled)
     {
         $this->turretsKilled = $turretsKilled;
-    
+
         return $this;
     }
 
     /**
      * Get turretsKilled
      *
-     * @return integer 
+     * @return integer
      */
     public function getTurretsKilled()
     {
@@ -611,180 +578,20 @@ class Game
     public function setWin($win)
     {
         $this->win = $win;
-    
+
         return $this;
     }
 
     /**
      * Get win
      *
-     * @return integer 
+     * @return integer
      */
     public function getWin()
     {
         return $this->win;
     }
 
-    /**
-     * Set item0
-     *
-     * @param string $item0
-     * @return Game
-     */
-    public function setItem0($item0)
-    {
-        $this->item0 = $item0;
-    
-        return $this;
-    }
-
-    /**
-     * Get item0
-     *
-     * @return string 
-     */
-    public function getItem0()
-    {
-        return $this->item0;
-    }
-
-    /**
-     * Set item1
-     *
-     * @param string $item1
-     * @return Game
-     */
-    public function setItem1($item1)
-    {
-        $this->item1 = $item1;
-    
-        return $this;
-    }
-
-    /**
-     * Get item1
-     *
-     * @return string 
-     */
-    public function getItem1()
-    {
-        return $this->item1;
-    }
-
-    /**
-     * Set item2
-     *
-     * @param string $item2
-     * @return Game
-     */
-    public function setItem2($item2)
-    {
-        $this->item2 = $item2;
-    
-        return $this;
-    }
-
-    /**
-     * Get item2
-     *
-     * @return string 
-     */
-    public function getItem2()
-    {
-        return $this->item2;
-    }
-
-    /**
-     * Set item3
-     *
-     * @param string $item3
-     * @return Game
-     */
-    public function setItem3($item3)
-    {
-        $this->item3 = $item3;
-    
-        return $this;
-    }
-
-    /**
-     * Get item3
-     *
-     * @return string 
-     */
-    public function getItem3()
-    {
-        return $this->item3;
-    }
-
-    /**
-     * Set item4
-     *
-     * @param string $item4
-     * @return Game
-     */
-    public function setItem4($item4)
-    {
-        $this->item4 = $item4;
-    
-        return $this;
-    }
-
-    /**
-     * Get item4
-     *
-     * @return string 
-     */
-    public function getItem4()
-    {
-        return $this->item4;
-    }
-
-    /**
-     * Set item5
-     *
-     * @param string $item5
-     * @return Game
-     */
-    public function setItem5($item5)
-    {
-        $this->item5 = $item5;
-    
-        return $this;
-    }
-
-    /**
-     * Get item5
-     *
-     * @return string 
-     */
-    public function getItem5()
-    {
-        return $this->item5;
-    }
-
-    /**
-     * Set item6
-     *
-     * @param string $item6
-     * @return Game
-     */
-    public function setItem6($item6)
-    {
-        $this->item6 = $item6;
-    
-        return $this;
-    }
-
-    /**
-     * Get item6
-     *
-     * @return string 
-     */
-    public function getItem6()
-    {
-        return $this->item6;
-    }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -797,7 +604,7 @@ class Game
     {
         $this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add items
      *
@@ -807,7 +614,7 @@ class Game
     public function addItem(\Pouzor\Bundle\LolStatBundle\Entity\Item $items)
     {
         $this->items[] = $items;
-    
+
         return $this;
     }
 
@@ -824,7 +631,7 @@ class Game
     /**
      * Get items
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getItems()
     {

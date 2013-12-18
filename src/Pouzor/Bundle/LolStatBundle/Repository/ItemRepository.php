@@ -17,7 +17,7 @@ class ItemRepository extends EntityRepository
             ->createQueryBuilder()
             ->from("PouzorLolStatBundle:Item", "i")
             ->select('i as item', "g", "c", "COUNT(i.id) as nb", "(SUM(g.win)/COUNT(g.id))*100 AS rate")
-            ->setMaxResults(10)
+            //->setMaxResults(20)
             ->leftJoin("i.games", "g")
             ->leftJoin("g.idChampion", "c")
             ->where("c.name = :name")

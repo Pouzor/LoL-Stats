@@ -9,10 +9,6 @@
     <field name="description" type="string" column="description" length="65000"/>
     <field name="plaintext" type="string" column="plaintext" length="255"/>
     <field name="totalCost" type="integer" column="total_cost"/>
-      <one-to-many field="games" target-entity="Pouzor\Bundle\LolStatBundle\Entity\Game" mapped-by="item0">
-          <cascade>
-              <cascade-persist/>
-          </cascade>
-      </one-to-many>
+    <many-to-many field="games" mapped-by="items" target-entity="Game"/>
   </entity>
 </doctrine-mapping>

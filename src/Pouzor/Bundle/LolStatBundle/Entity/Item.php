@@ -47,14 +47,14 @@ class Item
     */
     public function setId($id) {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,14 +70,14 @@ class Item
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -93,14 +93,14 @@ class Item
     public function setGroups($groups)
     {
         $this->groups = $groups;
-    
+
         return $this;
     }
 
     /**
      * Get groups
      *
-     * @return string 
+     * @return string
      */
     public function getGroups()
     {
@@ -116,14 +116,14 @@ class Item
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -139,14 +139,14 @@ class Item
     public function setPlaintext($plaintext)
     {
         $this->plaintext = $plaintext;
-    
+
         return $this;
     }
 
     /**
      * Get plaintext
      *
-     * @return string 
+     * @return string
      */
     public function getPlaintext()
     {
@@ -162,19 +162,20 @@ class Item
     public function setTotalCost($totalCost)
     {
         $this->totalCost = $totalCost;
-    
+
         return $this;
     }
 
     /**
      * Get totalCost
      *
-     * @return integer 
+     * @return integer
      */
     public function getTotalCost()
     {
         return $this->totalCost;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -187,7 +188,7 @@ class Item
     {
         $this->games = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add games
      *
@@ -197,7 +198,7 @@ class Item
     public function addGame(\Pouzor\Bundle\LolStatBundle\Entity\Game $games)
     {
         $this->games[] = $games;
-    
+
         return $this;
     }
 
@@ -214,7 +215,7 @@ class Item
     /**
      * Get games
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGames()
     {
