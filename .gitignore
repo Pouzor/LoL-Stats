@@ -3,3 +3,4 @@ app/logs/
 vendor/
 src/Acme
 app/config/parameters.yml
+*~
