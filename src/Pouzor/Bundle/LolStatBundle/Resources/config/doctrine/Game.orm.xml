@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Pouzor\Bundle\LolStatBundle\Entity\Game" table="game" repository-class="Pouzor\Bundle\LolStatBundle\Repository\GameRepository">
-    <id name="id" type="bigint" column="id">
-      <generator strategy="IDENTITY"/>
-    </id>
-    <field name="idMatch" type="bigint" column="id_match" nullable="true"/>
-    <field name="idUser" type="bigint" column="id_user" nullable="true"/>
-    <field name="premadesize" type="bigint" column="premadesize" nullable="true"/>
-    <field name="ranked" type="boolean" column="ranked" nullable="true"/>
-    <field name="matchType" type="string" column="match_type" length="255" nullable="true"/>
-    <field name="matchDate" type="string" column="match_date" length="255" nullable="true"/>
+    <entity name="Pouzor\Bundle\LolStatBundle\Entity\Game" table="game" repository-class="Pouzor\Bundle\LolStatBundle\Repository\GameRepository">
+        <id name="id" type="bigint" column="id">
+          <generator strategy="IDENTITY"/>
+      </id>
+      <field name="idMatch" type="bigint" column="id_match" nullable="true"/>
+      <field name="idUser" type="bigint" column="id_user" nullable="true"/>
+      <field name="premadesize" type="bigint" column="premadesize" nullable="true"/>
+      <field name="ranked" type="boolean" column="ranked" nullable="true"/>
+      <field name="matchType" type="string" column="match_type" length="255" nullable="true"/>
+      <field name="matchDate" type="string" column="match_date" length="255" nullable="true"/>
 
 
-    <many-to-one field="idChampion" target-entity="Champion" inversed-by="games">
+      <many-to-one field="idChampion" target-entity="Champion" inversed-by="games">
         <join-column name="id_champion" referenced-column-name="id" />
     </many-to-one>
     <field name="gold" type="bigint" column="gold" nullable="true"/>
@@ -30,14 +30,33 @@
     <field name="win" type="bigint" column="win" nullable="true"/>
 
 
-      <many-to-one field="item0" target-entity="Item" inversed-by="games">
-          <join-column name="item0" referenced-column-name="id" nullable="true"/>
-      </many-to-one>
-    <field name="item1" type="string" column="item1" length="255" nullable="true"/>
+    <many-to-one field="item0" target-entity="Item" inversed-by="games">
+        <join-column name="item0" referenced-column-name="id" nullable="true"/>
+    </many-to-one>
+
+    <many-to-one field="item1" target-entity="Item" inversed-by="games">
+        <join-column name="item1" referenced-column-name="id" nullable="true"/>
+    </many-to-one>
+
+
     <field name="item2" type="string" column="item2" length="255" nullable="true"/>
     <field name="item3" type="string" column="item3" length="255" nullable="true"/>
     <field name="item4" type="string" column="item4" length="255" nullable="true"/>
     <field name="item5" type="string" column="item5" length="255" nullable="true"/>
     <field name="item6" type="string" column="item6" length="255" nullable="true"/>
-  </entity>
+
+    <many-to-many field="items" target-entity="Item">
+        <cascade>
+            <cascade-all/>
+        </cascade>
+        <join-table name="game_item">
+            <join-columns>
+                <join-column name="game_id" referenced-column-name="id" nullable="false" unique="false" />
+            </join-columns>
+            <inverse-join-columns>
+                <join-column name="item_id" referenced-column-name="id" column-definition="INT NULL" />
+            </inverse-join-columns>
+        </join-table>
+    </many-to-many>
+</entity>
 </doctrine-mapping>

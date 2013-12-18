@@ -785,4 +785,49 @@ class Game
     {
         return $this->item6;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $items;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add items
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Item $items
+     * @return Game
+     */
+    public function addItem(\Pouzor\Bundle\LolStatBundle\Entity\Item $items)
+    {
+        $this->items[] = $items;
+    
+        return $this;
+    }
+
+    /**
+     * Remove items
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Item $items
+     */
+    public function removeItem(\Pouzor\Bundle\LolStatBundle\Entity\Item $items)
+    {
+        $this->items->removeElement($items);
+    }
+
+    /**
+     * Get items
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
 }
