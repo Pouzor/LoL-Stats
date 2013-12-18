@@ -24,6 +24,7 @@ class ItemRepository extends EntityRepository
             ->andWhere("g.idUser = :user")
             ->groupBy("i.id")
             ->orderBy("nb", "DESC")
+            ->addOrderBy("rate", "DESC")
             ->setParameter("user", $userId)
             ->setParameter("name", $champName)
         ;
