@@ -32,7 +32,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
         curl_close($ch);
 
         return $output;
-  
+
     }
 
 
@@ -45,12 +45,12 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
         $error = array();
         foreach ($summs as $summ)  {
 
-            $tuData = $this->get("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getRecentGames/".$summ->getSummonersid());
+            $tuData = $this->get("https://community-league-of-legends.p.mashape.com/api/v1.0/".$summ->getServer()."/summoner/getRecentGames/".$summ->getSummonersid());
 
 
             if (!$tuData) {
                 die("Erreur connexion");
-            } 
+            }
 
             $data = json_decode($tuData, true);
 
@@ -61,8 +61,8 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
             }
 
 
-            $data = $data["gameStatistics"]["array"]; 
-            $nb = 0;  
+            $data = $data["gameStatistics"]["array"];
+            $nb = 0;
 
             if (!is_array($data)) {
                 $error[$summ->getName()]  = $tuData;
@@ -71,7 +71,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
 
 
             foreach ($data as $g) {
-                $q = $em->getRepository("PouzorLolStatBundle:Game")->findOneBy(array("idMatch" => $g["gameId"], "idUser" => $summ->getId()));      
+                $q = $em->getRepository("PouzorLolStatBundle:Game")->findOneBy(array("idMatch" => $g["gameId"], "idUser" => $summ->getId()));
 
                 if ($q)
                     continue;
@@ -87,7 +87,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
                     $c = new Champion();
 
                     $c->setName($g["skinName"] ? $g["skinName"] : "todo name");
-                    $c->setId($g["championId"]);  
+                    $c->setId($g["championId"]);
                     $em->persist($c);
 
                     $metadata = $em->getClassMetaData(get_class($c));
@@ -114,11 +114,11 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
                       case "TOTAL_HEAL":
                       break;
                       case "WARD_KILLED":
-                      break;  
+                      break;
                       case "MAGIC_DAMAGE_DEALT_PLAYER":
                       break;
                       case "TOTAL_DAMAGE_TAKEN":
-                      $m->setTotalDamageTaken($d["value"]);          
+                      $m->setTotalDamageTaken($d["value"]);
                       break;
                       case "MAGIC_DAMAGE_DEALT_TO_CHAMPIONS":
                       break;
@@ -127,26 +127,26 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
                       case "LARGEST_KILLING_SPREE":
                       break;
                       case "VISION_WARDS_BOUGHT_IN_GAME":
-                      break; 
+                      break;
                       case "PHYSICAL_DAMAGE_DEALT_PLAYER":
-                      break; 
+                      break;
                       case "LARGEST_MULTI_KILL":
-                      break; 
+                      break;
                       case "TOTAL_DAMAGE_DEALT":
-                      break; 
+                      break;
                       case "TOTAL_TIME_CROWD_CONTROL_DEALT":
                       break;
                       case "TRUE_DAMAGE_TAKEN":
                       break;
                       case "ITEM0":
                       $m->setItem0($d["value"]);
-                      break;     
+                      break;
                       case "ITEM1":
                       $m->setItem1($d["value"]);
-                      break;                   
+                      break;
                       case "ITEM2":
                       $m->setItem2($d["value"]);
-                      break;            
+                      break;
                       case "ITEM3":
                       $m->setItem3($d["value"]);
                       break;
@@ -155,17 +155,17 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
                       break;
                       case "ITEM5":
                       $m->setItem5($d["value"]);
-                      break; 
+                      break;
                       case "ITEM6":
                       $m->setItem6($d["value"]);
-                      break;                                     
+                      break;
                       case "PHYSICAL_DAMAGE_DEALT_TO_CHAMPIONS":
                       break;
                       case "SIGHT_WARDS_BOUGHT_IN_GAME":
                       break;
                       case "WIN":
                       $m->setWin(1);
-                      break;            
+                      break;
                       case "LOSE":
                       $m->setWin(0);
                       break;
@@ -198,7 +198,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
                       break;
                       case "MINIONS_KILLED":
                       $m->setMinionsKilled($d["value"]);
-                      break;  
+                      break;
                       case "TURRETS_KILLED":
                       $m->setTurretsKilled($d["value"]);
                       break;
@@ -228,7 +228,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
 
 
 
-  }  
+  }
 
 
 }

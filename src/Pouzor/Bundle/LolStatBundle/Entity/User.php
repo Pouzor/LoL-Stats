@@ -25,7 +25,7 @@ class User
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -35,6 +35,11 @@ class User
      * @var string
      */
     private $name;
+
+    /**
+     * @var string
+     */
+    private $server;
 
     /**
      * @var string
@@ -56,14 +61,14 @@ class User
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -79,14 +84,14 @@ class User
     public function setSummonersname($summonersname)
     {
         $this->summonersname = $summonersname;
-    
+
         return $this;
     }
 
     /**
      * Get summonersname
      *
-     * @return string 
+     * @return string
      */
     public function getSummonersname()
     {
@@ -102,17 +107,42 @@ class User
     public function setSummonersid($summonersid)
     {
         $this->summonersid = $summonersid;
-    
+
         return $this;
     }
 
     /**
      * Get summonersid
      *
-     * @return integer 
+     * @return integer
      */
     public function getSummonersid()
     {
         return $this->summonersid;
+    }
+
+
+
+    /**
+     * Set server
+     *
+     * @param string $server
+     * @return User
+     */
+    public function setServer($server)
+    {
+        $this->server = $server;
+
+        return $this;
+    }
+
+    /**
+     * Get server
+     *
+     * @return string
+     */
+    public function getServer()
+    {
+        return $this->server;
     }
 }

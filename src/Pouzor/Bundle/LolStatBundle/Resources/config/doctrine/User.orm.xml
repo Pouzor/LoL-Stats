@@ -5,6 +5,7 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="name" type="string" column="name" length="255" nullable="true"/>
+    <field name="server" type="string" column="server" length="5" nullable="true"/>
     <field name="summonersname" type="string" column="summonersname" length="255" nullable="true"/>
     <field name="summonersid" type="bigint" column="summonersid" nullable="false"/>
   </entity>
