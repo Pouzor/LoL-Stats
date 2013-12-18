@@ -3,6 +3,8 @@ LoL-Stats
 
 Base on Free API https://www.mashape.com/timtastic/league-of-legends-3
 
+Data for champ and item from : http://ddragon.leagueoflegends.com/tool/euw/en_US
+
 This is a Symfony2 project allow you to collect your own stats about League of Legend games and summoners.
 
 Status : pre-alpha
