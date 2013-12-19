@@ -16,17 +16,22 @@ Status : pre-alpha
 
 ### Installation:
 - Use composer.phar install
-- Use ./app/console doctrine:schema:create
-- Use ./app/console pouzor:importChampions src/Pouzor/Bundle/LolStatBundle/Resourse/data/champion.json
-- Use ./app/console pouzor:importItems src/Pouzor/Bundle/LolStatBundle/Resourse/data/item.json
+
+```
+./app/console doctrine:schema:create
+./app/console pouzor:importChampions src/Pouzor/Bundle/LolStatBundle/Resourse/data/champion.json
+./app/console pouzor:importItems src/Pouzor/Bundle/LolStatBundle/Resourse/data/item.json
+```
 
 
 ### Configure:
 - Get Mashape Api key on https://www.mashape.com and configure it on parameters.yml
 
 ### Use
-- Import recent game with the command ./app/console pouzor:getMatch
-
+- Import recent game with this command 
+``` 
+./app/console pouzor:getMatch
+```
 
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe/big.png)](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe)
