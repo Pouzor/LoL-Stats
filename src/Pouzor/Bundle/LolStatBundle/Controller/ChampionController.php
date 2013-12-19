@@ -41,7 +41,7 @@ class ChampionController extends Controller
 	/**
 	*
 	* @Template()
-	* @Route("/ajaxMoreGame", name="ajax_more_item")
+	* @Route("/ajaxMoreItem", name="ajax_more_item")
     * @Method({"GET", "POST"})
 	*
 	*/

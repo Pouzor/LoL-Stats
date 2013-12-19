@@ -2,7 +2,7 @@
 	<td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
 
 	<td>
-		<a href="{{ path("show_sommoner_champion", {"userId" : game.idUser, "champName" : game.idChampion.name})}}"> 
+		<a href="{{ path("show_sommoner_champion", {"userId" : game.idUser.id, "champName" : game.idChampion.name})}}"> 
 			<img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({' ': ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
 		</a>
 	</td>

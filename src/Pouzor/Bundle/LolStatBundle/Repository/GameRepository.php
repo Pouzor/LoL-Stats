@@ -34,7 +34,8 @@ class GameRepository extends EntityRepository
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Game", "g")
         ->select("COUNT(g.id) as nb, SUM(g.win) as win, COUNT(g.id)-SUM(g.win) as loose")
-        ->where("g.idUser = :user")
+        ->leftJoin("g.idUser", "u")
+        ->where("u.id = :user")
         ->setParameter("user", $id);
 
 
@@ -59,7 +60,8 @@ class GameRepository extends EntityRepository
         ->from("PouzorLolStatBundle:Champion", "c")
         ->select('c.id, c.name, SUM(g.win) AS NB_WIN, COUNT(g.id) AS NB_GAME, (SUM(g.win)/COUNT(g.id))*100 AS RATE')
         ->leftJoin("c.games", "g")
-        ->where("g.idUser = :user")
+        ->leftJoin("g.idUser", "u")
+        ->where("u.id = :user")
         ->andWhere("g.matchType = :type")
 
         ->setMaxResults(5)
@@ -94,8 +96,9 @@ class GameRepository extends EntityRepository
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Game", "g")
-        ->select('g, c')
+        ->select('g, c, u')
         ->leftJoin("g.idChampion", "c")
+        ->leftJoin("g.idUser", "u")
         ->setMaxResults(10)
         ->orderBy("g.matchDate", "DESC");
 
@@ -104,15 +107,17 @@ class GameRepository extends EntityRepository
     }
 
     public function getRecentGames($id, $champName = 0, $offset = 0, $filter = null, $order = 1) {
+
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Game", "g")
-        ->select('g, c')
+        ->select('g, c, u')
+        ->leftJoin("g.idUser", "u")
         ->leftJoin("g.idChampion", "c")
-        ->orderBy("g.matchDate", "DESC")
-        ->where("g.idUser = :user")
+        ->where("u.id = :user")
         ->setFirstResult($offset)
         ->setMaxResults(10)
+        ->orderBy("g.matchDate", "DESC")
         ->setParameter("user", $id)
         ;
 

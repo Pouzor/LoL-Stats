@@ -2,10 +2,11 @@
 
 {% block body %}
 
-<h3>Liste des Summoners</h3>
+
 
 <br />
 <div class="row">
+    <h4>Liste des Summoners</h4>
 	<table class="table table-condensed table-striped table-bordered table-hover" style="width: 500px">
 		<thead>
 			<tr>
@@ -33,22 +34,22 @@
     <table class="table table-condensed table-striped table-bordered table-hover" style="width: 900px">
         <thead>
             <tr>
-                <th class="col-md-1">Date</th>
-                <th class="col-md-1">Summoner</th>
-                <th class="col-md-1">Champion</th>
-                <th class="col-md-1">Type</th>
-                <th class="col-md-1">Ranked</th>
-                <th class="col-md-1">Win</th>
-                <th class="col-md-1">K / D / A</th>
+                <th class="col-md-1 text-center">Date</th>
+                <th class="col-md-1 text-center">Summoner</th>
+                <th class="col-md-1 text-center">Champion</th>
+                <th class="col-md-1 text-center">Type</th>
+                <th class="col-md-1 text-center">Ranked</th>
+                <th class="col-md-1 text-center">Win</th>
+                <th class="col-md-1 text-center">K / D / A</th>
             </tr>
         </thead>
         <tbody>
             {% for game in games %}
-            <tr>
+            <tr class="{% if game.win == 1 %}success{% else %}danger{% endif %} text-center">
                 <td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
-                <td>{{ game.idUser }}</td>
+                <td>{{ game["idUser"]["name"] }}</td>
                 <td>
-                    <a href="{{ path("show_sommoner_champion", {"userId" : game.idUser, "champName" : game.idChampion.name})}}"> 
+                    <a href="{{ path("show_sommoner_champion", {"userId" : game.idUser.id, "champName" : game.idChampion.name})}}"> 
                         <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({' ': ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
                     </a>
                 </td>
