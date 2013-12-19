@@ -1,0 +1,16 @@
+<table class="table table_search_summoner col-md-4" style="">
+    <tbody>
+        <tr>
+            <td><img style="width: 45px" src="{{ asset('bundles/pouzorlolstat/images/profileicon/' ~ summoner["profileIconId"] ~ ".png" ) }}" /></td>
+            <td><b>{{ summoner["name"] }}</b></td>
+        </tr>
+        <tr>
+            <td>Niveau</td>
+            <td>{{ summoner["summonerLevel"] }}</td>
+        </tr>
+        <tr>
+            <td>Account ID</td>
+            <td>{{ summoner["acctId"] }}</td>
+        </tr>
+    </tbody>
+</table>

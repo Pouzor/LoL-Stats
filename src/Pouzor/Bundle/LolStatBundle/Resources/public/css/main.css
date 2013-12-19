@@ -12,3 +12,13 @@ thead tr {
 	width: 36px;
 
 } 
+
+.table_search_summoner input, .table_search_summoner select{
+	width: 200px;
+}
+
+.summoner_loader {
+    margin-left: 130px;
+    margin-top: 30px;
+
+}

@@ -1,7 +1,6 @@
 parameters:
-#    pouzor_lol_stat.example.class: Pouzor\Bundle\LolStatBundle\Example
 
 services:
-#    pouzor_lol_stat.example:
-#        class: %pouzor_lol_stat.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    pouzor_lol_stat.mashape_api:
+        class: Pouzor\Bundle\LolStatBundle\Services\MashapeAPIService
+        arguments: ["@doctrine.orm.entity_manager", "@service_container"]		
