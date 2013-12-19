@@ -19,12 +19,12 @@ class ChampionController extends Controller
 	*/
 	public function showSummonerAction($userId, $champName) {
 
-        $em = $this->getDoctrine()->getManager();
-       	$summoner = $em->getRepository("PouzorLolStatBundle:User")->find($userId);
+		$em = $this->getDoctrine()->getManager();
+		$summoner = $em->getRepository("PouzorLolStatBundle:User")->find($userId);
 		$games = $em->getRepository("PouzorLolStatBundle:Game")->getRecentGames($userId, $champName);
 		$stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($userId, $champName);
-
-		$items = $em->getRepository("PouzorLolStatBundle:Item")->getStatsForChampAndSumm($userId, $champName);
+		$filter = array("matchType" => "CLASSIC");
+		$items = $em->getRepository("PouzorLolStatBundle:Item")->getStatsForChampAndSumm($userId, $champName, 0, array($filter));
 
 
 
@@ -33,6 +33,22 @@ class ChampionController extends Controller
 			"summoner" => $summoner,
 			"champName" => $champName,
 			"stats" => $stats,
-            "items" => $items);
+			"items" => $items);
 	}
+
+
+	/**
+	*
+	* @Template()
+	* @Route("/ajaxMoreGame", name="ajax_more_item")
+    * @Method({"GET", "POST"})
+	*
+	*/
+	public function ajaxMoreItemAction() {
+		$em = $this->getDoctrine()->getManager();
+		$items = $em->getRepository("PouzorLolStatBundle:Item")->getStatsForChampAndSumm($userId, $champName, $request->request->get("offset"), array());
+
+		return array("items" => $items);
+	}
+
 }

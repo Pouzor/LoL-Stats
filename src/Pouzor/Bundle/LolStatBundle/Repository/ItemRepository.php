@@ -12,23 +12,40 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemRepository extends EntityRepository
 {
-    public function getStatsForChampAndSumm($userId, $champName) {
+
+    /**
+    * function getStatsForChampAndSumm
+    * 
+    * Get Item list for user / champ and with the criteria
+    */
+    public function getStatsForChampAndSumm($userId, $champName, $offset = 0, $filters = null) {
         $qBuilder = $this->getEntityManager()
-            ->createQueryBuilder()
-            ->from("PouzorLolStatBundle:Item", "i")
-            ->select('i as item', "g", "c", "COUNT(i.id) as nb", "(SUM(g.win)/COUNT(g.id))*100 AS rate, SUM(g.killed)/COUNT(g.id) as K, SUM(g.death)/COUNT(g.id) as D, SUM(g.assist)/COUNT(g.id) as A")
-            //->setMaxResults(20)
-            ->leftJoin("i.games", "g")
-            ->leftJoin("g.idChampion", "c")
-            ->where("c.name = :name")
-            ->andWhere("g.idUser = :user")
-            ->groupBy("i.id")
-            ->orderBy("nb", "DESC")
-            ->addOrderBy("rate", "DESC")
-            ->setParameter("user", $userId)
-            ->setParameter("name", $champName)
+        ->createQueryBuilder()
+        ->from("PouzorLolStatBundle:Item", "i")
+        ->select('i as item', "g", "c", "COUNT(i.id) as nb", "(SUM(g.win)/COUNT(g.id))*100 AS rate, SUM(g.killed)/COUNT(g.id) as K, SUM(g.death)/COUNT(g.id) as D, SUM(g.assist)/COUNT(g.id) as A")
+        ->setFirstResult($offset)
+        ->setMaxResults(10)
+        ->leftJoin("i.games", "g")
+        ->leftJoin("g.idChampion", "c")
+        ->where("c.name = :name")
+        ->andWhere("g.idUser = :user")
+        ->groupBy("i.id")
+        ->orderBy("nb", "DESC")
+        ->addOrderBy("rate", "DESC")
+        ->setParameter("user", $userId)
+        ->setParameter("name", $champName)
         ;
 
+
+        foreach ($filters as $f) {
+            foreach ($f as $k => $v) {
+                if ($v == "all")
+                    continue;
+                $qBuilder->andWhere("g.$k = :$k")
+                ->setParameter($k, $v);
+
+            }
+        }
 
         return $qBuilder->getQuery()->getArrayResult();
     }
