@@ -9,23 +9,24 @@ This is a Symfony2 project allow you to collect your own stats about League of L
 
 Status : pre-alpha
 
-Principe: 
+### Principe: 
 
  - Its collect last 10 games for summoners insert into BDD, and can work on this data for create many stats.
 
 
-Installation:
-- Use composer install
-- Use db on data/sql for try on real data or fill with your own data
+### Installation:
+- Use composer.phar install
+- Use ./app/console doctrine:schema:create
+- Use ./app/console pouzor:importChampions src/Pouzor/Bundle/LolStatBundle/Resourse/data/champion.json
+- Use ./app/console pouzor:importItems src/Pouzor/Bundle/LolStatBundle/Resourse/data/item.json
 
-Use:
+
+### Configure:
 - Get Mashape Api key on https://www.mashape.com and configure it on parameters.yml
+
+### Use
 - Import recent game with the command ./app/console pouzor:getMatch
 
 
-Evolution : 
- - Migrate Mysql Database into MongoDB for more scalling and evolution
- - Use our own Node.js server API
- - Fetch and save more infos (player infos...)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe/big.png)](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe)
