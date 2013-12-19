@@ -15,10 +15,10 @@ class ItemRepository extends EntityRepository
 
     /**
     * function getStatsForChampAndSumm
-    * 
+    *
     * Get Item list for user / champ and with the criteria
     */
-    public function getStatsForChampAndSumm($userId, $champName, $offset = 0, $filters = null) {
+    public function getStatsForChampAndSumm($userId, $champName, $offset = 0, $filters = null, $order = "nb") {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Item", "i")
@@ -30,7 +30,7 @@ class ItemRepository extends EntityRepository
         ->where("c.name = :name")
         ->andWhere("g.idUser = :user")
         ->groupBy("i.id")
-        ->orderBy("nb", "DESC")
+        ->orderBy("$order", "DESC")
         ->addOrderBy("rate", "DESC")
         ->setParameter("user", $userId)
         ->setParameter("name", $champName)

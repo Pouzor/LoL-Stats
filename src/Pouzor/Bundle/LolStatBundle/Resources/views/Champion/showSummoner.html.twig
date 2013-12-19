@@ -128,10 +128,9 @@
             <tr>
                 <td colspan="2">
                     <select class="form-control" name="order" id="match_order">
-                        <option value="matchDate">Date</option>
-                        <option value="killed">Kills</option>
-                        <option value="death">Deaths</option>
-                        <option value="assist">Assists</option>
+                        <option value="nb">Nombre utilisation</option>
+                        <option value="rate">Win Rate</option>
+
                     </select>
                 </td>
             </tr>
@@ -162,17 +161,31 @@ $(document).ready(function() {
 
 
 
-$("#more_game").click(function () {
-    offset += 10;
-    $.ajax({
+    $("#more_game").click(function () {
+        offset += 10;
+        $.ajax({
+            type: "POST",
+            url: "{{ path('ajax_more_item') }}",
+            data: {offset: offset, idUser: "{{ summoner.id }}", "champName" : '{{ champName }}', filter: getFilter(), order: $("#match_order").val()}
+        }).done(function (msg) {
+
+            $("#game_container").append(msg);
+        });
+    });
+
+
+    $("#filter_table select, #match_order").change(function() {
+      $.ajax({
         type: "POST",
         url: "{{ path('ajax_more_item') }}",
-        data: {offset: offset, idUser: "{{ summoner.id }}", "champName" : '{{ champName }}', filter: getFilter(), order: $("#match_order").val()}
+        data: {offset: 0, idUser: "{{ summoner.id }}", "champName" : '{{ champName }}', filter: getFilter(), order: $("#match_order").val() }
     }).done(function (msg) {
 
-        $("#game_container").append(msg);
+        $("#game_container").html(msg);
     });
-});
+});  
+
+    
 
 })
 </script>
