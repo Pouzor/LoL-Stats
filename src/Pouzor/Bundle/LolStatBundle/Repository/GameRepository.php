@@ -14,7 +14,7 @@ class GameRepository extends EntityRepository
 {
 
 	public function getCountStatsGlobal($id, $champName = null) {
-		
+
 		$stats = array();
 
 		$stats["total"] = $this->getCountGameStats($id, $champName);
@@ -40,13 +40,13 @@ class GameRepository extends EntityRepository
 
         if ($criteria !== null) {
             $qBuilder->andWhere("g.$criteria = :value")
-            ->setParameter("value", $value);  
+            ->setParameter("value", $value);
         }
 
         if ($champName !== null) {
           $qBuilder->leftJoin("g.idChampion", "c")
           ->andWhere("c.name = :name")
-          ->setParameter("name", $champName);  
+          ->setParameter("name", $champName);
         }
 
         return $qBuilder->getQuery()->getSingleResult();
@@ -90,6 +90,19 @@ class GameRepository extends EntityRepository
     }
 
 
+    public function getLastGame() {
+        $qBuilder = $this->getEntityManager()
+        ->createQueryBuilder()
+        ->from("PouzorLolStatBundle:Game", "g")
+        ->select('g, c')
+        ->leftJoin("g.idChampion", "c")
+        ->setMaxResults(10)
+        ->orderBy("g.matchDate", "DESC");
+
+
+        return $qBuilder->getQuery()->getArrayResult();
+    }
+
     public function getRecentGames($id, $champName = 0, $offset = 0, $filter = null, $order = 1) {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
@@ -105,16 +118,16 @@ class GameRepository extends EntityRepository
 
         if ($champName !== 0) {
            $qBuilder->andWhere("c.name = :name")
-           ->setParameter("name", $champName); 
+           ->setParameter("name", $champName);
         }
 
         if ($order == 1) {
             $qBuilder->orderBy("g.matchDate", "DESC");
-        }    
+        }
 
         if ($order != 1) {
-          $qBuilder->orderBy("g.$order", "DESC");  
-          
+          $qBuilder->orderBy("g.$order", "DESC");
+
       }
 
       if ($filter) {

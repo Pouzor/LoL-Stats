@@ -19,7 +19,11 @@ class IndexController extends Controller
 	public function indexAction() {
 
 		$summoners = $this->getDoctrine()->getRepository("PouzorLolStatBundle:User")->findAll();
+        $games = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->getLastGame();
 
-		return array("summoners" => $summoners);
+
+
+		return array("summoners" => $summoners,
+                     "games" => $games);
 	}
 }

@@ -27,4 +27,42 @@
 </div>
 
 
+
+<div class="row">
+    <h4 id="match_history">Dernières parties</h4>
+    <table class="table table-condensed table-striped table-bordered table-hover" style="width: 900px">
+        <thead>
+            <tr>
+                <th class="col-md-1">Date</th>
+                <th class="col-md-1">Summoner</th>
+                <th class="col-md-1">Champion</th>
+                <th class="col-md-1">Type</th>
+                <th class="col-md-1">Ranked</th>
+                <th class="col-md-1">Win</th>
+                <th class="col-md-1">K / D / A</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in games %}
+            <tr>
+                <td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
+                <td>{{ game.idUser }}</td>
+                <td>
+                    <a href="{{ path("show_sommoner_champion", {"userId" : game.idUser, "champName" : game.idChampion.name})}}"> 
+                        <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({' ': ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
+                    </a>
+                </td>
+                <td>{{ game.matchType }}</td>
+                    <td>{% if game.ranked == 1 %}RANKED{% else %}{% endif %}</td>
+                <td>{% if game.win == 1 %}VICTOIRE{% else %}DEFAITE{% endif %}</td>
+                <td>{{ game.killed }} / {{ game.death }} / {{ game.assist }}</td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>    
+    </table>
+</div>
+
+
 {% endblock body %}
