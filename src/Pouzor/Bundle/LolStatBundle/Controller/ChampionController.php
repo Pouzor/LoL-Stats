@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
 
 class ChampionController extends Controller
 {
@@ -44,9 +45,10 @@ class ChampionController extends Controller
     * @Method({"GET", "POST"})
 	*
 	*/
-	public function ajaxMoreItemAction() {
+	public function ajaxMoreItemAction(Request $request) {
+		$filters = json_decode($request->request->get("filter"), true);
 		$em = $this->getDoctrine()->getManager();
-		$items = $em->getRepository("PouzorLolStatBundle:Item")->getStatsForChampAndSumm($userId, $champName, $request->request->get("offset"), array());
+		$items = $em->getRepository("PouzorLolStatBundle:Item")->getStatsForChampAndSumm($request->request->get("idUser"), $request->request->get("champName"), $request->request->get("offset"), $filters);
 
 		return array("items" => $items);
 	}

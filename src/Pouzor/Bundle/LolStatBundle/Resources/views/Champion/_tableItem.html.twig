@@ -4,7 +4,7 @@
         {{ item["item"]["name"] }}
     </td>
 
-    <td class="text-center">{{ item["nb"] }} ({{ (item["nb"] / total)*100 }}%)</td>
+    <td class="text-center">{{ item["nb"] }} </td>
     <td class="text-center">{{ item["rate"] | number_format }}%</td>
     <td class="text-center">{{ item["item"]["totalCost"] }}g</td>
     <td class="text-center"> {{ item["K"] | number_format(1) ~ " / " ~ item["D"] | number_format(1) ~ " / " ~ item["A"] | number_format(1) }}</td>

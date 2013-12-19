@@ -68,7 +68,7 @@
         </thead>
         <tbody id="game_container">
             {% for item in items %}
-            {% include "PouzorLolStatBundle:Champion:_tableItem.html.twig" with { 'item' : item, "total" : stats["total"]["nb"] } %}
+            {% include "PouzorLolStatBundle:Champion:_tableItem.html.twig" with { 'item' : item } %}
             {% endfor %}
         </tbody>
         <tfoot>
