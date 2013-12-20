@@ -110,7 +110,7 @@ private function get($url)
 
           foreach ($g["statistics"]["array"] as $d) {
                 //DEBUG
-                //$output->writeln($d["statType"]." - ".$d["value"]);
+                $output->writeln($d["statType"]." - ".$d["value"]);
             switch ($d["statType"]) {
                 case "BARRACKS_KILLED":
                 break;
@@ -216,7 +216,9 @@ private function get($url)
           $em->flush();
       }
       catch (\Exception $e) {
+
           $output->writeln("Error for ".$summ->getName());
+          $output->writeln($e->getMessage());
       }
 
   }
