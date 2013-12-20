@@ -103,7 +103,7 @@ private function get($url)
           $m->setIpEarned($g["ipEarned"]);
           $m->setMatchDate(strtotime($g["createDate"]));
 
-          $m->setIdUser($summ->getId());
+          $m->setIdUser($summ);
 
 
 
