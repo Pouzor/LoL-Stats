@@ -49,7 +49,8 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
 
 
           if (!$tuData) {
-            die("Erreur connexion");
+            $output->writeln("Erreur connexion");
+            return;
           }
 
           $data = json_decode($tuData, true);
@@ -108,6 +109,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
 
 
             foreach ($g["statistics"]["array"] as $d) {
+$output->writeln($d["statType"]." - ".$d["value"]);
               switch ($d["statType"]) {
                 case "BARRACKS_KILLED":
                 break;
