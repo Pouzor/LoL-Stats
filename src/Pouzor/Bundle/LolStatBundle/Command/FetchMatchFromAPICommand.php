@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Pouzor\Bundle\LolStatBundle\Entity\Game;
 use Pouzor\Bundle\LolStatBundle\Entity\Champion;
+use Pouzor\Bundle\LolStatBundle\Entity\Item;
 
 class FetchMatchFromAPICommand extends ContainerAwareCommand
 {
@@ -19,10 +20,10 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
     ->setDescription('Get last 10 match for all user')
 
     ;
-}
+  }
 
-private function get($url)
-{
+  private function get($url)
+  {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -33,11 +34,11 @@ private function get($url)
 
         return $output;
 
-    }
+      }
 
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
+      protected function execute(InputInterface $input, OutputInterface $output)
+      {
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
 
         $summs = $em->getRepository("PouzorLolStatBundle:User")->findAll();
@@ -51,40 +52,40 @@ private function get($url)
           if (!$tuData) {
             $output->writeln("Erreur connexion");
             return;
-        }
+          }
 
-        $data = json_decode($tuData, true);
+          $data = json_decode($tuData, true);
 
 
-        if (!isset($data["gameStatistics"])) {
+          if (!isset($data["gameStatistics"])) {
             $error[$summ->getName()]  = $tuData;
             continue;
-        }
+          }
 
 
-        $data = $data["gameStatistics"]["array"];
-        $nb = 0;
+          $data = $data["gameStatistics"]["array"];
+          $nb = 0;
 
-        if (!is_array($data)) {
+          if (!is_array($data)) {
             $error[$summ->getName()]  = $tuData;
             continue;
-        }
+          }
 
 
-        foreach ($data as $g) {
+          foreach ($data as $g) {
             $q = $em->getRepository("PouzorLolStatBundle:Game")->findOneBy(array("idMatch" => $g["gameId"], "idUser" => $summ->getId()));
 
             if ($q)
               continue;
 
-          $nb++;
+            $nb++;
 
-          $m = new Game();
+            $m = new Game();
 
 
-          $c = $em->getRepository("PouzorLolStatBundle:Champion")->find($g["championId"]);
+            $c = $em->getRepository("PouzorLolStatBundle:Champion")->find($g["championId"]);
 
-          if (!$c) {
+            if (!$c) {
               $c = new Champion();
 
               $c->setName($g["skinName"] ? $g["skinName"] : "todo name");
@@ -93,25 +94,25 @@ private function get($url)
 
               $metadata = $em->getClassMetaData(get_class($c));
               $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-          }
+            }
 
 
-          $m->setIdMatch($g["gameId"]);
-          $m->setIdChampion($c);
-          $m->setMatchType($g["gameMode"]);
-          $m->setPremadeSize($g["premadeSize"]);
-          $m->setIpEarned($g["ipEarned"]);
-          $m->setMatchDate(strtotime($g["createDate"]));
+            $m->setIdMatch($g["gameId"]);
+            $m->setIdChampion($c);
+            $m->setMatchType($g["gameMode"]);
+            $m->setPremadeSize($g["premadeSize"]);
+            $m->setIpEarned($g["ipEarned"]);
+            $m->setMatchDate(strtotime($g["createDate"]));
 
-          $m->setIdUser($summ);
-
-
+            $m->setIdUser($summ);
 
 
-          foreach ($g["statistics"]["array"] as $d) {
+
+
+            foreach ($g["statistics"]["array"] as $d) {
                 //DEBUG
-                $output->writeln($d["statType"]." - ".$d["value"]);
-            switch ($d["statType"]) {
+              $output->writeln($d["statType"]." - ".$d["value"]);
+              switch ($d["statType"]) {
                 case "BARRACKS_KILLED":
                 break;
                 case "NEUTRAL_MINIONS_KILLED_ENEMY_JUNGLE":
@@ -152,84 +153,91 @@ private function get($url)
                 case "ITEM6":
                 if (!$d["value"])
                   break;
-              $m->addItem($em->getReference("PouzorLolStatBundle:Item", $d["value"]));
-              break;
-              case "PHYSICAL_DAMAGE_DEALT_TO_CHAMPIONS":
-              break;
-              case "SIGHT_WARDS_BOUGHT_IN_GAME":
-              break;
-              case "WIN":
-              $m->setWin(1);
-              break;
-              case "LOSE":
-              $m->setWin(0);
-              break;
-              case "NEUTRAL_MINIONS_KILLED_YOUR_JUNGLE":
-              break;
-              case "TOTAL_DAMAGE_DEALT_TO_CHAMPIONS":
-              $m->setDamageToChampion($d["value"]);
-              break;
-              case "MAGIC_DAMAGE_TAKEN":
-              break;
-              case "TOTAL_TIME_SPENT_DEAD":
-              $m->setTimeDead($d["value"]);
-              break;
-              case "WARD_PLACED":
-              break;
-              case "LEVEL":
-              break;
-              case "TRUE_DAMAGE_DEALT_PLAYER":
-              break;
-              case "ASSISTS":
-              $m->setAssist($d["value"]);
-              break;
-              case "CHAMPIONS_KILLED":
-              $m->setKilled($d["value"]);
-              break;
-              case "NUM_DEATHS":
-              $m->setDeath($d["value"]);
-              break;
-              case "NEUTRAL_MINIONS_KILLED":
-              break;
-              case "MINIONS_KILLED":
-              $m->setMinionsKilled($d["value"]);
-              break;
-              case "TURRETS_KILLED":
-              $m->setTurretsKilled($d["value"]);
-              break;
-              case "GOLD_EARNED":
-              $m->setGold($d["value"]);
-              break;
-              case "PHYSICAL_DAMAGE_TAKEN":
-              break;
-              case "LARGEST_CRITICAL_STRIKE":
-              break;
+                $item = $em->getRepository("PouzorLolStatBundle:Item")->find($d["value"]);
+
+                if (!$item)
+                  $item = new Item();
+                  $item->setName("TODO");
+                  $em->persist($item);
+
+                $m->addItem($item);
+                break;
+                case "PHYSICAL_DAMAGE_DEALT_TO_CHAMPIONS":
+                break;
+                case "SIGHT_WARDS_BOUGHT_IN_GAME":
+                break;
+                case "WIN":
+                $m->setWin(1);
+                break;
+                case "LOSE":
+                $m->setWin(0);
+                break;
+                case "NEUTRAL_MINIONS_KILLED_YOUR_JUNGLE":
+                break;
+                case "TOTAL_DAMAGE_DEALT_TO_CHAMPIONS":
+                $m->setDamageToChampion($d["value"]);
+                break;
+                case "MAGIC_DAMAGE_TAKEN":
+                break;
+                case "TOTAL_TIME_SPENT_DEAD":
+                $m->setTimeDead($d["value"]);
+                break;
+                case "WARD_PLACED":
+                break;
+                case "LEVEL":
+                break;
+                case "TRUE_DAMAGE_DEALT_PLAYER":
+                break;
+                case "ASSISTS":
+                $m->setAssist($d["value"]);
+                break;
+                case "CHAMPIONS_KILLED":
+                $m->setKilled($d["value"]);
+                break;
+                case "NUM_DEATHS":
+                $m->setDeath($d["value"]);
+                break;
+                case "NEUTRAL_MINIONS_KILLED":
+                break;
+                case "MINIONS_KILLED":
+                $m->setMinionsKilled($d["value"]);
+                break;
+                case "TURRETS_KILLED":
+                $m->setTurretsKilled($d["value"]);
+                break;
+                case "GOLD_EARNED":
+                $m->setGold($d["value"]);
+                break;
+                case "PHYSICAL_DAMAGE_TAKEN":
+                break;
+                case "LARGEST_CRITICAL_STRIKE":
+                break;
+
+              }
+
+            }
+
+            $m->setRanked($g["ranked"]);
+
+            try {
+              $em->persist($m);
+              $em->flush();
+            }
+            catch (\Exception $e) {
+
+              $output->writeln("Error for ".$summ->getName());
+              $output->writeln($e->getMessage());
+            }
 
           }
+          $output->writeln(date("H:i d-m-Y")." - Ajout de $nb match pour ".$summ->getName());
+
+
+        }
+
+
 
       }
 
-      $m->setRanked($g["ranked"]);
 
-      try {
-          $em->persist($m);
-          $em->flush();
-      }
-      catch (\Exception $e) {
-
-          $output->writeln("Error for ".$summ->getName());
-          $output->writeln($e->getMessage());
-      }
-
-  }
-  $output->writeln(date("H:i d-m-Y")." - Ajout de $nb match pour ".$summ->getName());
-
-
-}
-
-
-
-}
-
-
-}
+    }
