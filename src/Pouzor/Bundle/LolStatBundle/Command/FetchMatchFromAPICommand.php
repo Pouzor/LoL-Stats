@@ -155,11 +155,11 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
                   break;
                 $item = $em->getRepository("PouzorLolStatBundle:Item")->find($d["value"]);
 
-                if (!$item)
+                if (!$item) {
                   $item = new Item();
                   $item->setName("TODO");
                   $em->persist($item);
-
+                }
                 $m->addItem($item);
                 break;
                 case "PHYSICAL_DAMAGE_DEALT_TO_CHAMPIONS":
