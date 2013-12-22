@@ -158,11 +158,14 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
                 if (!$item) {
                   $item = new Item();
                   $item->setName("TODO");
+                  $item->setId($d["value"]);
                   $item->setGroups("TODO");
                   $item->setDescription("TODO");
                   $item->setPlaintext("TODO");
                   $item->setTotalCost(0);
                   $em->persist($item);
+                  $metadata = $em->getClassMetaData(get_class($item));
+                  $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
                 }
                 $m->addItem($item);
                 break;
