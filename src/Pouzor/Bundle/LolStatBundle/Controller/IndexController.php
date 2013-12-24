@@ -31,7 +31,7 @@ class IndexController extends Controller
 	/**
 	*
 	* @Route("/search_summoner", name="search_summoner")
-	* @Method("POST")
+	* @Method("GET")
 	* @Template()
 	*/
 	public function searchSummonerAction(Request $request) {
