@@ -3,4 +3,5 @@ parameters:
 services:
     pouzor_lol_stat.mashape_api:
         class: Pouzor\Bundle\LolStatBundle\Services\MashapeAPIService
-        arguments: ["@doctrine.orm.entity_manager", "@service_container"]		
+        arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+        public: false		
