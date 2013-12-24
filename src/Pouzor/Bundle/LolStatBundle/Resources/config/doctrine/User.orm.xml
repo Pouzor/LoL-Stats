@@ -4,6 +4,11 @@
     <id name="id" type="bigint" column="id">
       <generator strategy="IDENTITY"/>
     </id>
+    <one-to-many field="games" target-entity="Pouzor\Bundle\LolStatBundle\Entity\Game" mapped-by="idUser">
+        <cascade>
+            <cascade-persist/>
+        </cascade>
+    </one-to-many>    
     <field name="name" type="string" column="name" length="255" nullable="true"/>
     <field name="server" type="string" column="server" length="5" nullable="true"/>
     <field name="summonersname" type="string" column="summonersname" length="255" nullable="true"/>

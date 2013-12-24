@@ -52,6 +52,8 @@ class User
     private $summonersid;
 
 
+    private $games;
+
     /**
      * Set name
      *
@@ -144,5 +146,45 @@ class User
     public function getServer()
     {
         return $this->server;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->games = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add games
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Game $games
+     * @return User
+     */
+    public function addGame(\Pouzor\Bundle\LolStatBundle\Entity\Game $games)
+    {
+        $this->games[] = $games;
+    
+        return $this;
+    }
+
+    /**
+     * Remove games
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Game $games
+     */
+    public function removeGame(\Pouzor\Bundle\LolStatBundle\Entity\Game $games)
+    {
+        $this->games->removeElement($games);
+    }
+
+    /**
+     * Get games
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGames()
+    {
+        return $this->games;
     }
 }
