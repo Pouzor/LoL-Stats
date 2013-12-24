@@ -164,7 +164,7 @@ $(document).ready(function() {
     $("#more_game").click(function () {
         offset += 10;
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "{{ path('ajax_more_item') }}",
             data: {offset: offset, idUser: "{{ summoner.id }}", "champName" : '{{ champName }}', filter: getFilter(), order: $("#match_order").val()}
         }).done(function (msg) {
@@ -176,7 +176,7 @@ $(document).ready(function() {
 
     $("#filter_table select, #match_order").change(function() {
       $.ajax({
-        type: "POST",
+        type: "GET",
         url: "{{ path('ajax_more_item') }}",
         data: {offset: 0, idUser: "{{ summoner.id }}", "champName" : '{{ champName }}', filter: getFilter(), order: $("#match_order").val() }
     }).done(function (msg) {
