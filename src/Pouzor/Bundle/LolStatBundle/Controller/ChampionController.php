@@ -47,7 +47,7 @@ class ChampionController extends Controller
 	*/
 	public function ajaxMoreItemAction(Request $request) {
 
-		$filters = json_decode($request->request->get("filter"), true);
+		$filters = json_decode($request->query->get("filter"), true);
 		$em = $this->getDoctrine()->getManager();
 		$items = $em->getRepository("PouzorLolStatBundle:Item")->getStatsForChampAndSumm($request->query->get("idUser"), $request->query->get("champName"), $request->query->get("offset"), $filters, $request->query->get("order"));
 
