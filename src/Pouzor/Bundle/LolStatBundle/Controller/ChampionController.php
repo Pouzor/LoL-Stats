@@ -42,14 +42,14 @@ class ChampionController extends Controller
 	*
 	* @Template()
 	* @Route("/ajaxMoreItem", name="ajax_more_item")
-    * @Method({"GET", "POST"})
+    * @Method({"GET"})
 	*
 	*/
 	public function ajaxMoreItemAction(Request $request) {
 
 		$filters = json_decode($request->request->get("filter"), true);
 		$em = $this->getDoctrine()->getManager();
-		$items = $em->getRepository("PouzorLolStatBundle:Item")->getStatsForChampAndSumm($request->request->get("idUser"), $request->request->get("champName"), $request->request->get("offset"), $filters, $request->request->get("order"));
+		$items = $em->getRepository("PouzorLolStatBundle:Item")->getStatsForChampAndSumm($request->query->get("idUser"), $request->query->get("champName"), $request->query->get("offset"), $filters, $request->query->get("order"));
 
 		return array("items" => $items);
 	}
