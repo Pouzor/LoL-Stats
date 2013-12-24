@@ -37,7 +37,7 @@ class IndexController extends Controller
 	public function searchSummonerAction(Request $request) {
 		$api = $this->container->get('pouzor_lol_stat.mashape_api');
 
-		$data = $api->getSummonerByName($request->request->get("server"), $request->request->get("name"));
+		$data = $api->getSummonerByName($request->query->get("server"), $request->query->get("name"));
 
 
         return array("summoner" => $data);
