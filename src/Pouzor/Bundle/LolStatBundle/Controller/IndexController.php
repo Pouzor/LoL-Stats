@@ -24,29 +24,15 @@ class IndexController extends Controller
 
         $matchs_stats = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->dailyMatch();
 
-      //  print_r($matchs_stats);die();
-
-
-        $nb = array();
-        $date = array();
-        $win = array();
         $data = array();
         foreach ($matchs_stats as $g) {
-            $nb[] = $g["nb"];
-            $win[] = $g["win"];
-            $date[] = $g["date"]->format("d-M");
-            $data[] = array("date" => $g["date"]->format("d-M"), "win" => $g["win"], "nb" => $g["nb"]);
+            $data[] = array("date" => $g["date"]->format("d-M"), "win" => (int) $g["win"], "nb" => (int) $g["nb"], "ranked" => (int) $g["ranked"]);
         }
-
-       // echo count($win);echo count($nb);echo count($date);print_r($win);die();
-
+        $data = array_reverse($data);
 
 		return array("summoners" => $summoners,
                      "games" => $games,
-                     "nb" => json_encode($nb, 1),
-                     "win" => json_encode($win, 1),
-                     "date" => json_encode($date, 1),
-                     "data" => json_encode($data, 1),
+                     "data" => json_encode($data, 1)
                      );
 	}
 

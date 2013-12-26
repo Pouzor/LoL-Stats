@@ -69,7 +69,7 @@
 
 
 <div class="row">
-    <h4 id="match_history">Matchs enregistrés</h4>
+  
 
     <div id="matchsChart" width="850" height="400"></div>    
 
@@ -146,11 +146,13 @@ var dataSource = {{ data | raw }};
 $("#matchsChart").dxChart({
     dataSource: dataSource,
     commonSeriesSettings: {
+        type: "area", //splineArea//stackedArea
         argumentField: "date"
     },
     series: [
-        { valueField: "nb", name: "Nombre" },
-        { valueField: "win", name: "win" }
+        { valueField: "nb", name: "Total" },
+        
+        { valueField: "ranked", name: "Ranked" }
     ],
     argumentAxis:{
         grid:{
@@ -160,7 +162,7 @@ $("#matchsChart").dxChart({
     tooltip:{
         enabled: true
     },
-    title: "Historic, Current and Future Population",
+    title: "Matchs enregistrés",
     legend: {
         verticalAlignment: "bottom",
         horizontalAlignment: "center"

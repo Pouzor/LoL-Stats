@@ -31,7 +31,7 @@ class GameRepository extends EntityRepository
     public function dailyMatch() {
          $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
-        ->select("count(g.id) as nb, SUM(g.win) as win, g.dateFormat as date")
+        ->select("count(g.id) as nb, SUM(g.win) as win, g.dateFormat as date, SUM(g.ranked) as ranked")
         ->from("PouzorLolStatBundle:Game", "g")
         ->addGroupBy("g.dateFormat")
         ->orderBy("g.dateFormat", "DESC")
