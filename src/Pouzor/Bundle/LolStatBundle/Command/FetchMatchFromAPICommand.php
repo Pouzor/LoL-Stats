@@ -103,6 +103,8 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
             $m->setPremadeSize($g["premadeSize"]);
             $m->setIpEarned($g["ipEarned"]);
             $m->setMatchDate(strtotime($g["createDate"]));
+            $m->setDateFormat(new \DateTime(date("Y-m-d", $m->getMatchDate())));
+
 
             $m->setIdUser($summ);
 

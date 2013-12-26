@@ -28,6 +28,13 @@ class GameRepository extends EntityRepository
     }
 
 
+    public function dailyMatch() {
+     /*    $qBuilder = $this->getEntityManager()
+        ->createQueryBuilder()
+        ->from("PouzorLolStatBundle:Game", "g")
+        ->addGroupBy("g.")*/
+    }
+
 
     public function getCountGameStats($id, $champName = null, $criteria = null, $value = null) {
         $qBuilder = $this->getEntityManager()
