@@ -30,10 +30,12 @@ class IndexController extends Controller
         $nb = array();
         $date = array();
         $win = array();
+        $data = array();
         foreach ($matchs_stats as $g) {
             $nb[] = $g["nb"];
             $win[] = $g["win"];
-            $date[] = $g["date"]->format("d");
+            $date[] = $g["date"]->format("d-M");
+            $data[] = array("date" => $g["date"]->format("d-M"), "win" => $g["win"], "nb" => $g["nb"]);
         }
 
        // echo count($win);echo count($nb);echo count($date);print_r($win);die();
@@ -43,7 +45,9 @@ class IndexController extends Controller
                      "games" => $games,
                      "nb" => json_encode($nb, 1),
                      "win" => json_encode($win, 1),
-                     "date" => json_encode($date, 1));
+                     "date" => json_encode($date, 1),
+                     "data" => json_encode($data, 1),
+                     );
 	}
 
 	/**
