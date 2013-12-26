@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Pouzor\Bundle\LolStatBundle\Entity\UserElo">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="elo" type="integer" column="elo" nullable="false"/>
+    <field name="league" type="string" column="league" length="255" nullable="false"/>
+    <field name="division" type="integer" column="division"/>
+    <many-to-one field="idUser" target-entity="User" inversed-by="elos">
+      <join-column name="id_user" referenced-column-name="id" />
+    </many-to-one>
+    <field name="eloDate" type="date" column="elo_date" nullable="false"/>
+    <field name="score" type="integer" column="score" nullable="false"/>        
+  </entity>
+</doctrine-mapping>
