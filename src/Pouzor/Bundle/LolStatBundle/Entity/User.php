@@ -51,7 +51,14 @@ class User
      */
     private $summonersid;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $ranks;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
     private $games;
 
     /**
@@ -186,5 +193,40 @@ class User
     public function getGames()
     {
         return $this->games;
+    }
+
+
+
+    /**
+     * Add ranks
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\UserRank $ranks
+     * @return User
+     */
+    public function addRank(\Pouzor\Bundle\LolStatBundle\Entity\UserRank $ranks)
+    {
+        $this->ranks[] = $ranks;
+    
+        return $this;
+    }
+
+    /**
+     * Remove ranks
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\UserRank $ranks
+     */
+    public function removeRank(\Pouzor\Bundle\LolStatBundle\Entity\UserRank $ranks)
+    {
+        $this->ranks->removeElement($ranks);
+    }
+
+    /**
+     * Get ranks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRanks()
+    {
+        return $this->ranks;
     }
 }

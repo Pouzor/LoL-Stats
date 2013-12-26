@@ -8,7 +8,12 @@
         <cascade>
             <cascade-persist/>
         </cascade>
-    </one-to-many>    
+    </one-to-many>
+    <one-to-many field="ranks" target-entity="Pouzor\Bundle\LolStatBundle\Entity\UserRank" mapped-by="idUser">
+        <cascade>
+            <cascade-persist/>
+        </cascade>
+    </one-to-many>        
     <field name="name" type="string" column="name" length="255" nullable="true"/>
     <field name="server" type="string" column="server" length="5" nullable="true"/>
     <field name="summonersname" type="string" column="summonersname" length="255" nullable="true"/>

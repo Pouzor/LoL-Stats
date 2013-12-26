@@ -5,9 +5,9 @@ namespace Pouzor\Bundle\LolStatBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserElo
+ * UserRank
  */
-class UserElo
+class UserRank
 {
     /**
      * @var integer
@@ -31,6 +31,21 @@ class UserElo
 
 
     /**
+     * @var integer
+     */
+    private $score;
+
+    /**
+     * @var \Pouzor\Bundle\LolStatBundle\Entity\User
+     */
+    private $idUser;
+
+    /**
+     * @var \DateTime
+     */
+    private $rankDate;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -45,7 +60,7 @@ class UserElo
      * Set league
      *
      * @param string $league
-     * @return UserElo
+     * @return UserRank
      */
     public function setLeague($league)
     {
@@ -68,7 +83,7 @@ class UserElo
      * Set division
      *
      * @param integer $division
-     * @return UserElo
+     * @return UserRank
      */
     public function setDivision($division)
     {
@@ -86,50 +101,15 @@ class UserElo
     {
         return $this->division;
     }
-    /**
-     * @var \DateTime
-     */
-    private $eloDate;
-
-    /**
-     * @var integer
-     */
-    private $score;
-
-    /**
-     * @var \Pouzor\Bundle\LolStatBundle\Entity\User
-     */
-    private $idUser;
 
 
-    /**
-     * Set eloDate
-     *
-     * @param \DateTime $eloDate
-     * @return UserElo
-     */
-    public function setEloDate($eloDate)
-    {
-        $this->eloDate = $eloDate;
-    
-        return $this;
-    }
 
-    /**
-     * Get eloDate
-     *
-     * @return \DateTime 
-     */
-    public function getEloDate()
-    {
-        return $this->eloDate;
-    }
 
     /**
      * Set score
      *
      * @param integer $score
-     * @return UserElo
+     * @return UserRank
      */
     public function setScore($score)
     {
@@ -152,7 +132,7 @@ class UserElo
      * Set idUser
      *
      * @param \Pouzor\Bundle\LolStatBundle\Entity\User $idUser
-     * @return UserElo
+     * @return UserRank
      */
     public function setIdUser(\Pouzor\Bundle\LolStatBundle\Entity\User $idUser = null)
     {
@@ -177,7 +157,7 @@ class UserElo
      * Set points
      *
      * @param integer $points
-     * @return UserElo
+     * @return UserRank
      */
     public function setPoints($points)
     {
@@ -194,5 +174,30 @@ class UserElo
     public function getPoints()
     {
         return $this->points;
+    }
+
+
+
+    /**
+     * Set rankDate
+     *
+     * @param \DateTime $rankDate
+     * @return UserRank
+     */
+    public function setRankDate($rankDate)
+    {
+        $this->rankDate = $rankDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get rankDate
+     *
+     * @return \DateTime 
+     */
+    public function getRankDate()
+    {
+        return $this->rankDate;
     }
 }
