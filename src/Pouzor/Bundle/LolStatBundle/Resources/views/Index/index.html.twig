@@ -1,8 +1,12 @@
 {% extends "PouzorLolStatBundle::layout.html.twig" %}
 
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/pouzorlolstat/js/Chart.js') }}"></script>
+{% endblock %}
+
+
 {% block body %}
-
-
 
 <br />
 <div class="row">
@@ -17,8 +21,8 @@
             </tr>
         </thead>
         <tbody>
-           {% for s in summoners %}
-           <tr>
+         {% for s in summoners %}
+         <tr>
             <td>{{ s.id }}</td>
             <td><a href="{{path("show_sommoner", {"id": s.id})}}">{{ s.name }}</a></td>
             <td>TODO</td>
@@ -58,6 +62,14 @@
     </div>
 </div>
 
+
+</div>
+
+
+<div class="row">
+    <h4 id="match_history">Matchs enregistrés</h4>
+
+    <canvas id="matchsChart" width="850" height="400"></canvas>    
 
 </div>
 
@@ -116,11 +128,38 @@ $(document).ready(function() {
             data: data, // je sérialise les données (voir plus loin), ici les $_POST
 
             success: function(data) { // je récupère la réponse du fichier PHP
-             $("#search_summoner_div").html(data);
+               $("#search_summoner_div").html(data);
 
-         }
-     });
-    })
+           }
+       });
+    });
+
+    var data = {
+        labels : ["January","February","March","April","May","June","July"],
+        datasets : [
+        {
+            fillColor : "rgba(220,220,220,0.5)",
+            strokeColor : "rgba(220,220,220,1)",
+            pointColor : "rgba(220,220,220,1)",
+            pointStrokeColor : "#fff",
+            data : [65,59,90,81,56,55,40]
+        },
+        {
+            fillColor : "rgba(151,187,205,0.5)",
+            strokeColor : "rgba(151,187,205,1)",
+            pointColor : "rgba(151,187,205,1)",
+            pointStrokeColor : "#fff",
+            data : [28,48,40,19,96,27,100]
+        }
+        ]
+    }
+    var ctx = $("#matchsChart").get(0).getContext("2d");
+
+    var myNewChart = new Chart(ctx).Line(data);
+
+
+
+
 })
 
 </script>

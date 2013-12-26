@@ -638,4 +638,32 @@ class Game
     {
         return $this->items;
     }
+    /**
+     * @var \DateTime
+     */
+    private $dateFormat;
+
+
+    /**
+     * Set dateFormat
+     *
+     * @param \DateTime $dateFormat
+     * @return Game
+     */
+    public function setDateFormat($dateFormat)
+    {
+        $this->dateFormat = $dateFormat;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateFormat
+     *
+     * @return \DateTime 
+     */
+    public function getDateFormat()
+    {
+        return $this->dateFormat;
+    }
 }

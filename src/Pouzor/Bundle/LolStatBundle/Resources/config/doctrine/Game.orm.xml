@@ -13,7 +13,7 @@
     <field name="ranked" type="boolean" column="ranked" nullable="true"/>
     <field name="matchType" type="string" column="match_type" length="255" nullable="true"/>
     <field name="matchDate" type="string" column="match_date" length="255" nullable="true"/>
-
+    <field name="dateFormat" type="date" column="dateFormat" length="255" nullable="true"/>
 
     <many-to-one field="idChampion" target-entity="Champion" inversed-by="games">
       <join-column name="id_champion" referenced-column-name="id" />
