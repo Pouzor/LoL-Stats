@@ -4,3 +4,4 @@ vendor/
 src/Acme
 app/config/parameters.yml
 *~
+web/bundles/
