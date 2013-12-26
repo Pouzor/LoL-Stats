@@ -29,10 +29,18 @@ class GameRepository extends EntityRepository
 
 
     public function dailyMatch() {
-     /*    $qBuilder = $this->getEntityManager()
+         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
+        ->select("count(g.id) as nb, SUM(g.win) as win, g.dateFormat as date")
         ->from("PouzorLolStatBundle:Game", "g")
-        ->addGroupBy("g.")*/
+        ->addGroupBy("g.dateFormat")
+        ->orderBy("g.dateFormat", "DESC")
+        ->setMaxResults(20)
+   //     ->where("g.dateFormat >= :date")
+     //   ->setParameter("date", mktime(0,0,0, date("n") - 5, date("j"), date("Y")))
+        ;
+
+        return $qBuilder->getQuery()->getArrayResult();
     }
 
 

@@ -22,10 +22,28 @@ class IndexController extends Controller
 		$summoners = $this->getDoctrine()->getRepository("PouzorLolStatBundle:User")->findAll();
         $games = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->getLastGame();
 
+        $matchs_stats = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->dailyMatch();
+
+      //  print_r($matchs_stats);die();
+
+
+        $nb = array();
+        $date = array();
+        $win = array();
+        foreach ($matchs_stats as $g) {
+            $nb[] = $g["nb"];
+            $win[] = $g["win"];
+            $date[] = $g["date"]->format("d");
+        }
+
+       // echo count($win);echo count($nb);echo count($date);print_r($win);die();
 
 
 		return array("summoners" => $summoners,
-                     "games" => $games);
+                     "games" => $games,
+                     "nb" => json_encode($nb, 1),
+                     "win" => json_encode($win, 1),
+                     "date" => json_encode($date, 1));
 	}
 
 	/**
