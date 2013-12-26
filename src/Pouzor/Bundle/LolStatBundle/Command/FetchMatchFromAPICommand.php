@@ -113,7 +113,7 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
 
             foreach ($g["statistics"]["array"] as $d) {
                 //DEBUG
-              $output->writeln($d["statType"]." - ".$d["value"]);
+              //$output->writeln($d["statType"]." - ".$d["value"]);
               switch ($d["statType"]) {
                 case "BARRACKS_KILLED":
                 break;
