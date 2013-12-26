@@ -4,7 +4,7 @@
     <id name="id" type="integer" column="id">
       <generator strategy="AUTO"/>
     </id>
-    <field name="elo" type="integer" column="elo" nullable="false"/>
+    <field name="points" type="integer" column="points" nullable="false"/>
     <field name="league" type="string" column="league" length="255" nullable="false"/>
     <field name="division" type="integer" column="division"/>
     <many-to-one field="idUser" target-entity="User" inversed-by="elos">

@@ -17,7 +17,7 @@ class UserElo
     /**
      * @var integer
      */
-    private $elo;
+    private $points;
 
     /**
      * @var string
@@ -40,28 +40,6 @@ class UserElo
         return $this->id;
     }
 
-    /**
-     * Set elo
-     *
-     * @param integer $elo
-     * @return UserElo
-     */
-    public function setElo($elo)
-    {
-        $this->elo = $elo;
-    
-        return $this;
-    }
-
-    /**
-     * Get elo
-     *
-     * @return integer 
-     */
-    public function getElo()
-    {
-        return $this->elo;
-    }
 
     /**
      * Set league
@@ -191,5 +169,30 @@ class UserElo
     public function getIdUser()
     {
         return $this->idUser;
+    }
+
+
+
+    /**
+     * Set points
+     *
+     * @param integer $points
+     * @return UserElo
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+    
+        return $this;
+    }
+
+    /**
+     * Get points
+     *
+     * @return integer 
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 }
