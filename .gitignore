@@ -5,3 +5,4 @@ src/Acme
 app/config/parameters.yml
 *~
 web/bundles/
+.DS_Store
