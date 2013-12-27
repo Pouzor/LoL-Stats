@@ -38,6 +38,7 @@ class GameRepository extends EntityRepository
         ->setMaxResults(30)
         ;
 
+
         return $qBuilder->getQuery()->getArrayResult();
     }
 
@@ -63,7 +64,14 @@ class GameRepository extends EntityRepository
           ->setParameter("name", $champName);
         }
 
-        return $qBuilder->getQuery()->getSingleResult();
+        $data = $qBuilder->getQuery()->getSingleResult();
+
+        if (!$data["win"])
+          $data["win"] = 0;
+        if (!$data["loose"])
+          $data["loose"] = 0;
+
+        return $data;
 
     }
 

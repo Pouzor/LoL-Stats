@@ -10,7 +10,7 @@
         <br/>
         <h4>Nombre de match enregistrés</h4>
 
-
+<!--
         <table class="table table-condensed table-striped table-bordered table-hover" style="width: 300px">
             <thead>
                 <tr>
@@ -46,6 +46,23 @@
                 </tr>
             </tbody>
         </table>
+-->
+
+        <div id="donuts" style="width:200px;height:200px;margin-left: 100px;"></div>
+        <table style="margin-left:20px">
+            <tr>
+                <th class='text-center'>Classic</th><th class='text-center'>Ranked</th><th class='text-center'>Aram</th>
+            </tr>
+            <tr>
+                <td><div id="donuts_classic" style="width:120px;height:120px"></div></td>
+
+                <td><div id="donuts_ranked" style="width:120px;height:120px"></div></td>
+
+                <td><div id="donuts_aram" style="width:120px;height:120px"></div></td>
+
+            </tr>
+        </table>
+
 
     </div>
     <!-- Stats global par type (KDA)-->
@@ -185,9 +202,45 @@ $(document).ready(function() {
     });
 });  
 
-    
+   Morris.Donut({
+    element: 'donuts',
+    colors: ["#ABC8E2", "#375D81", "#C44C51", "#C79F4B"],
+    data: [
+    {label: "Classic", value: {{stats["invocateur"]["nb"] - stats["ranked"]["nb"]}} },
+    {label: "Ranked", value: {{stats["ranked"]["nb"]}} },
+    {label: "Aram", value: {{stats["aram"]["nb"]}} },
+    {label: "Dominion", value: {{stats["dominion"]["nb"]}} }
+    ]
+});
 
-})
+Morris.Donut({
+    element: 'donuts_classic',
+    colors: ["#769600", "#DB2218"],
+    data: [
+    {label: "Win", value: {{ stats["invocateur"]["win"] - stats["ranked"]["win"]  }} },
+    {label: "Loose", value: {{ stats["invocateur"]["loose"] - stats["ranked"]["loose"]  }} }
+    ]
+});
+
+Morris.Donut({
+    element: 'donuts_ranked',
+    colors: ["#769600", "#DB2218"],
+    data: [
+    {label: "Win", value: {{ stats["ranked"]["win"]  }} },
+    {label: "Loose", value: {{ stats["ranked"]["loose"]  }} }
+    ]
+});
+
+Morris.Donut({
+    element: 'donuts_aram',
+    colors: ["#769600", "#DB2218"],
+    data: [
+    {label: "Win", value: {{ stats["aram"]["win"]  }} },
+    {label: "Loose", value: {{ stats["aram"]["loose"]  }} }
+    ]
+}); 
+
+});
 </script>
 
 {% endblock body %}
