@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Pouzor\Bundle\LolStatBundle\Entity\Game;
+use Pouzor\Bundle\LolStatBundle\Entity\UserRank;
 use Pouzor\Bundle\LolStatBundle\Entity\Champion;
 use Pouzor\Bundle\LolStatBundle\Entity\Item;
 
@@ -41,11 +42,28 @@ private function get($url)
     {
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
 
+        $leagues = array(
+                         "BRONZE" => 1000,
+                         "SILVER" => 2000,
+                         "GOLD" => 3000,
+                         "PLATINUM" => 4000,
+                         "DIAMOND" => 5000
+                         );
+
+        $divisions = array(
+                         "I" => 500,
+                         "II" => 400,
+                         "III" => 300,
+                         "IV" => 200,
+                         "V" => 100
+                         );
+
         $summs = $em->getRepository("PouzorLolStatBundle:User")->findAll();
 
         $error = array();
         foreach ($summs as $summ)  {
 
+            //TODO REMPLACE API SERVICE
             $tuData = $this->get("https://community-league-of-legends.p.mashape.com/api/v1.0/".$summ->getServer()."/summoner/getRecentGames/".$summ->getAccountid());
 
 
@@ -243,7 +261,40 @@ private function get($url)
             }//END FOREACH MATCH
 
             if ($ranked) {
+                $output->writeln("Change rank for for ".$summ->getName());
+                $data2 = $this->get("https://community-league-of-legends.p.mashape.com/api/v1.0/".$summ->getServer()."/summoner/getLeagueForPlayer/".$summ->getSummonersid());
 
+                $data2 = json_decode($data2, true);
+
+                $stats = "";
+
+                foreach ($data2["entries"] as $entries) {
+                    foreach ($entries as $entrie) {
+                    if ($entrie["playerOrTeamName"] == $summ->getName()) {
+                        $stats = $entrie;
+                        break;
+                    }
+                }
+                }
+
+                if ($stats != "") {
+
+                    $r = new UserRank();
+
+                    $r->setPoints($stats["leaguePoints"]);
+                    $r->setRankDate(new \DateTime(date("Y-m-d")));
+                    $r->setIdUser($summ);
+                    $r->setLeague($leagues[$data2["tier"]]);
+                    $r->setDivision($divisions[$data2["requestorsRank"]]);
+                    $r->setScore($leagues[$data2["tier"]] + $divisions[$data2["requestorsRank"]] + $stats["leaguePoints"]);
+                    $em->persist($r);
+
+                    $summ->setPoints($stats["leaguePoints"]);
+                    $summ->setLeague($leagues[$data2["tier"]]);
+                    $summ->setDivision($divisions[$data2["requestorsRank"]]);
+
+                    $em->flush();
+                }
             }
 
             $output->writeln(date("H:i d-m-Y")." - Ajout de $nb match pour ".$summ->getName());

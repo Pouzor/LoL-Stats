@@ -122,7 +122,7 @@ class ApiController extends Controller
 	*
 	*/
 	public function getLeagueForPlayerAction() {
-		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getLeagueForPlayer/"."33151520");
+		$data = $this->getData("https://community-league-of-legends.p.mashape.com/api/v1.0/EUW/summoner/getLeagueForPlayer/"."35797753");
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
