@@ -30,8 +30,10 @@ class ApiController extends Controller
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		$header = array("X-Mashape-Authorization: ".$this->container->getParameter('mashape_key'));
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-		$output = curl_exec($ch);
-		curl_close($ch);
+        $output = curl_exec($ch);
+
+        curl_close($ch);
+
 		return $output;
 	}
 
@@ -124,6 +126,8 @@ class ApiController extends Controller
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
+
+        var_dump($data);
 
         return $response;
 	}
