@@ -20,14 +20,25 @@ class IndexController extends Controller
 	public function indexAction() {
 
 		$summoners = $this->getDoctrine()->getRepository("PouzorLolStatBundle:User")->findAll();
+
         $games = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->getLastGame();
 
         $matchs_stats = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->dailyMatch();
 
+        $leagues = array(
+            1 => "Bronze",
+            2 => "Silver",
+            3 => "Or",
+            4 => "Platine",
+            5 => "Diamant",
+            6 => "Challenger"
+            );
+
         $data = array();
-        foreach ($matchs_stats as $g) {
+
+        foreach ($matchs_stats as $g) 
             $data[] = array("date" => $g["date"]->format("d-M"), "win" => (int) $g["win"], "nb" => (int) $g["nb"], "ranked" => (int) $g["ranked"]);
-        }
+
         $data = array_reverse($data);
 
 		return array("summoners" => $summoners,
@@ -35,6 +46,7 @@ class IndexController extends Controller
                      "data" => json_encode($data, 1)
                      );
 	}
+
 
 	/**
 	*

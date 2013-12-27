@@ -18,5 +18,8 @@
     <field name="server" type="string" column="server" length="5" nullable="true"/>
     <field name="summonersname" type="string" column="summonersname" length="255" nullable="true"/>
     <field name="summonersid" type="bigint" column="summonersid" nullable="false"/>
+    <field name="points" type="integer" column="points" nullable="true"/>
+    <field name="league" type="string" column="league" length="255" nullable="true"/>
+    <field name="division" type="integer" column="division" nullable="true"/>    
   </entity>
 </doctrine-mapping>

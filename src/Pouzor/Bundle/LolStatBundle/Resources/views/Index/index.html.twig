@@ -27,7 +27,7 @@
          <tr>
             <td>{{ s.id }}</td>
             <td><a href="{{path("show_sommoner", {"id": s.id})}}">{{ s.name }}</a></td>
-            <td>TODO</td>
+            <td>{{ getLeague(s.league) }} {{ s.division }} - {{ s.points }} pts</td>
         </tr>
         {% endfor %}
     </tbody>	

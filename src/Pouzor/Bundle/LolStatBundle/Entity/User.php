@@ -62,6 +62,22 @@ class User
     private $games;
 
     /**
+     * @var integer
+     */
+    private $points;
+
+    /**
+     * @var string
+     */
+    private $league;
+
+    /**
+     * @var integer
+     */
+    private $division;
+
+
+    /**
      * Set name
      *
      * @param string $name
@@ -228,5 +244,76 @@ class User
     public function getRanks()
     {
         return $this->ranks;
+    }
+
+
+
+    /**
+     * Set points
+     *
+     * @param integer $points
+     * @return User
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+    
+        return $this;
+    }
+
+    /**
+     * Get points
+     *
+     * @return integer 
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    /**
+     * Set league
+     *
+     * @param string $league
+     * @return User
+     */
+    public function setLeague($league)
+    {
+        $this->league = $league;
+    
+        return $this;
+    }
+
+    /**
+     * Get league
+     *
+     * @return string 
+     */
+    public function getLeague()
+    {
+        return $this->league;
+    }
+
+    /**
+     * Set division
+     *
+     * @param integer $division
+     * @return User
+     */
+    public function setDivision($division)
+    {
+        $this->division = $division;
+    
+        return $this;
+    }
+
+    /**
+     * Get division
+     *
+     * @return integer 
+     */
+    public function getDivision()
+    {
+        return $this->division;
     }
 }

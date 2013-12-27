@@ -35,9 +35,7 @@ class GameRepository extends EntityRepository
         ->from("PouzorLolStatBundle:Game", "g")
         ->addGroupBy("g.dateFormat")
         ->orderBy("g.dateFormat", "DESC")
-        ->setMaxResults(20)
-   //     ->where("g.dateFormat >= :date")
-     //   ->setParameter("date", mktime(0,0,0, date("n") - 5, date("j"), date("Y")))
+        ->setMaxResults(30)
         ;
 
         return $qBuilder->getQuery()->getArrayResult();
