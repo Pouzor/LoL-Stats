@@ -46,7 +46,7 @@ private function get($url)
         $error = array();
         foreach ($summs as $summ)  {
 
-            $tuData = $this->get("https://community-league-of-legends.p.mashape.com/api/v1.0/".$summ->getServer()."/summoner/getRecentGames/".$summ->getSummonersid());
+            $tuData = $this->get("https://community-league-of-legends.p.mashape.com/api/v1.0/".$summ->getServer()."/summoner/getRecentGames/".$summ->getAccountid());
 
 
             if (!$tuData) {
