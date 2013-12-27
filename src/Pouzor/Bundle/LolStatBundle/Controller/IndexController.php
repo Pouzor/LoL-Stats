@@ -36,7 +36,7 @@ class IndexController extends Controller
 
         $data = array();
 
-        foreach ($matchs_stats as $g) 
+        foreach ($matchs_stats as $g)
             $data[] = array("date" => $g["date"]->format("d-M"), "win" => (int) $g["win"], "nb" => (int) $g["nb"], "ranked" => (int) $g["ranked"]);
 
         $data = array_reverse($data);
@@ -58,7 +58,6 @@ class IndexController extends Controller
 		$api = $this->container->get('pouzor_lol_stat.mashape_api');
 
 		$data = $api->getSummonerByName($request->query->get("server"), $request->query->get("name"));
-
 
         return array("summoner" => $data);
 

@@ -52,6 +52,11 @@ class User
     private $summonersid;
 
     /**
+     * @var integer
+     */
+    private $accountid;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $ranks;
@@ -177,7 +182,7 @@ class User
     {
         $this->games = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add games
      *
@@ -187,7 +192,7 @@ class User
     public function addGame(\Pouzor\Bundle\LolStatBundle\Entity\Game $games)
     {
         $this->games[] = $games;
-    
+
         return $this;
     }
 
@@ -204,7 +209,7 @@ class User
     /**
      * Get games
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGames()
     {
@@ -222,7 +227,7 @@ class User
     public function addRank(\Pouzor\Bundle\LolStatBundle\Entity\UserRank $ranks)
     {
         $this->ranks[] = $ranks;
-    
+
         return $this;
     }
 
@@ -239,7 +244,7 @@ class User
     /**
      * Get ranks
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRanks()
     {
@@ -257,14 +262,14 @@ class User
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
@@ -280,14 +285,14 @@ class User
     public function setLeague($league)
     {
         $this->league = $league;
-    
+
         return $this;
     }
 
     /**
      * Get league
      *
-     * @return string 
+     * @return string
      */
     public function getLeague()
     {
@@ -303,17 +308,42 @@ class User
     public function setDivision($division)
     {
         $this->division = $division;
-    
+
         return $this;
     }
 
     /**
      * Get division
      *
-     * @return integer 
+     * @return integer
      */
     public function getDivision()
     {
         return $this->division;
+    }
+
+
+
+    /**
+     * Set accountid
+     *
+     * @param integer $accountid
+     * @return User
+     */
+    public function setAccountid($accountid)
+    {
+        $this->accountid = $accountid;
+
+        return $this;
+    }
+
+    /**
+     * Get accountid
+     *
+     * @return integer
+     */
+    public function getAccountid()
+    {
+        return $this->accountid;
     }
 }
