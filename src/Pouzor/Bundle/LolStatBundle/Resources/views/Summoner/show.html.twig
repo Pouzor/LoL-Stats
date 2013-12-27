@@ -2,16 +2,16 @@
 
 {% block body %}
 
-    <h3>{{ summoner.name }}</h3>
+<h3>{{ summoner.name }}</h3>
 
 
-    <div class="row">
+<div class="row">
 
-        <div class="col-md-5">
-            <br/>
-            <h4>Nombre de match enregistrés</h4>
+    <div class="col-md-5">
+        <br/>
+        <h4>Nombre de match enregistrés</h4>
 
-
+            <!--
             <table class="table table-condensed table-striped table-bordered table-hover" style="width: 300px">
                 <thead>
                 <tr>
@@ -43,64 +43,82 @@
                 </tr>
                 </tbody>
             </table>
+        -->
 
-        </div>
+        <div id="donuts" style="width:200px;height:200px;margin-left: 100px;"></div>
+        <table style="margin-left:20px">
+            <tr>
+                <th class='text-center'>Classic</th><th class='text-center'>Ranked</th><th class='text-center'>Aram</th>
+            </tr>
+            <tr>
+                <td><div id="donuts_classic" style="width:120px;height:120px"></div></td>
 
-        <div class="col-md-7">
-            <br/>
-            <h4>Ratio WinRate</h4>
+                <td><div id="donuts_ranked" style="width:120px;height:120px"></div></td>
 
-            <ul class="nav nav-tabs nav-justified">
-                <li class="active dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" href="#">
-                        Faille Invocateur <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#Tout" data-toggle="tab">Tout</a></li>
-                        <li><a href="#normal" data-toggle="tab">Normal</a></li>
-                        <li><a href="#ranked" data-toggle="tab">Ranked</a></li>
-                    </ul>
-                </li>
+                <td><div id="donuts_aram" style="width:120px;height:120px"></div></td>
+
+            </tr>
+        </table>
 
 
-                <li><a href="#aram" data-toggle="tab">Aram</a></li>
-                <li><a href="#dominion" data-toggle="tab">Dominion</a></li>
-                <li><a href="#3v3" data-toggle="tab">3 v 3</a></li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane fade in active" id="Tout">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["invoc"], "summoner": summoner } %}
-                </div>
-                <div class="tab-pane fade" id="normal">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["normal"], "summoner": summoner } %}
-                </div>
-                <div class="tab-pane fade" id="ranked">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["ranked"], "summoner": summoner } %}
-                </div>
-                <div class="tab-pane fade" id="aram">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["aram"], "summoner": summoner } %}
-                </div>
-                <div class="tab-pane fade" id="dominion">
-                    {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["dominion"], "summoner": summoner } %}
-                </div>
-                <div class="tab-pane fade" id="3v3">
-                    TODO
-                </div>
-            </div>
-
-
-        </div>
 
     </div>
 
+    <div class="col-md-7">
+        <br/>
+        <h4>Ratio WinRate</h4>
 
-    <h4 id="match_history">Dernières parties</h4>
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" href="#">
+                    Faille Invocateur <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#Tout" data-toggle="tab">Tout</a></li>
+                    <li><a href="#normal" data-toggle="tab">Normal</a></li>
+                    <li><a href="#ranked" data-toggle="tab">Ranked</a></li>
+                </ul>
+            </li>
 
-    <div class="row">
-        <table class="table table-condensed table-striped table-bordered table-hover col-md-8" style="width:800px" >
-            <thead>
+
+            <li><a href="#aram" data-toggle="tab">Aram</a></li>
+            <li><a href="#dominion" data-toggle="tab">Dominion</a></li>
+            <li><a href="#3v3" data-toggle="tab">3 v 3</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="Tout">
+                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["invoc"], "summoner": summoner } %}
+            </div>
+            <div class="tab-pane fade" id="normal">
+                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["normal"], "summoner": summoner } %}
+            </div>
+            <div class="tab-pane fade" id="ranked">
+                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["ranked"], "summoner": summoner } %}
+            </div>
+            <div class="tab-pane fade" id="aram">
+                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["aram"], "summoner": summoner } %}
+            </div>
+            <div class="tab-pane fade" id="dominion">
+                {% include "PouzorLolStatBundle:Summoner:_tableRate.html.twig" with { 'datas' : winrates["dominion"], "summoner": summoner } %}
+            </div>
+            <div class="tab-pane fade" id="3v3">
+                TODO
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<h4 id="match_history">Dernières parties</h4>
+
+<div class="row">
+    <table class="table table-condensed table-striped table-bordered table-hover col-md-8" style="width:800px" >
+        <thead>
             <tr>
                 <th class="text-center">Date</th>
                 <th class="text-center">Champion</th>
@@ -112,15 +130,15 @@
                 <th class="text-center">Ranked</th>
                 <th class="text-center">More</th>
             </tr>
-            </thead>
-            <tbody id="game_container">
+        </thead>
+        <tbody id="game_container">
             {% set last = 0 %}
             {% for game in games %}
-                {% set last = game.matchDate %}
-                {% include "PouzorLolStatBundle:Summoner:_tableGame.html.twig" with { 'game' : game } %}
+            {% set last = game.matchDate %}
+            {% include "PouzorLolStatBundle:Summoner:_tableGame.html.twig" with { 'game' : game } %}
             {% endfor %}
-            </tbody>
-            <tfoot>
+        </tbody>
+        <tfoot>
             <tr>
                 <td style="text-align:center" colspan="8">
                     <a href="#more" id="more_game">
@@ -131,16 +149,16 @@
                     <a href="#match_history"># Top</a>
                 </td>
             </tr>
-            </tfoot>
-        </table>
+        </tfoot>
+    </table>
 
-        <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="filter_table">
-            <thead>
-                <tr>
-                    <th colspan="2" class="text-center">Filtres</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="filter_table">
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center">Filtres</th>
+            </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td style="vertical-align: middle">Type</td>
                 <td>
@@ -179,7 +197,7 @@
                     <select class="form-control" name="idChampion" id="">
                         <option value="all">Tout</option>
                         {% for champ in champions %}
-                            <option value="{{ champ["id"] }}">{{ champ["name"] }}</option>
+                        <option value="{{ champ["id"] }}">{{ champ["name"] }}</option>
                         {% endfor %}
                     </select>
                 </td>
@@ -198,16 +216,16 @@
                     </select>
                 </td>
             </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
-        <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="order_table">
-            <thead>
-                <tr>
-                    <th colspan="2" class="text-center">Ordre</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="order_table">
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center">Ordre</th>
+            </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td colspan="2">
                     <select class="form-control" name="order" id="match_order">
@@ -221,63 +239,103 @@
         </tbody>
     </table>
 
-        <br/><br/>
-    </div>
+    <br/><br/>
+</div>
 <br/><br/>
-    <script type="text/javascript">
-        var offset = 0
+<script type="text/javascript">
+var offset = 0
 
-        function getFilter() {
-            
-            filter = new Array();
-            
-            $("#filter_table select").each(function() {
-                var obj = {};
-                obj[$(this).attr("name")] = $(this).val(); 
-                filter.push(obj);
-               
-            }) 
+function getFilter() {
 
-            return JSON.stringify(filter, null, 2);   
-        }
+    filter = new Array();
 
-        $("#more_game").click(function () {
-            offset += 10;
-            $.ajax({
-                type: "GET",
-                url: "{{ path('ajax_more_game') }}",
-                data: {offset: offset, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val()}
-            }).done(function (msg) {
+    $("#filter_table select").each(function() {
+        var obj = {};
+        obj[$(this).attr("name")] = $(this).val(); 
+        filter.push(obj);
 
-                        $("#game_container").append(msg);
-                    });
-        });
+    }) 
 
-        $("#filter_table select").change(function() {
-              $.ajax({
-                type: "GET",
-                url: "{{ path('ajax_more_game') }}",
-                data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
-            }).done(function (msg) {
+    return JSON.stringify(filter, null, 2);   
+}
 
-                        $("#game_container").html(msg);
-                    });
-        });  
-        
+$("#more_game").click(function () {
+    offset += 10;
+    $.ajax({
+        type: "GET",
+        url: "{{ path('ajax_more_game') }}",
+        data: {offset: offset, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val()}
+    }).done(function (msg) {
 
-        $("#match_order").change(function() {
-            $.ajax({
-                type: "GET",
-                url: "{{ path('ajax_more_game') }}",
-                data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
-            }).done(function (msg) {
+        $("#game_container").append(msg);
+    });
+});
 
-                        $("#game_container").html(msg);
-                    });
-        });
+$("#filter_table select").change(function() {
+  $.ajax({
+    type: "GET",
+    url: "{{ path('ajax_more_game') }}",
+    data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
+}).done(function (msg) {
+
+    $("#game_container").html(msg);
+});
+});  
 
 
-    </script>
+$("#match_order").change(function() {
+    $.ajax({
+        type: "GET",
+        url: "{{ path('ajax_more_game') }}",
+        data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
+    }).done(function (msg) {
+
+        $("#game_container").html(msg);
+    });
+});
+
+
+
+
+Morris.Donut({
+    element: 'donuts',
+    colors: ["#ABC8E2", "#375D81", "#C44C51", "#C79F4B"],
+    data: [
+    {label: "Classic", value: {{stats["invocateur"]["nb"] - stats["ranked"]["nb"]}} },
+    {label: "Ranked", value: {{stats["ranked"]["nb"]}} },
+    {label: "Aram", value: {{stats["aram"]["nb"]}} },
+    {label: "Dominion", value: {{stats["dominion"]["nb"]}} }
+    ]
+});
+
+Morris.Donut({
+    element: 'donuts_classic',
+    colors: ["#769600", "#DB2218"],
+    data: [
+    {label: "Win", value: {{ stats["invocateur"]["win"] - stats["ranked"]["win"]  }} },
+    {label: "Loose", value: {{ stats["invocateur"]["loose"] - stats["ranked"]["loose"]  }} }
+    ]
+});
+
+Morris.Donut({
+    element: 'donuts_ranked',
+    colors: ["#769600", "#DB2218"],
+    data: [
+    {label: "Win", value: {{ stats["ranked"]["win"]  }} },
+    {label: "Loose", value: {{ stats["ranked"]["loose"]  }} }
+    ]
+});
+
+Morris.Donut({
+    element: 'donuts_aram',
+    colors: ["#769600", "#DB2218"],
+    data: [
+    {label: "Win", value: {{ stats["aram"]["win"]  }} },
+    {label: "Loose", value: {{ stats["aram"]["loose"]  }} }
+    ]
+});
+
+</script>
 
 
 
