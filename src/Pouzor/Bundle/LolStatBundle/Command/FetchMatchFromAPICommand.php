@@ -71,7 +71,7 @@ private function get($url)
                 continue;
             }
 
-
+            $ranked = false;
             foreach ($data as $g) {
                 $q = $em->getRepository("PouzorLolStatBundle:Game")->findOneBy(array("idMatch" => $g["gameId"], "idUser" => $summ->getId()));
 
@@ -107,8 +107,6 @@ private function get($url)
 
 
                 $m->setIdUser($summ);
-
-                $ranked = false;
 
 
                 foreach ($g["statistics"]["array"] as $d) {
