@@ -3,7 +3,7 @@
 
 	<td>
 		<a href="{{ path("show_sommoner_champion", {"userId" : game.idUser.id, "champName" : game.idChampion.name})}}"> 
-			<img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({' ': ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
+			<img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({'.': ''}) | replace({' ': ''}) | replace({"'": ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
 		</a>
 	</td>
 	<td>{% if game.win == 1 %}VICTOIRE{% else %}DEFAITE{% endif %}</td>
