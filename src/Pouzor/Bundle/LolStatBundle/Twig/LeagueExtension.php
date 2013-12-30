@@ -13,21 +13,36 @@ class LeagueExtension extends \Twig_Extension {
     }
 
 
-    public function getLeague($id) {
-        if (!$id)
-            return "None";        
+    public function getLeague($s) {
+        if (!$s->getLeague())
+            return "None";
 
 
         $leagues = array(
-            1 => "Bronze",
-            2 => "Silver",
-            3 => "Or",
-            4 => "Platine",
-            5 => "Diamant",
-            6 => "Challenger"
+            1000 => "Bronze",
+            2000 => "Silver",
+            3000 => "Or",
+            4000 => "Platine",
+            5000 => "Diamant",
+            6000 => "Challenger"
             );
 
-        return $leagues[$id];
+
+        $divisions = array(
+                           100 => "V",
+                           200 => "IV",
+                           300 => "III",
+                           400 => "II",
+                           500 => "I"
+                           );
+
+        if (!isset($leagues[$s->getLeague()]))
+            return 0;
+
+
+
+        return $leagues[$s->getLeague()]." ".$divisions[$s->getDivision()]." - ".$s->getPoints()." pts";
+
     }
 
     public function getName()

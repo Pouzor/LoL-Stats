@@ -5,45 +5,25 @@
 <h3>{{ summoner.name }}</h3>
 
 
+<ul class="nav nav-tabs nav-justified">
+    <li class="active" >
+        <a data-toggle="tab" href="#general" style="background-color: #333">
+            Général
+        </a>
+    </li>
+    <li><a href="#ranked_stats" data-toggle="tab">Rank Stats</a></li>
+</ul>
+
+
+
+
 <div class="row">
 
     <div class="col-md-5">
         <br/>
         <h4>Nombre de match enregistrés</h4>
 
-            <!--
-            <table class="table table-condensed table-striped table-bordered table-hover" style="width: 300px">
-                <thead>
-                <tr>
-                    <th>TOTAL</th>
-                    <th>{{ stats["total"]["nb"] }} <span style="font-size:10px">({{ stats["total"]["win"] }}/{{ stats["total"]["loose"] }})</span></th>
-                </tr>
-                </thead>
-                <tbody>
 
-                <tr>
-                    <td>Faille de l'invocateur</td>
-                    <td>{{ stats["invocateur"]["nb"] }} <span style="font-size:10px">({{ stats["invocateur"]["win"] }}/{{ stats["invocateur"]["loose"] }})</span></td>
-                </tr>
-                <tr>
-                    <td> - RANKED</td>
-                    <td>{{ stats["ranked"]["nb"] }} <span style="font-size:10px">({{ stats["ranked"]["win"] }}/{{ stats["ranked"]["loose"] }})</span></td>
-                </tr>
-                <tr>
-                    <td>Aram</td>
-                    <td>{{ stats["aram"]["nb"] }} <span style="font-size:10px">({{ stats["aram"]["win"] }}/{{ stats["aram"]["loose"] }})</span></td>
-                </tr>
-                <tr>
-                    <td>Dominion</td>
-                    <td>{{ stats["dominion"]["nb"] }} <span style="font-size:10px">({{ stats["dominion"]["win"] }}/{{ stats["dominion"]["loose"] }})</span></td>
-                </tr>
-                <tr>
-                    <td>3 V 3</td>
-                    <td>{{ stats["3V3"] }}</td>
-                </tr>
-                </tbody>
-            </table>
-        -->
 
         <div id="donuts" style="width:200px;height:200px;margin-left: 100px;"></div>
         <table style="margin-left:20px">
@@ -70,7 +50,7 @@
 
         <ul class="nav nav-tabs nav-justified">
             <li class="active dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" href="#">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     Faille Invocateur <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
