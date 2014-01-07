@@ -20,7 +20,7 @@ class UserRankRepository extends EntityRepository
         ->leftJoin("r.idUser", "u")
         ->where("u.id = :user")
         ->orderBy("r.id", "DESC")
-        ->groupBy("r.rankDate")
+       // ->groupBy("r.rankDate")
         ->setParameter("user", $id);
 
         $datas = $qBuilder->getQuery()->getArrayResult();
