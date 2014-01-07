@@ -30,10 +30,13 @@ class SummonerController extends Controller
         $winRates = $em->getRepository("PouzorLolStatBundle:Game")->getWinRates($id);
         $champions = $em->getRepository("PouzorLolStatBundle:Champion")->findAllOrdered();
 
+        $lps = $em->getRepository("PouzorLolStatBundle:UserRank")->getByUser($id);
+
 		return array(
             "summoner" => $summoner,
             "stats" => $stats,
             "winrates" => $winRates,
+            "lps" => json_encode($lps, 1),
             "games" => $games, "id" => $id,
             "champions" => $champions
         );
