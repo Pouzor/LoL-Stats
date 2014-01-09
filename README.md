@@ -36,3 +36,7 @@ Status : pre-alpha
 
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe/big.png)](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Pouzor/lol-stats/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
