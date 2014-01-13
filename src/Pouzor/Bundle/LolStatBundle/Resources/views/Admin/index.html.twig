@@ -23,8 +23,38 @@
             <td>{{ getLeague(s)}}</td>
         </tr>
         {% endfor %}
-    </tbody>	
+    </tbody>    
 </table>
+</div>
+
+
+<div class="col-md-4" style="margin-left: 150px">
+
+    <h4>Search a player</h4>
+    <div id="search_summoner_div">
+        <form action="{{ path("search_summoner") }}" method="GET" id="search_summoner_form">
+            <table class="table table_search_summoner col-md-4" style="">
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td><input class="form-control" name="name" type="text" placeholder="ex : Xpeke"/></td>
+                    </tr>
+                    <tr>
+                        <td>Server</td>
+                        <td>
+                            <select class="form-control" name="server">
+                                <option value="NA">NA</option>
+                                <option value="EUW">EUW</option>   
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center"><input type="submit" class="btn btn-primary"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
 </div>
 
 
@@ -74,6 +104,41 @@
     </table>
 </div>
 
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#search_summoner_form").submit(function(e) {
+        e.preventDefault();
+
+        var url = $("#search_summoner_form").attr('action');
+        var type = $("#search_summoner_form").attr('method');
+        var data = $("#search_summoner_form").serialize();
+
+        $("#search_summoner_div").html("<img class='summoner_loader' src='{{ asset('bundles/pouzorlolstat/images/ajax-loader.gif') }}' />");
+
+        $.ajax({
+            url: url, // le nom du fichier indiqué dans le formulaire
+            type: type, // la méthode indiquée dans le formulaire (get ou post)
+            data: data, // je sérialise les données (voir plus loin), ici les $_POST
+
+            success: function(data) { // je récupère la réponse du fichier PHP
+               $("#search_summoner_div").html(data);
+
+           }
+       });
+    });
+
+
+
+
+
+
+
+
+
+})
+
+</script>
 
 
 {% endblock body %}
