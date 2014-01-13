@@ -16,7 +16,7 @@ class UserRankRepository extends EntityRepository
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:UserRank", "r")
-        ->select("r.rankDate, MAX(r.score) as max_score")
+        ->select("r.rankDate, r.score as max_score")
         ->leftJoin("r.idUser", "u")
         ->where("u.id = :user")
         ->orderBy("r.id", "DESC")
