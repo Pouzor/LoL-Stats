@@ -3,6 +3,7 @@
 namespace Pouzor\Bundle\LolStatBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Pouzor\Bundle\LolStatBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -19,7 +20,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
 
     /**
@@ -49,7 +50,7 @@ class User
     /**
      * @var integer
      */
-    private $summonersid;
+    private $summonersid = 0;
 
     /**
      * @var integer
@@ -180,6 +181,7 @@ class User
      */
     public function __construct()
     {
+        parent::__construct();
         $this->games = new \Doctrine\Common\Collections\ArrayCollection();
     }
 

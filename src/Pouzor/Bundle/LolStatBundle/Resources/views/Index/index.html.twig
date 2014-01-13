@@ -1,24 +1,17 @@
 {% extends "PouzorLolStatBundle::layout.html.twig" %}
 
-{% block javascripts %}
-{{ parent() }}
-<script src="{{ asset('bundles/pouzorlolstat/js/globalize.min.js') }}"></script>
-
-<script src="{{ asset('bundles/pouzorlolstat/js/dx.chartjs.js') }}"></script>
-{% endblock %}
-
 
 {% block body %}
 
 <br />
 <div class="row">
     <div class="col-md-4">
-        <h4>Liste des Summoners</h4>
+        <h4>Summoners List</h4>
         <table class="table table-condensed table-striped table-bordered table-hover" style="">
           <thead>
             <tr>
                 <th class="col-md-1">#</th>
-                <th class="col-md-1">Nom</th>
+                <th class="col-md-1">Name</th>
                 <th class="col-md-1">Rank</th>
             </tr>
         </thead>
@@ -37,17 +30,17 @@
 
 <div class="col-md-4" style="margin-left: 150px">
 
-    <h4>Chercher un joueur</h4>
+    <h4>Search a player</h4>
     <div id="search_summoner_div">
         <form action="{{ path("search_summoner") }}" method="GET" id="search_summoner_form">
             <table class="table table_search_summoner col-md-4" style="">
                 <tbody>
                     <tr>
-                        <td>Nom invocateur</td>
+                        <td>Name</td>
                         <td><input class="form-control" name="name" type="text" placeholder="ex : Xpeke"/></td>
                     </tr>
                     <tr>
-                        <td>Serveur</td>
+                        <td>Server</td>
                         <td>
                             <select class="form-control" name="server">
                                 <option value="NA">NA</option>
@@ -76,7 +69,7 @@
 </div>
 
 <div class="row">
-    <h4 id="match_history">Dernières parties</h4>
+    <h4 id="match_history">Last games</h4>
     <table class="table table-condensed table-striped table-bordered table-hover" style="width: 900px">
         <thead>
             <tr>
@@ -101,7 +94,7 @@
                 </td>
                 <td>{{ game.matchType }}</td>
                 <td>{% if game.ranked == 1 %}RANKED{% else %}{% endif %}</td>
-                <td>{% if game.win == 1 %}VICTOIRE{% else %}DEFAITE{% endif %}</td>
+                <td>{% if game.win == 1 %}WIN{% else %}LOOSE{% endif %}</td>
                 <td>{{ game.killed }} / {{ game.death }} / {{ game.assist }}</td>
 
 
@@ -138,39 +131,9 @@ $(document).ready(function() {
 
 
 
-var dataSource = {{ data | raw }};
 
-$("#matchsChart").dxChart({
-    dataSource: dataSource,
-    commonSeriesSettings: {
-        type: "area", //splineArea//stackedArea
-        argumentField: "date"
-    },
-    series: [
-        { valueField: "nb", name: "Total" },
-        
-        { valueField: "ranked", name: "Ranked" }
-    ],
-    argumentAxis:{
-        grid:{
-            visible: true
-        }
-    },
-    tooltip:{
-        enabled: true
-    },
-    title: "Matchs enregistrés",
-    legend: {
-        verticalAlignment: "bottom",
-        horizontalAlignment: "center"
-    },
-    commonPaneSettings: {
-        border:{
-            visible: true,
-            right: false
-        }       
-    }
-});
+
+
 
 
 

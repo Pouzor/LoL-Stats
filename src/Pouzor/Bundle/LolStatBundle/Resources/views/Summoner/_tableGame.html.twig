@@ -6,7 +6,7 @@
 			<img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({'.': ''}) | replace({' ': ''}) | replace({"'": ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
 		</a>
 	</td>
-	<td>{% if game.win == 1 %}VICTOIRE{% else %}DEFAITE{% endif %}</td>
+	<td>{% if game.win == 1 %}Win{% else %}Loose{% endif %}</td>
 	<td>{{ game.killed }}</td>
 	<td>{{ game.death }}</td>
 	<td>{{ game.assist }}</td>

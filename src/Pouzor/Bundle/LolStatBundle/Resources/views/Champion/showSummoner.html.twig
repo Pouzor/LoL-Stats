@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-5">
         <br/>
-        <h4>Nombre de match enregistrés</h4>
+        <h4>Games</h4>
 
 
         <div id="donuts" style="width:200px;height:200px;margin-left: 100px;"></div>
@@ -32,16 +32,16 @@
 
 </div>
 
-<h4 id="items_list">Items les plus utilisés</h4>
+<h4 id="items_list">Most used items</h4>
 
 <div class="row">
     <table class="table table-condensed table-striped table-bordered table-hover col-md-8" style="width:800px">
         <thead>
             <tr>
                 <th class="text-center">Item</th>
-                <th class="text-center">Nb match</th>
+                <th class="text-center">Match count</th>
                 <th class="text-center">WinRate</th>
-                <th class="text-center">Coût</th>
+                <th class="text-center">Cost</th>
                 <th class="text-center">K / D / A</th>
 
             </tr>
@@ -68,7 +68,7 @@
     <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="filter_table">
         <thead>
             <tr>
-                <th colspan="2" class="text-center">Filtres</th>
+                <th colspan="2" class="text-center">Filters</th>
             </tr>
         </thead>
         <tbody>
@@ -77,7 +77,7 @@
                 <td>
                     <select class="form-control" name="matchType" id="types">
                         <option value="all">Tout</option>
-                        <option selected="selected" value="CLASSIC">Faille de l'invocateur</option>
+                        <option selected="selected" value="CLASSIC">Classic</option>
                         <option value="ARAM">ARAM</option>
                         <option value="DOMINION">DOMINION</option>
                         <option value="3v3">3v3</option>
@@ -88,9 +88,9 @@
                 <td style="vertical-align: middle">Ranked</td>
                 <td>
                     <select class="form-control" name="ranked" id="">
-                        <option value="all">Tout</option>
-                        <option value="0">Non</option>
-                        <option value="1">Oui</option>
+                        <option value="all">All</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
                     </select>
                 </td>
             </tr>
@@ -101,14 +101,14 @@
     <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="order_table">
         <thead>
             <tr>
-                <th colspan="2" class="text-center">Ordre</th>
+                <th colspan="2" class="text-center">Sort</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td colspan="2">
                     <select class="form-control" name="order" id="match_order">
-                        <option value="nb">Nombre utilisation</option>
+                        <option value="nb">Use</option>
                         <option value="rate">Win Rate</option>
 
                     </select>
