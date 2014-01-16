@@ -22,3 +22,12 @@ thead tr {
     margin-top: 30px;
 
 }
+
+#content {
+    margin-top: 60px;
+}
+
+.profileicon {
+    width: 58px;
+    margin-right: 15px;
+}

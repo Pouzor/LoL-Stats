@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Pouzor\Bundle\LolStatBundle\Tools\RankTools as RankTools;
 
 class IndexController extends Controller
 {
@@ -23,26 +25,46 @@ class IndexController extends Controller
 
         $games = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->getLastGame();
 
-      
-        $leagues = array(
-            1 => "Bronze",
-            2 => "Silver",
-            3 => "Or",
-            4 => "Platine",
-            5 => "Diamant",
-            6 => "Challenger"
+
+        return array(
+            "summoners" => $summoners,
+            "games" => $games,
+
             );
+    }
 
-        $data = array();
 
-     
+    /**
+    *
+    * @Route("/search_summoner_platform", name="search_summoner_platform")
+    * @Method("GET")
+    * @Template()
+    */
+    public function searchSummonerPlatformAction(Request $request) {
 
-		return array("summoners" => $summoners,
-                     "games" => $games,
-                 
-                     );
-	}
+        $summoner = $this->getDoctrine()
+        ->getRepository("PouzorLolStatBundle:User")
+        ->findOneBy(array("summonersname" => $request->query->get("name"), "server" => $request->query->get("server")));
 
+        if ($summoner) {
+            return new Response("<div style='padding: 20px;text-align: center;'><a href='".$this->generateUrl('show_sommoner', array("id" => $summoner->getId()))."'>".$summoner->getName() ." - ". RankTools::getLeague($summoner)."</a></div>");
+        }
+        else
+            return new Response("<div style='padding: 20px;text-align: center;'>User not found, have you <a href='".$this->generateUrl('register')."'>register</a> this summoner ?</div>");
+
+    }
+
+
+    /**
+    *
+    * @Route("/register", name="register")
+    * @Method("GET")
+    * @Template()
+    */
+    public function registerAction() {
+
+        return array();
+    }
 
 
 }

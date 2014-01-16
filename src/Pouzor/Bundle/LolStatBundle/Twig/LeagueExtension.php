@@ -2,6 +2,7 @@
 
 namespace Pouzor\Bundle\LolStatBundle\Twig;
 
+use Pouzor\Bundle\LolStatBundle\Tools\RankTools as RankTools;
 
 class LeagueExtension extends \Twig_Extension {
 
@@ -14,35 +15,8 @@ class LeagueExtension extends \Twig_Extension {
 
 
     public function getLeague($s) {
-        if (!$s->getLeague())
-            return "None";
-
-
-        $leagues = array(
-            1000 => "Bronze",
-            2000 => "Silver",
-            3000 => "Or",
-            4000 => "Platine",
-            5000 => "Diamant",
-            6000 => "Challenger"
-            );
-
-
-        $divisions = array(
-                           100 => "V",
-                           200 => "IV",
-                           300 => "III",
-                           400 => "II",
-                           500 => "I"
-                           );
-
-        if (!isset($leagues[$s->getLeague()]))
-            return 0;
-
-
-
-        return $leagues[$s->getLeague()]." ".$divisions[$s->getDivision()]." - ".$s->getPoints()." pts";
-
+        
+        return RankTools::getLeague($s);
     }
 
     public function getName()

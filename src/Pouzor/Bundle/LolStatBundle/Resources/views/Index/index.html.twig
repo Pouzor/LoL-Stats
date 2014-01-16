@@ -4,7 +4,52 @@
 {% block body %}
 
 <br />
+
+<br /><br />
 <div class="row">
+
+<div class="jumbotron col-md-8">
+  <h2>Welcome to PouzStats</h2>
+  <p>
+    PouzStats is a <strong>free</strong> platform to collect League of legends statistics.<br />
+    Find all your statistics easily and efficiently !
+  </p>
+  <p><a class="btn btn-primary btn-lg" role="button">Register to Beta</a>  <a class="btn btn-info btn-lg" role="button">A quoi cela ressemble ?</a></p>
+</div>
+
+    <div class="col-md-4">
+    <div class="panel panel-default" >
+        <!-- Default panel contents -->
+        <div class="panel-heading">Search a player</div>
+
+        <div id="search_summoner_div">
+            <form action="{{ path("search_summoner_platform") }}" method="GET" id="search_summoner_form">
+                <table class="table table_search_summoner col-md-4" style="">
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td><input class="form-control" name="name" type="text" placeholder="ex : Xpeke"/></td>
+                        </tr>
+                        <tr>
+                            <td>Server</td>
+                            <td>
+                                <select class="form-control" name="server">
+                                    <option value="NA">NA</option>
+                                    <option value="EUW" selected="selected">EUW</option>   
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center"><input type="submit" class="btn btn-primary"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<!--
+
     <div class="col-md-4">
         <h4>Summoners List</h4>
         <table class="table table-condensed table-striped table-bordered table-hover" style="">
@@ -26,54 +71,87 @@
     </tbody>	
 </table>
 </div>
-
+-->
 
 </div>
 
+<br /><br />
 
 <div class="row">
-  
+
 
     <div id="matchsChart" width="850" height="400"></div>    
 
 </div>
 
 <div class="row">
-    <h4 id="match_history">Last games</h4>
-    <table class="table table-condensed table-striped table-bordered table-hover" style="width: 900px">
-        <thead>
-            <tr>
-                <th class="col-md-1 text-center">Date</th>
-                <th class="col-md-1 text-center">Summoner</th>
-                <th class="col-md-1 text-center">Champion</th>
-                <th class="col-md-1 text-center">Type</th>
-                <th class="col-md-1 text-center">Ranked</th>
-                <th class="col-md-1 text-center">Win</th>
-                <th class="col-md-1 text-center">K / D / A</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for game in games %}
-            <tr class="{% if game.win == 1 %}success{% else %}danger{% endif %} text-center">
-                <td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
-                <td>{{ game["idUser"]["name"] }}</td>
-                <td>
-                    <a href="{{ path("show_sommoner_champion", {"userId" : game.idUser.id, "champName" : game.idChampion.name})}}"> 
-                        <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({' ': ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
-                    </a>
-                </td>
-                <td>{{ game.matchType }}</td>
-                <td>{% if game.ranked == 1 %}RANKED{% else %}{% endif %}</td>
-                <td>{% if game.win == 1 %}WIN{% else %}LOOSE{% endif %}</td>
-                <td>{{ game.killed }} / {{ game.death }} / {{ game.assist }}</td>
 
 
-            </tr>
-            {% endfor %}
-        </tbody>    
-    </table>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h4 id="match_history">Last games</h4></div>
+
+        <table class="table table-condensed table-striped table-bordered table-hover" >
+            <thead>
+                <tr>
+                    <th class="col-md-1 text-center">Date</th>
+                    <th class="col-md-1 text-center">Summoner</th>
+                    <th class="col-md-1 text-center">Champion</th>
+                    <th class="col-md-1 text-center">Type</th>
+                    <th class="col-md-1 text-center">Ranked</th>
+                    <th class="col-md-1 text-center">Win</th>
+                    <th class="col-md-1 text-center">K / D / A</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in games %}
+                <tr class="{% if game.win == 1 %}success{% else %}danger{% endif %} text-center">
+                    <td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
+                    <td>{{ game["idUser"]["name"] }}</td>
+                    <td>
+                        <a href="{{ path("show_sommoner_champion", {"userId" : game.idUser.id, "champName" : game.idChampion.name})}}"> 
+                            <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({' ': ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
+                        </a>
+                    </td>
+                    <td>{{ game.matchType }}</td>
+                    <td>{% if game.ranked == 1 %}RANKED{% else %}{% endif %}</td>
+                    <td>{% if game.win == 1 %}WIN{% else %}LOOSE{% endif %}</td>
+                    <td>{{ game.killed }} / {{ game.death }} / {{ game.assist }}</td>
+
+
+                </tr>
+                {% endfor %}
+            </tbody>    
+        </table>
+    </div>
 </div>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#search_summoner_form").submit(function(e) {
+        e.preventDefault();
+
+        var url = $("#search_summoner_form").attr('action');
+        var type = $("#search_summoner_form").attr('method');
+        var data = $("#search_summoner_form").serialize();
+
+        $("#search_summoner_div").html("<img class='summoner_loader' src='{{ asset('bundles/pouzorlolstat/images/ajax-loader.gif') }}' />");
+
+        $.ajax({
+            url: url, // le nom du fichier indiqué dans le formulaire
+            type: type, // la méthode indiquée dans le formulaire (get ou post)
+            data: data, // je sérialise les données (voir plus loin), ici les $_POST
+
+            success: function(data) { // je récupère la réponse du fichier PHP
+               $("#search_summoner_div").html(data);
+
+           }
+       });
+    });
+
+})
+
+</script>
 
 
 {% endblock body %}

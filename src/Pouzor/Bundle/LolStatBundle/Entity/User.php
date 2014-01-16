@@ -82,6 +82,15 @@ class User extends BaseUser
      */
     private $division;
 
+    /**
+     * @var string
+     */
+    private $icon;
+
+    /**
+     * @var \DateTime
+     */
+    private $since;
 
     /**
      * Set name
@@ -347,5 +356,55 @@ class User extends BaseUser
     public function getAccountid()
     {
         return $this->accountid;
+    }
+
+
+
+    /**
+     * Set icon
+     *
+     * @param string $icon
+     * @return User
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+    
+        return $this;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return string 
+     */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+
+
+    /**
+     * Set since
+     *
+     * @param \DateTime $since
+     * @return User
+     */
+    public function setSince($since)
+    {
+        $this->since = $since;
+    
+        return $this;
+    }
+
+    /**
+     * Get since
+     *
+     * @return \DateTime 
+     */
+    public function getSince()
+    {
+        return $this->since;
     }
 }
