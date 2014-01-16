@@ -2,9 +2,23 @@
 
 {% block body %}
 
-<h3><img class="profileicon" src="{{ asset('bundles/pouzorlolstat/images/profileicon/' ~ summoner.icon ~ '.png') }}" />{{ summoner.name }}</h3>
-<h4>{{ getLeague(summoner)}}</h4>
-<br />
+<div class="page-header">
+    <h1>
+        <img class="profileicon" src="{{ asset('bundles/pouzorlolstat/images/profileicon/' ~ summoner.icon ~ '.png') }}" />
+        {{ summoner.name }} 
+        <small>{{ getLeague(summoner)}}</small>
+        <small style="font-size: 14px; ">
+            <ul class="nav nav-pills" style="float:right;margin-top:10px">
+                <li class="active"><a href="#">General</a></li>
+                <li><a href="#">Match History</a></li>
+                <li><a href="#">Rank stats</a></li>
+            </ul>
+        </small>
+    </h1>
+</div>
+
+
+
 
 
 
@@ -13,8 +27,6 @@
     <div class="col-md-5">
         <br/>
         <h4>Games</h4>
-
-
 
         <div id="donuts" style="width:200px;height:200px;margin-left: 100px;"></div>
         <table style="margin-left:20px">
@@ -86,7 +98,7 @@
 <h4 id="match_history">Last games</h4>
 
 <div class="row">
-    <table class="table table-condensed table-striped table-bordered table-hover col-md-8" style="width:800px" >
+    <table class="table table-condensed  table-bordered table-hover col-md-8" style="width:800px" >
         <thead>
             <tr>
                 <th class="text-center">Date</th>
@@ -243,7 +255,7 @@ $("#more_game").click(function () {
     $.ajax({
         type: "GET",
         url: "{{ path('ajax_more_game') }}",
-        data: {offset: offset, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val()}
+        data: {offset: offset, id: "{{ summoner.id }}", filter: getFilter(), order: $("#match_order").val()}
     }).done(function (msg) {
 
         $("#game_container").append(msg);
@@ -254,7 +266,7 @@ $("#filter_table select").change(function() {
   $.ajax({
     type: "GET",
     url: "{{ path('ajax_more_game') }}",
-    data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
+    data: {offset: 0, id: "{{ summoner.id }}", filter: getFilter(), order: $("#match_order").val() }
 }).done(function (msg) {
 
     $("#game_container").html(msg);
@@ -266,7 +278,7 @@ $("#match_order").change(function() {
     $.ajax({
         type: "GET",
         url: "{{ path('ajax_more_game') }}",
-        data: {offset: 0, id: "{{ id }}", filter: getFilter(), order: $("#match_order").val() }
+        data: {offset: 0, id: "{{ summoner.id }}", filter: getFilter(), order: $("#match_order").val() }
     }).done(function (msg) {
 
         $("#game_container").html(msg);
@@ -344,16 +356,16 @@ function getLeague(y) {
 
     divisions = {
       "" : "",
-     0 : "" ,  
-     1 : "V",
-     2 : "IV",
-     3 : "III",
-     4 : "II",
-     5 : "I"
-     };
+      0 : "" ,  
+      1 : "V",
+      2 : "IV",
+      3 : "III",
+      4 : "II",
+      5 : "I"
+  };
 
 
-    return leagues[Math.round(y/1000)] + " " + divisions[Math.round(y/100) - Math.round(y/1000) * 10] + " - " + y;
+  return leagues[Math.round(y/1000)] + " " + divisions[Math.round(y/100) - Math.round(y/1000) * 10] + " - " + y;
 
 
 }

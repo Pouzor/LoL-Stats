@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use Pouzor\Bundle\LolStatBundle\Entity\User;
 
 
 
@@ -21,23 +22,23 @@ class SummonerController extends Controller
     * @Method({"GET"})
 	*
 	*/
-	public function showAction($id) {
+	public function showAction($id, User $summoner) {
         $em = $this->getDoctrine()->getManager();
-		$summoner = $em->getRepository("PouzorLolStatBundle:User")->find($id);
-		$stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($id);
-		$games = $em->getRepository("PouzorLolStatBundle:Game")->getRecentGames($id);
+		//$summoner = $em->getRepository("PouzorLolStatBundle:User")->find($id);
+		$stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($summoner);
+		$games = $em->getRepository("PouzorLolStatBundle:Game")->getRecentGames($summoner);
 
-        $winRates = $em->getRepository("PouzorLolStatBundle:Game")->getWinRates($id);
+        $winRates = $em->getRepository("PouzorLolStatBundle:Game")->getWinRates($summoner);
         $champions = $em->getRepository("PouzorLolStatBundle:Champion")->findAllOrdered();
 
-        $lps = $em->getRepository("PouzorLolStatBundle:UserRank")->getByUser($id);
+        $lps = $em->getRepository("PouzorLolStatBundle:UserRank")->getByUser($summoner);
 
 		return array(
             "summoner" => $summoner,
             "stats" => $stats,
             "winrates" => $winRates,
             "lps" => json_encode($lps, 1),
-            "games" => $games, "id" => $id,
+            "games" => $games, 
             "champions" => $champions
         );
 	}

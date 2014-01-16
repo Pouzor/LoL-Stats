@@ -14,7 +14,8 @@
     PouzStats is a <strong>free</strong> platform to collect League of legends statistics.<br />
     Find all your statistics easily and efficiently !
   </p>
-  <p><a class="btn btn-primary btn-lg" role="button">Register to Beta</a>  <a class="btn btn-info btn-lg" role="button">A quoi cela ressemble ?</a></p>
+  <p><a href="{{ path("register") }}" class="btn btn-primary btn-lg" role="button">Register to Beta</a>  
+    <a href="{{ path("show_sommoner", {id : 1}) }}" class="btn btn-info btn-lg" role="button">What it looks like ?</a></p>
 </div>
 
     <div class="col-md-4">
@@ -91,7 +92,7 @@
         <!-- Default panel contents -->
         <div class="panel-heading"><h4 id="match_history">Last games</h4></div>
 
-        <table class="table table-condensed table-striped table-bordered table-hover" >
+        <table class="table table-condensed table-bordered table-hover" >
             <thead>
                 <tr>
                     <th class="col-md-1 text-center">Date</th>
