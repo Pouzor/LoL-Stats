@@ -18,30 +18,30 @@ class SummonerController extends Controller
 	*
     * Show all stats about one Summoner
 	* @Template()
-	* @Route("/show/{id}", name="show_sommoner")
+	* @Route("/show/{id}", name="show_summoner")
     * @Method({"GET"})
 	*
 	*/
 	public function showAction($id, User $summoner) {
         $em = $this->getDoctrine()->getManager();
 		//$summoner = $em->getRepository("PouzorLolStatBundle:User")->find($id);
-		$stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($summoner);
-		$games = $em->getRepository("PouzorLolStatBundle:Game")->getRecentGames($summoner);
+        $stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($summoner);
+        $games = $em->getRepository("PouzorLolStatBundle:Game")->getRecentGames($summoner);
 
         $winRates = $em->getRepository("PouzorLolStatBundle:Game")->getWinRates($summoner);
         $champions = $em->getRepository("PouzorLolStatBundle:Champion")->findAllOrdered();
 
         $lps = $em->getRepository("PouzorLolStatBundle:UserRank")->getByUser($summoner);
 
-		return array(
+        return array(
             "summoner" => $summoner,
             "stats" => $stats,
             "winrates" => $winRates,
             "lps" => json_encode($lps, 1),
             "games" => $games, 
             "champions" => $champions
-        );
-	}
+            );
+    }
 
 
 
@@ -60,5 +60,21 @@ class SummonerController extends Controller
 
 		return array("games" => $games);
 	}
+
+
+    /**
+    *
+    * Get champions stats for a summoner
+    * @Template()
+    * @Route("/showSummonerChampions/{id}", name="show_summoner_champions")
+    * @Method({"GET"})
+    */
+    public function showSummonerChampionsAction(Request $request, User $summoner) {
+       
+        $champions = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Champion")
+            ->getFilter($summoner, "nbMatch");
+
+        return array("champions" => $champions, "summoner" => $summoner);        
+    } 
 
 }

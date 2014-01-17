@@ -2,6 +2,11 @@
 
 {% block body %}
 
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li class="active">{{ summoner.name }}</li>
+</ol>
+
 <div class="page-header">
     <h1>
         <img class="profileicon" src="{{ asset('bundles/pouzorlolstat/images/profileicon/' ~ summoner.icon ~ '.png') }}" />
@@ -11,14 +16,12 @@
             <ul class="nav nav-pills" style="float:right;margin-top:10px">
                 <li class="active"><a href="#">General</a></li>
                 <li><a href="#">Match History</a></li>
+                <li><a href="{{  path("show_summoner_champions", {id: summoner.id}) }}">Champion stats</a></li>
                 <li><a href="#">Rank stats</a></li>
             </ul>
         </small>
     </h1>
 </div>
-
-
-
 
 
 

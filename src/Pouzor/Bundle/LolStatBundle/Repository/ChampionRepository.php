@@ -14,12 +14,30 @@ class ChampionRepository extends EntityRepository
 {
     public function findAllOrdered() {
         $qBuilder = $this->getEntityManager()
-            ->createQueryBuilder()
-            ->from("PouzorLolStatBundle:Champion", "c")
-            ->select('c')
-            ->orderBy("c.name", "ASC");
+        ->createQueryBuilder()
+        ->from("PouzorLolStatBundle:Champion", "c")
+        ->select('c')
+        ->orderBy("c.name", "ASC");
 
 
         return $qBuilder->getQuery()->getArrayResult();
     }
+
+
+    public function getFilter($user, $filter) {
+        $qBuilder = $this->getEntityManager()
+        ->createQueryBuilder()
+        ->select('c, COUNT(g.id) as nb_match, SUM(g.win) as nb_win, COUNT(g.id)-SUM(g.win) as nb_loose')
+        ->from("PouzorLolStatBundle:Champion", "c")
+        ->leftJoin("c.games", "g")
+        ->groupBy("c.id");
+
+        if ($filter == "nbMatch")
+            $qBuilder->orderBy("nb_match", "DESC");
+        
+
+
+        return $qBuilder->getQuery()->getArrayResult();  
+    }
+
 }

@@ -27,3 +27,7 @@
     width: 58px;
     margin-right: 15px;
 }
+
+.navbar-nav > li > a, .navbar-nav > li > a:hover {
+    padding-top: 15px;
+}

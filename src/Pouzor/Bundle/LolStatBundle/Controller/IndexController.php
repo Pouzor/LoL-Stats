@@ -47,7 +47,7 @@ class IndexController extends Controller
         ->findOneBy(array("summonersname" => $request->query->get("name"), "server" => $request->query->get("server")));
 
         if ($summoner) {
-            return new Response("<div style='padding: 20px;text-align: center;'><a href='".$this->generateUrl('show_sommoner', array("id" => $summoner->getId()))."'>".$summoner->getName() ." - ". RankTools::getLeague($summoner)."</a></div>");
+            return new Response("<div style='padding: 20px;text-align: center;'><a href='".$this->generateUrl('show_summoner', array("id" => $summoner->getId()))."'>".$summoner->getName() ." - ". RankTools::getLeague($summoner)."</a></div>");
         }
         else
             return new Response("<div style='padding: 20px;text-align: center;'>User not found, have you <a href='".$this->generateUrl('register')."'>register</a> this summoner ?</div>");

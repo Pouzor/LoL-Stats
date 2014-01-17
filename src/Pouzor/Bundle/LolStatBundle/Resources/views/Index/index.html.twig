@@ -15,7 +15,7 @@
     Find all your statistics easily and efficiently !
   </p>
   <p><a href="{{ path("register") }}" class="btn btn-primary btn-lg" role="button">Register to Beta</a>  
-    <a href="{{ path("show_sommoner", {id : 1}) }}" class="btn btn-info btn-lg" role="button">What it looks like ?</a></p>
+    <a href="{{ path("show_summoner", {id : 1}) }}" class="btn btn-info btn-lg" role="button">What it looks like ?</a></p>
 </div>
 
     <div class="col-md-4">
@@ -65,7 +65,7 @@
          {% for s in summoners %}
          <tr>
             <td>{{ s.id }}</td>
-            <td><a href="{{path("show_sommoner", {"id": s.id})}}">{{ s.name }}</a></td>
+            <td><a href="{{path("show_summoner", {"id": s.id})}}">{{ s.name }}</a></td>
             <td>{{ getLeague(s)}}</td>
         </tr>
         {% endfor %}
@@ -110,7 +110,7 @@
                     <td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
                     <td>{{ game["idUser"]["name"] }}</td>
                     <td>
-                        <a href="{{ path("show_sommoner_champion", {"userId" : game.idUser.id, "champName" : game.idChampion.name})}}"> 
+                        <a href="{{ path("show_summoner_champion", {"userId" : game.idUser.id, "champName" : game.idChampion.name})}}"> 
                             <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({' ': ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
                         </a>
                     </td>

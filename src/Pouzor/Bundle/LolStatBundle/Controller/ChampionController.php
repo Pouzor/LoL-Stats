@@ -14,7 +14,7 @@ class ChampionController extends Controller
 	*
     * Show all stats about a champion for a Summoner
 	* @Template()
-	* @Route("/show/{userId}/champion/{champName}", name="show_sommoner_champion")
+	* @Route("/show/{userId}/champion/{champName}", name="show_summoner_champion")
     * @Method({"GET"})
 	*
 	*/

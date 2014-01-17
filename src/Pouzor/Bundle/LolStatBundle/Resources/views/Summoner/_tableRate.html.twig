@@ -8,7 +8,7 @@
     {% for data in datas %}
     <tr>
         <td>
-            <a href="{{ path("show_sommoner_champion", {"userId" : summoner.id, "champName" : data["name"]})}}"> 
+            <a href="{{ path("show_summoner_champion", {"userId" : summoner.id, "champName" : data["name"]})}}"> 
                 
                 <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ data["name"] | replace({' ': ''}) ~ '.png') }}" title="{{ data["name"] }}" />
             </a>
