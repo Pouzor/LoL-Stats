@@ -3,7 +3,7 @@
 {% block body %}
 
 <ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
+  <li><a href="{{ path("homepage") }}">Home</a></li>
   <li><a href="{{ path("show_summoner", {id : summoner.id}) }}">{{ summoner.name }}</a></li>
   <li class="active">{{ champName }}</li>
 </ol>
