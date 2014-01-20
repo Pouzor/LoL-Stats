@@ -23,21 +23,33 @@ class ChampionRepository extends EntityRepository
         return $qBuilder->getQuery()->getArrayResult();
     }
 
-
-    public function getFilter($user, $filter) {
+    /**
+    * @Return List of champion, sorted by $sort, filter by $type
+    *
+    */
+    public function getFilter($user, $sort, $type = "all") {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
-        ->select('c.id, c.name, COUNT(g.id) as nb_match, SUM(g.win) as nb_win, COUNT(g.id)-SUM(g.win) as nb_loose, AVG(g.killed) as k, AVG(g.death) as d, AVG(g.assist) as a, (SUM(g.win)/COUNT(g.id))*100 AS rate')
+        ->select('c.id, c.name, COUNT(g.id) as nb_match, SUM(g.win) as nb_win, COUNT(g.id)-SUM(g.win) as nb_loose, AVG(g.killed) as k, 
+            AVG(g.death) as d, AVG(g.assist) as a, (SUM(g.win)/COUNT(g.id))*100 AS rate, AVG(g.minionsKilled) as cs')
         ->from("PouzorLolStatBundle:Champion", "c")
         ->leftJoin("c.games", "g")
         ->where("g.idUser = :user")
         ->groupBy("c.id");
 
-        if ($filter == "nbMatch")
+        if ($sort == "nbMatch")
             $qBuilder->orderBy("nb_match", "DESC");
 
-        if ($filter == "rate")
+        if ($sort == "rate")
             $qBuilder->orderBy("rate", "DESC");
+
+        if ($type == "CLASSIC")
+           $qBuilder->andWhere("g.matchType = 'CLASSIC'"); 
+
+        if ($type == "RANKED")
+           $qBuilder->andWhere("g.matchType = 'CLASSIC'")
+            ->andWhere("g.ranked = 1"); 
+
 
         $qBuilder->setParameter("user", $user);
 

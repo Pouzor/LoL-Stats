@@ -41,6 +41,7 @@
                         <th class="col-md-1 text-center">K</th>
                         <th class="col-md-1 text-center">D</th>
                         <th class="col-md-1 text-center">A</th>
+                        <th class="col-md-1 text-center">CS</th>
                     </tr>
                 </thead>
                 <tbody id="champion_container">
@@ -57,11 +58,11 @@
 
             <div class="panel-heading"><h4 >Filters</h4></div>
             <table class="table table-condensed table-striped table-bordered table-hover" id="filter_table">
-                
+
                 <tbody>
                     <tr>
-                        <td style="vertical-align: middle"  >Search</td>
-                        <td><input class="form-control" placeholder="Ex : Lux" type="text" name="search"></td>
+                        <td style="vertical-align: middle" >Search</td>
+                        <td><input class="form-control" placeholder="Ex : Lux" type="text" name="search" id="search"></td>
                     </tr>
                     <tr>
                         <td style="vertical-align: middle">Type</td>
@@ -69,6 +70,7 @@
                             <select class="form-control" name="matchType" id="types">
                                 <option value="all">All</option>
                                 <option value="CLASSIC">Classic</option>
+                                <option value="RANKED">Ranked</option>
                                 <option value="ARAM">ARAM</option>
                                 <option value="DOMINION">DOMINION</option>
                                 <option value="3v3">3v3</option>
@@ -78,6 +80,24 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="panel panel-default" style="width:300px">
+            <div class="panel-heading"><h4 >Sorting</h4></div>
+            <table class="table table-condensed table-striped table-bordered table-hover" id="sorting_table">
+                <tbody>
+                    <tr>
+                        <td style="vertical-align: middle">By</td>
+                        <td>
+                            <select class="form-control" name="sorting" id="sorting">
+                                <option value="nbMatch">Nb Match</option>
+                                <option value="rate">Win Rate</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 
@@ -85,16 +105,28 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
+    $("#search").keyup(function() {
+        $(".champion_row").hide();
+     
+        $(".champion_row").each(function() {
 
-$("#filter_table select").change(function() {
-  $.ajax({
-    type: "GET",
-    url: "{{ path('ajax_filter_champion') }}",
-    data: {id: "{{ summoner.id }}", type: $("#types").val(), order: $("#match_order").val() }
-}).done(function (msg) {
+            var name = $(this).data("name");
+           
+        
+            if (name.indexOf($("#search").val()) != -1) {
+                $(this).show();        
+            }
+        })
+    });
 
-    $("#champion_container").html(msg);
-});
+    $("#filter_table select, #sorting_table select").change(function() {
+      $.ajax({
+        type: "GET",
+        url: "{{ path('ajax_filter_champion') }}",
+        data: {id: "{{ summoner.id }}", type: $("#types").val(), sorting: $("#sorting").val() }
+    }).done(function (msg) {
+        $("#champion_container").html(msg);
+    });
 });  
 
 

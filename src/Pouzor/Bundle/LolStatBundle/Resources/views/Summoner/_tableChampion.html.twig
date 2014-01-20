@@ -1,13 +1,14 @@
-<tr>
+<tr data-name="{{ champion.name }}" class="champion_row">
     <td style="padding-left:10px">        
         <a href="{{ path("show_summoner_champion", {"userId" : summoner.id, "champName" : champion.name})}}"> 
             <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ champion.name | replace({'.': ''}) | replace({' ': ''}) | replace({"'": ''}) ~ '.png') }}" title="{{ champion.name }}" />
         </a>
         {{ champion.name }}
     </td>
-    <td>{{ champion.nb_match }}</td>
-    <td>{{ champion.rate | number_format }}%</td>
-    <td>{{ champion.k | number_format(1)}}</td>
-    <td>{{ champion.d | number_format(1)}}</td>
-    <td>{{ champion.a | number_format(1)}}</td>
+    <td class="text-center">{{ champion.nb_match }}</td>
+    <td class="text-center">{{ champion.rate | number_format }}%</td>
+    <td class="text-center">{{ champion.k | number_format(1)}}</td>
+    <td class="text-center">{{ champion.d | number_format(1)}}</td>
+    <td class="text-center">{{ champion.a | number_format(1)}}</td>
+    <td class="text-center">{{ champion.cs | number_format}}</td>
 </tr>

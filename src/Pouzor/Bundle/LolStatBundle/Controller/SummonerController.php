@@ -89,7 +89,7 @@ class SummonerController extends Controller
         $summoner = $this->getDoctrine()->getRepository("PouzorLolStatBundle:User")->find($request->query->get("id"));
 
         $champions = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Champion")
-        ->getFilter($summoner, "rate", $request->query->get("type"));
+        ->getFilter($summoner, $request->query->get("sorting"), $request->query->get("type"));
 
 
         return array("champions" => $champions, "summoner" => $summoner);

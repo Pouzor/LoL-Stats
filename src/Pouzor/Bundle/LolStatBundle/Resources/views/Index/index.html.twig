@@ -108,7 +108,7 @@
                 {% for game in games %}
                 <tr class="{% if game.win == 1 %}success{% else %}danger{% endif %} text-center">
                     <td>{{ game.matchDate | date('d/m/Y H:i')}}</td>
-                    <td>{{ game["idUser"]["name"] }}</td>
+                    <td><a href="{{ path("show_summoner", {id : game["idUser"]["id"]}) }}">{{ game["idUser"]["name"] }}</a></td>
                     <td>
                         <a href="{{ path("show_summoner_champion", {"userId" : game.idUser.id, "champName" : game.idChampion.name})}}"> 
                             <img class="table_champ_pict" src="{{ asset('bundles/pouzorlolstat/images/champion/' ~ game.idChampion.name | replace({"'": ''}) | replace({'.': ''}) | replace({' ': ''}) ~ '.png') }}" title="{{ game.idChampion.name }}" />
