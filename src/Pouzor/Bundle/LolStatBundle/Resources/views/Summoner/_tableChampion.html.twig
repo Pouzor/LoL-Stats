@@ -6,6 +6,7 @@
         {{ champion.name }}
     </td>
     <td>{{ champion.nb_match }}</td>
+    <td>{{ champion.rate | number_format }}%</td>
     <td>{{ champion.k | number_format(1)}}</td>
     <td>{{ champion.d | number_format(1)}}</td>
     <td>{{ champion.a | number_format(1)}}</td>

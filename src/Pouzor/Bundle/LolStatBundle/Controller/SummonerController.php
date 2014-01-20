@@ -34,13 +34,13 @@ class SummonerController extends Controller
         $lps = $em->getRepository("PouzorLolStatBundle:UserRank")->getByUser($summoner);
 
         return array(
-            "summoner" => $summoner,
-            "stats" => $stats,
-            "winrates" => $winRates,
-            "lps" => json_encode($lps, 1),
-            "games" => $games, 
-            "champions" => $champions
-            );
+                     "summoner" => $summoner,
+                     "stats" => $stats,
+                     "winrates" => $winRates,
+                     "lps" => json_encode($lps, 1),
+                     "games" => $games,
+                     "champions" => $champions
+                     );
     }
 
 
@@ -70,11 +70,30 @@ class SummonerController extends Controller
     * @Method({"GET"})
     */
     public function showSummonerChampionsAction(Request $request, User $summoner) {
-       
-        $champions = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Champion")
-            ->getFilter($summoner, "nbMatch");
 
-        return array("champions" => $champions, "summoner" => $summoner);        
-    } 
+        $champions = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Champion")
+        ->getFilter($summoner, "nbMatch");
+
+        return array("champions" => $champions, "summoner" => $summoner);
+    }
+
+
+    /**
+    * Ajax filter for champ view
+    * @Template()
+    * @Route("/ajaxFilterChampion", name="ajax_filter_champion")
+    * @Method({"GET"})
+    */
+    public function ajaxFilterChampionAction(Request $request) {
+
+        $summoner = $this->getDoctrine()->getRepository("PouzorLolStatBundle:User")->find($request->query->get("id"));
+
+        $champions = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Champion")
+        ->getFilter($summoner, "rate", $request->query->get("type"));
+
+
+        return array("champions" => $champions, "summoner" => $summoner);
+    }
+
 
 }

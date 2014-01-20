@@ -37,12 +37,13 @@
                     <tr>
                         <th class="col-md-1 text-center">Name</th>
                         <th class="col-md-1 text-center">Nb Match</th>
+                        <th class="col-md-1 text-center">Win rate</th>
                         <th class="col-md-1 text-center">K</th>
                         <th class="col-md-1 text-center">D</th>
                         <th class="col-md-1 text-center">A</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="champion_container">
                     {% for champion in champions %}
                     {% include "PouzorLolStatBundle:Summoner:_tableChampion.html.twig" with { 'champion' : champion, 'summoner' : summoner } %}
                     {% endfor %}
@@ -79,5 +80,26 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+
+$("#filter_table select").change(function() {
+  $.ajax({
+    type: "GET",
+    url: "{{ path('ajax_filter_champion') }}",
+    data: {id: "{{ summoner.id }}", type: $("#types").val(), order: $("#match_order").val() }
+}).done(function (msg) {
+
+    $("#champion_container").html(msg);
+});
+});  
+
+
+})
+
+</script>
 
 {% endblock %}    

@@ -27,7 +27,7 @@ class ChampionRepository extends EntityRepository
     public function getFilter($user, $filter) {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
-        ->select('c.id, c.name, COUNT(g.id) as nb_match, SUM(g.win) as nb_win, COUNT(g.id)-SUM(g.win) as nb_loose, AVG(g.killed) as k, AVG(g.death) as d, AVG(g.assist) as a')
+        ->select('c.id, c.name, COUNT(g.id) as nb_match, SUM(g.win) as nb_win, COUNT(g.id)-SUM(g.win) as nb_loose, AVG(g.killed) as k, AVG(g.death) as d, AVG(g.assist) as a, (SUM(g.win)/COUNT(g.id))*100 AS rate')
         ->from("PouzorLolStatBundle:Champion", "c")
         ->leftJoin("c.games", "g")
         ->where("g.idUser = :user")
@@ -35,10 +35,13 @@ class ChampionRepository extends EntityRepository
 
         if ($filter == "nbMatch")
             $qBuilder->orderBy("nb_match", "DESC");
-        
+
+        if ($filter == "rate")
+            $qBuilder->orderBy("rate", "DESC");
+
         $qBuilder->setParameter("user", $user);
 
-        return $qBuilder->getQuery()->getArrayResult();  
+        return $qBuilder->getQuery()->getArrayResult();
     }
 
 }
