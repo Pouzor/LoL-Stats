@@ -72,7 +72,7 @@ class SummonerController extends Controller
     public function showSummonerChampionsAction(Request $request, User $summoner) {
 
         $champions = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Champion")
-        ->getFilter($summoner, "nbMatch");
+        ->getFilter($summoner, "nb_match");
 
         return array("champions" => $champions, "summoner" => $summoner);
     }

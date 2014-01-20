@@ -23,115 +23,123 @@
 <div class="row">
     <div class="col-md-5">
         <br/>
-        <h4>Games</h4>
+        <div class="panel panel-default" style="width:420px">
+            <div class="panel-heading"><h4 >Games</h4></div>
 
 
-        <div id="donuts" style="width:200px;height:200px;margin-left: 100px;"></div>
-        <table style="margin-left:20px">
-            <tr>
-                <th class='text-center'>Classic</th><th class='text-center'>Ranked</th><th class='text-center'>Aram</th>
-            </tr>
-            <tr>
-                <td><div id="donuts_classic" style="width:120px;height:120px"></div></td>
+            <div id="donuts" style="width:200px;height:200px;margin-left: 100px;"></div>
+            <table style="margin-left:20px">
+                <tr>
+                    <th class='text-center'>Classic</th><th class='text-center'>Ranked</th><th class='text-center'>Aram</th>
+                </tr>
+                <tr>
+                    <td><div id="donuts_classic" style="width:120px;height:120px"></div></td>
 
-                <td><div id="donuts_ranked" style="width:120px;height:120px"></div></td>
+                    <td><div id="donuts_ranked" style="width:120px;height:120px"></div></td>
 
-                <td><div id="donuts_aram" style="width:120px;height:120px"></div></td>
+                    <td><div id="donuts_aram" style="width:120px;height:120px"></div></td>
 
-            </tr>
-        </table>
-
+                </tr>
+            </table>
+        </div>
 
     </div>
     <!-- Stats global par type (KDA)-->
 
 </div>
 
-<h4 id="items_list">Most used items</h4>
+
+
 
 <div class="row">
-    <table class="table table-condensed table-striped table-bordered table-hover col-md-8" style="width:800px">
-        <thead>
-            <tr>
-                <th class="text-center">Item</th>
-                <th class="text-center">Match count</th>
-                <th class="text-center">WinRate</th>
-                <th class="text-center">Cost</th>
-                <th class="text-center">K / D / A</th>
+    <div class="col-md-8">
+        <div class=" panel panel-default" style="width:750px">
 
-            </tr>
-        </thead>
-        <tbody id="game_container">
-            {% for item in items %}
-            {% include "PouzorLolStatBundle:Champion:_tableItem.html.twig" with { 'item' : item } %}
-            {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td style="text-align:center" colspan="4">
-                    <a href="#more" id="more_game">
-                        Show more <span class="caret"></span>
-                    </a>
-                </td>
-                <td class="text-center">
-                    <a href="#items_list"># Top</a>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+            <div class="panel-heading"><h4 >Most used items</h4></div>
 
-    <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="filter_table">
-        <thead>
-            <tr>
-                <th colspan="2" class="text-center">Filters</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="vertical-align: middle">Type</td>
-                <td>
-                    <select class="form-control" name="matchType" id="types">
-                        <option value="all">Tout</option>
-                        <option selected="selected" value="CLASSIC">Classic</option>
-                        <option value="ARAM">ARAM</option>
-                        <option value="DOMINION">DOMINION</option>
-                        <option value="3v3">3v3</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td style="vertical-align: middle">Ranked</td>
-                <td>
-                    <select class="form-control" name="ranked" id="">
-                        <option value="all">All</option>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </td>
-            </tr>
+            <table class="table table-condensed table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">Item</th>
+                        <th class="text-center">Match count</th>
+                        <th class="text-center">WinRate</th>
+                        <th class="text-center">Cost</th>
+                        <th class="text-center">K / D / A</th>
 
-        </tbody>
-    </table>
+                    </tr>
+                </thead>
+                <tbody id="game_container">
+                    {% for item in items %}
+                    {% include "PouzorLolStatBundle:Champion:_tableItem.html.twig" with { 'item' : item } %}
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td style="text-align:center" colspan="4">
+                            <a href="#more" id="more_game">
+                                Show more <span class="caret"></span>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="#items_list"># Top</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 
-    <table class="ml30 table table-condensed table-striped table-bordered table-hover col-md-4" style="width: 300px; margin-left: 30px" id="order_table">
-        <thead>
-            <tr>
-                <th colspan="2" class="text-center">Sort</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td colspan="2">
-                    <select class="form-control" name="order" id="match_order">
-                        <option value="nb">Use</option>
-                        <option value="rate">Win Rate</option>
+    <div class="col-md-4">
+        <div class=" panel panel-default" style="width:300px">
 
-                    </select>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="panel-heading"><h4 >Filters</h4></div>
+            <table class="ml30 table table-condensed table-striped table-bordered table-hover" id="filter_table">
 
+                <tbody>
+                    <tr>
+                        <td style="vertical-align: middle">Type</td>
+                        <td>
+                            <select class="form-control" name="matchType" id="types">
+                                <option value="all">Tout</option>
+                                <option selected="selected" value="CLASSIC">Classic</option>
+                                <option value="ARAM">ARAM</option>
+                                <option value="DOMINION">DOMINION</option>
+                                <option value="3v3">3v3</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle">Ranked</td>
+                        <td>
+                            <select class="form-control" name="ranked" id="">
+                                <option value="all">All</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-default" style="width:300px">
+            <div class="panel-heading"><h4 >Sorting</h4></div>
+
+            <table class="ml30 table table-condensed table-striped table-bordered table-hover " id="order_table">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <select class="form-control" name="order" id="match_order">
+                                <option value="nb">Use</option>
+                                <option value="rate">Win Rate</option>
+
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <br /><br />
 
@@ -180,43 +188,43 @@ $(document).ready(function() {
     });
 });  
 
-   Morris.Donut({
-    element: 'donuts',
-    colors: ["#ABC8E2", "#375D81", "#C44C51", "#C79F4B"],
-    data: [
-    {label: "Classic", value: {{stats["invocateur"]["nb"] - stats["ranked"]["nb"]}} },
-    {label: "Ranked", value: {{stats["ranked"]["nb"]}} },
-    {label: "Aram", value: {{stats["aram"]["nb"]}} },
-    {label: "Dominion", value: {{stats["dominion"]["nb"]}} }
-    ]
-});
+    Morris.Donut({
+        element: 'donuts',
+        colors: ["#ABC8E2", "#375D81", "#C44C51", "#C79F4B"],
+        data: [
+        {label: "Classic", value: {{stats["invocateur"]["nb"] - stats["ranked"]["nb"]}} },
+        {label: "Ranked", value: {{stats["ranked"]["nb"]}} },
+        {label: "Aram", value: {{stats["aram"]["nb"]}} },
+        {label: "Dominion", value: {{stats["dominion"]["nb"]}} }
+        ]
+    });
 
-Morris.Donut({
-    element: 'donuts_classic',
-    colors: ["#769600", "#DB2218"],
-    data: [
-    {label: "Win", value: {{ stats["invocateur"]["win"] - stats["ranked"]["win"]  }} },
-    {label: "Loose", value: {{ stats["invocateur"]["loose"] - stats["ranked"]["loose"]  }} }
-    ]
-});
+    Morris.Donut({
+        element: 'donuts_classic',
+        colors: ["#769600", "#DB2218"],
+        data: [
+        {label: "Win", value: {{ stats["invocateur"]["win"] - stats["ranked"]["win"]  }} },
+        {label: "Loose", value: {{ stats["invocateur"]["loose"] - stats["ranked"]["loose"]  }} }
+        ]
+    });
 
-Morris.Donut({
-    element: 'donuts_ranked',
-    colors: ["#769600", "#DB2218"],
-    data: [
-    {label: "Win", value: {{ stats["ranked"]["win"]  }} },
-    {label: "Loose", value: {{ stats["ranked"]["loose"]  }} }
-    ]
-});
+    Morris.Donut({
+        element: 'donuts_ranked',
+        colors: ["#769600", "#DB2218"],
+        data: [
+        {label: "Win", value: {{ stats["ranked"]["win"]  }} },
+        {label: "Loose", value: {{ stats["ranked"]["loose"]  }} }
+        ]
+    });
 
-Morris.Donut({
-    element: 'donuts_aram',
-    colors: ["#769600", "#DB2218"],
-    data: [
-    {label: "Win", value: {{ stats["aram"]["win"]  }} },
-    {label: "Loose", value: {{ stats["aram"]["loose"]  }} }
-    ]
-}); 
+    Morris.Donut({
+        element: 'donuts_aram',
+        colors: ["#769600", "#DB2218"],
+        data: [
+        {label: "Win", value: {{ stats["aram"]["win"]  }} },
+        {label: "Loose", value: {{ stats["aram"]["loose"]  }} }
+        ]
+    }); 
 
 });
 </script>

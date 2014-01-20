@@ -31,17 +31,16 @@ class ChampionRepository extends EntityRepository
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->select('c.id, c.name, COUNT(g.id) as nb_match, SUM(g.win) as nb_win, COUNT(g.id)-SUM(g.win) as nb_loose, AVG(g.killed) as k, 
-            AVG(g.death) as d, AVG(g.assist) as a, (SUM(g.win)/COUNT(g.id))*100 AS rate, AVG(g.minionsKilled) as cs')
+            AVG(g.death) as d, AVG(g.assist) as a, (SUM(g.win)/COUNT(g.id))*100 AS rate, AVG(g.minionsKilled) as cs, AVG(g.gold) as gold')
         ->from("PouzorLolStatBundle:Champion", "c")
         ->leftJoin("c.games", "g")
         ->where("g.idUser = :user")
         ->groupBy("c.id");
 
-        if ($sort == "nbMatch")
-            $qBuilder->orderBy("nb_match", "DESC");
+        
+        $qBuilder->orderBy($sort, "DESC");
 
-        if ($sort == "rate")
-            $qBuilder->orderBy("rate", "DESC");
+
 
         if ($type == "CLASSIC")
            $qBuilder->andWhere("g.matchType = 'CLASSIC'"); 

@@ -35,13 +35,14 @@
             <table class="table table-condensed table-bordered table-hover" >
                 <thead>
                     <tr>
-                        <th class="col-md-1 text-center">Name</th>
+                        <th class="col-md-2 text-center">Name</th>
                         <th class="col-md-1 text-center">Nb Match</th>
                         <th class="col-md-1 text-center">Win rate</th>
                         <th class="col-md-1 text-center">K</th>
                         <th class="col-md-1 text-center">D</th>
                         <th class="col-md-1 text-center">A</th>
                         <th class="col-md-1 text-center">CS</th>
+                        <th class="col-md-1 text-center">Gold</th>
                     </tr>
                 </thead>
                 <tbody id="champion_container">
@@ -89,8 +90,10 @@
                         <td style="vertical-align: middle">By</td>
                         <td>
                             <select class="form-control" name="sorting" id="sorting">
-                                <option value="nbMatch">Nb Match</option>
+                                <option value="nb_match">Nb Match</option>
                                 <option value="rate">Win Rate</option>
+                                <option value="cs">CS</option>
+                                <option value="gold">Gold</option>
                             </select>
                         </td>
                     </tr>
