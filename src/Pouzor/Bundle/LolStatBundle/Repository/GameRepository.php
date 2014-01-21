@@ -139,6 +139,7 @@ class GameRepository extends EntityRepository
         ->setFirstResult($offset)
         ->setMaxResults(10)
         ->orderBy("g.matchDate", "DESC")
+
         ->setParameter("user", $id)
         ;
 
@@ -178,7 +179,7 @@ class GameRepository extends EntityRepository
     }
 
 
-    return $qBuilder->getQuery()->getArrayResult();
+    return $qBuilder->getQuery()->getResult();
 
 }
 

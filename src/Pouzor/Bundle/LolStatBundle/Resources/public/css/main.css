@@ -9,6 +9,10 @@
 
 } 
 
+.table_item_pict_small {
+  width: 28px;  
+}
+
 .table_search_summoner input, .table_search_summoner select{
 	width: 200px;
 }
@@ -30,4 +34,20 @@
 
 .navbar-nav > li > a, .navbar-nav > li > a:hover {
     padding-top: 15px;
+}
+
+.panel-heading {
+    height: 45px;
+    font-size: 16px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-top:2px;
+    background-color: #395c82!important;
+    background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d)!important;
+
+
+}
+
+.panel-heading h4 {
+    color: white;
 }

@@ -24,6 +24,49 @@
     </h1>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <div class=" panel panel-default" >
+
+            <div class="panel-heading"><h4 >List of games</h4></div>
+
+            <table class="table table-condensed table-bordered table-hover" >
+                <thead>
+                    <tr>
+                        <th class=" text-center">Date</th>
+                        <th class=" text-center">Champion</th>
+                        <th class=" text-center">Score</th>
+                        <th class=" text-center">Type</th>
+                        <th class=" text-center">Gold</th>
+                        <th class=" text-center">Cs</th>
+                        <th class="text-center">Dmg to champion</th>
+                        <th class=" text-center">Items</th>
+                        <th class=" text-center">Ip</th>
+                    </tr>
+                </thead>
+                <tbody id="champion_container">
+
+                    {% for game in games %}
+                    {% include "PouzorLolStatBundle:Summoner:_tableGameDetails.html.twig" with { 'game' : game, 'summoner' : summoner } %}
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td style="text-align:center" colspan="8">
+                            <a href="#more" id="more_game">
+                                Show more <span class="caret"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#match_history"># Top</a>
+                        </td>
+                    </tr>
+                </tfoot>
+                
+            </table>
+        </div>
+    </div>
+</div>
 
 
 
