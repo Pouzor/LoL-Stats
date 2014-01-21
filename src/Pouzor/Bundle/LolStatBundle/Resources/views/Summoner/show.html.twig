@@ -15,8 +15,8 @@
         <small style="font-size: 14px; ">
             <ul class="nav nav-pills" style="float:right;margin-top:10px">
                 <li class="active"><a href="#">General</a></li>
-                <li><a href="#">Match History</a></li>
-                <li><a href="{{  path("show_summoner_champions", {id: summoner.id}) }}">Champion stats</a></li>
+                <li><a href="{{ path("show_match_history", {id: summoner.id}) }}">Match History</a></li>
+                <li><a href="{{ path("show_summoner_champions", {id: summoner.id}) }}">Champion stats</a></li>
                 <li><a href="#">Rank stats</a></li>
             </ul>
         </small>

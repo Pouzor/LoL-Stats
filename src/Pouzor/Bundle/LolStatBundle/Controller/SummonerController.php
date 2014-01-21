@@ -95,5 +95,17 @@ class SummonerController extends Controller
         return array("champions" => $champions, "summoner" => $summoner);
     }
 
+    /**
+    * Match History
+    * @Template()
+    * @Route("/showMatchHistory/{id}", name="show_match_history")
+    * @Method({"GET"})
+    */
+    public function showMatchHistoryAction(Request $request, User $summoner) {
+
+
+
+        return array("summoner" => $summoner);
+    }
 
 }

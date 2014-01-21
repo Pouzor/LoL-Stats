@@ -1,0 +1,30 @@
+{% extends "PouzorLolStatBundle::layout.html.twig" %}
+
+{% block body %}
+
+<ol class="breadcrumb">
+  <li><a href="{{ path("homepage") }}">Home</a></li>
+  <li><a href="{{ path("show_summoner", {id : summoner.id}) }}">{{ summoner.name }}</a></li>
+  <li class="active">Match History</li>
+</ol>
+
+<div class="page-header">
+    <h1>
+        <img class="profileicon" src="{{ asset('bundles/pouzorlolstat/images/profileicon/' ~ summoner.icon ~ '.png') }}" />
+        {{ summoner.name }} 
+        <small>Match History</small>
+        <small style="font-size: 14px; ">
+            <ul class="nav nav-pills" style="float:right;margin-top:10px">
+                <li ><a href="{{ path("show_summoner", {id: summoner.id}) }}">General</a></li>
+                <li class="active"><a href="{{ path("show_match_history", {id: summoner.id}) }}">Match History</a></li>
+                <li><a href="{{ path("show_summoner_champions", {id: summoner.id}) }}">Champion stats</a></li>
+                <li><a href="#">Rank stats</a></li>
+            </ul>
+        </small>
+    </h1>
+</div>
+
+
+
+
+{% endblock %}
