@@ -40,7 +40,6 @@ class AdminController extends Controller
 
         return array("summoners" => $summoners,
                      "games" => $games,
-
                      );
     }
 
