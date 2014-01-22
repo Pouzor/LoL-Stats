@@ -108,4 +108,17 @@ class SummonerController extends Controller
         return array("summoner" => $summoner, "games" => $games);
     }
 
+
+
+    /**
+    * Match History
+    * @Template()
+    * @Route("/ajax_more_game_historic", name="ajax_more_game_historic")
+    * @Method({"GET"})
+    */
+    public function ajaxMoreGameHistoricAction(Request $request) {
+        $games = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Game")->getRecentGames($request->query->get("id"), 0, $request->query->get("offset"));
+        $summoner = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->find($request->query->get("id"));
+        return array("summoner" => $summoner, "games" => $games);
+    }
 }

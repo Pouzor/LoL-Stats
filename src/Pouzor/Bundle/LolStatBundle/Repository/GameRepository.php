@@ -129,6 +129,8 @@ class GameRepository extends EntityRepository
 
     public function getRecentGames($id, $champName = 0, $offset = 0, $filter = null, $order = 1) {
 
+
+
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
         ->from("PouzorLolStatBundle:Game", "g")

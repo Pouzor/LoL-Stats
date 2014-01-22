@@ -28,7 +28,7 @@
     <div class="col-md-12">
         <div class=" panel panel-default" >
 
-            <div class="panel-heading"><h4 >List of games</h4></div>
+            <div id="match_history" class="panel-heading"><h4 >List of games</h4></div>
 
             <table class="table table-condensed table-bordered table-hover" >
                 <thead>
@@ -44,7 +44,7 @@
                         <th class=" text-center">Ip</th>
                     </tr>
                 </thead>
-                <tbody id="champion_container">
+                <tbody id="game_container">
 
                     {% for game in games %}
                     {% include "PouzorLolStatBundle:Summoner:_tableGameDetails.html.twig" with { 'game' : game, 'summoner' : summoner } %}
@@ -67,7 +67,23 @@
         </div>
     </div>
 </div>
+<br /><br />
 
+<script type="text/javascript">
+$(document).ready(function() {
+    var offset = 0;
+    $("#more_game").click(function () {
+        offset += 10;
+        $.ajax({
+            type: "GET",
+            url: "{{ path('ajax_more_game_historic') }}",
+            data: {offset: offset, id: "{{ summoner.id }}"}
+        }).done(function (msg) {
 
+            $("#game_container").append(msg);
+        });
+    });
+})
+</script>
 
 {% endblock %}
