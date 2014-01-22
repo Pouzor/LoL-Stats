@@ -37,18 +37,14 @@ class AdminController extends Controller
 
         $data = array();
 
-      /*  foreach ($matchs_stats as $g)
-            $data[] = array("date" => $g["date"]->format("d-M"), "win" => (int) $g["win"], "nb" => (int) $g["nb"], "ranked" => (int) $g["ranked"]);
 
-        $data = array_reverse($data);
-*/
         return array("summoners" => $summoners,
                      "games" => $games,
-                 //    "data" => json_encode($data, 1)
+
                      );
     }
 
-        /**
+    /**
     *
     * @Route("/admin/search_summoner", name="search_summoner")
     * @Method("GET")
