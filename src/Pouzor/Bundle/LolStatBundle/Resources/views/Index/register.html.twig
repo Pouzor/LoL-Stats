@@ -3,8 +3,69 @@
 
 {% block body %}
 
-<h4>Register to PouzStats</h4>
 
 
+<div class="page-header">
+    <h1>
+      Register to PouzStats
+
+  </h1>
+</div>
+<br /><br />
+<div style="float:left;width:500px">
+    <form class="form-horizontal" role="form" action="{{ path("submit_register") }}" method="POST">
+      <div class="form-group">
+        <label for="pouzor_bundle_lolstatbundle_register_email" class="col-sm-4 control-label">Email address</label>
+        <div class="col-sm-6">
+            {{ form_widget(form.email)}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pouzor_bundle_lolstatbundle_register_name" class="col-sm-4 control-label">Summoner Name</label>
+        <div class="col-sm-6">
+            {{ form_widget(form.name)}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pouzor_bundle_lolstatbundle_register_server" class="col-sm-4 control-label">Server</label>
+        <div class="col-sm-3">
+            {{ form_widget(form.server)}}
+        </div>
+    </div>
+
+    {{form_rest(form)}}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Register Now</button>
+      </div>
+  </div>
+</form>
+</div>
+
+<div class="panel panel-warning" style="float:left;width:500px">
+    <div class="panel-title" style="background-color: #fbeed5;padding:8px">
+        Why register ?
+    </div>
+    <div class="panel-body" >
+        <p>
+            <span class="glyphicon glyphicon-thumbs-up"></span> Keep track of <strong>all</strong> your games
+        </p>
+        <p>
+            <span class="glyphicon glyphicon-thumbs-up"></span> Get all stats for <strong>Ranked</strong> games but <strong>others</strong> too (Aram, Classic, 3V3)
+        </p>
+
+        <p>
+            <span class="glyphicon glyphicon-thumbs-up"></span> We are <strong>listening</strong> to your new feature request
+        </p>
+
+<p>
+            <span class="glyphicon glyphicon-thumbs-up"></span> You can participate in development with <strong>Github</strong>
+        </p>
+        <p>
+            <span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span> It's <strong>FREE</strong>
+        </p>
+    </div>
+
+</div>
 
 {% endblock %}

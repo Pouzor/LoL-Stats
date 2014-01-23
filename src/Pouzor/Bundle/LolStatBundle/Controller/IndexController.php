@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Pouzor\Bundle\LolStatBundle\Tools\RankTools as RankTools;
+use Pouzor\Bundle\LolStatBundle\Form\RegisterType;
+use Pouzor\Bundle\LolStatBundle\Entity\Register;
 
 class IndexController extends Controller
 {
@@ -63,8 +65,41 @@ class IndexController extends Controller
     */
     public function registerAction() {
 
-        return array();
+        $form = $this->createForm(new RegisterType(), new Register());
+
+        return array("form" => $form->createView());
     }
 
+    /**
+    *
+    * @Route("/submit_register", name="submit_register")
+    * @Method("POST")
+    */
+    public function submitRegisterAction(Request $request) {
+        $form = $this->createForm(new RegisterType(), new Register());
+
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $register = $form->getData();
+            $this->getDoctrine()->getManager()->persist($register);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirect($this->generateUrl("register_success"));
+        }
+
+        return $this->redirect($this->generateUrl("register?error=true"));
+    }
+
+    /**
+    *
+    * @Route("/register_success", name="register_success")
+    * @Method("GET")
+    * @Template()
+    */
+    public function registerSuccessAction(Request $request) {
+
+        return array();
+    }
 
 }
