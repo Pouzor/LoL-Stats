@@ -6,7 +6,7 @@
     </id>
     <field name="name" type="string" column="name" length="255"/>
     <field name="groups" type="string" column="groups" length="255"/>
-    <field name="description" type="string" column="description" length="65000"/>
+    <field name="description" type="string" column="description" length="20000"/>
     <field name="plaintext" type="string" column="plaintext" length="255"/>
     <field name="totalCost" type="integer" column="total_cost"/>
     <many-to-many field="games" mapped-by="items" target-entity="Game"/>
