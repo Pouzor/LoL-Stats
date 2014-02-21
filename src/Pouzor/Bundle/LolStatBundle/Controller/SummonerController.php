@@ -104,8 +104,9 @@ class SummonerController extends Controller
     public function showMatchHistoryAction(Request $request, User $summoner) {
 
         $games = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Game")->getRecentGames($summoner->getId());
+        $champions = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Champion")->findAllOrdered();
 
-        return array("summoner" => $summoner, "games" => $games);
+        return array("summoner" => $summoner, "games" => $games, "champions" => $champions);
     }
 
 
