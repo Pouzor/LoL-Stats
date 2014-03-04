@@ -3,14 +3,8 @@
 namespace Pouzor\Bundle\LolStatBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Pouzor\Bundle\LolStatBundle\Entity\Game;
-use Pouzor\Bundle\LolStatBundle\Entity\UserRank;
-use Pouzor\Bundle\LolStatBundle\Entity\Champion;
-use Pouzor\Bundle\LolStatBundle\Entity\Item;
 
 class GetProfileInfosCommand extends ContainerAwareCommand
 {
@@ -20,6 +14,9 @@ class GetProfileInfosCommand extends ContainerAwareCommand
         ->setDescription('Get Summoners infos');
     }
 
+    /**
+     * @param string $url
+     */
     private function get($url)
     {
         $ch = curl_init($url);

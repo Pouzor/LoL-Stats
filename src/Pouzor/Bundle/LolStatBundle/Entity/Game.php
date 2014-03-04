@@ -608,7 +608,7 @@ class Game
     /**
      * Add items
      *
-     * @param \Pouzor\Bundle\LolStatBundle\Entity\Item $items
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Item $item
      * @return Game
      */
     public function addItem(\Pouzor\Bundle\LolStatBundle\Entity\Item $item)
