@@ -6,10 +6,6 @@ filter:
 before_commands:
     - 'composer install'
 tools:
-    php_code_coverage:
-        filter:
-            paths: ['src/*']
-            excluded_paths: ['vendor/*']
     php_cs_fixer: true
     php_analyzer:
         config:
