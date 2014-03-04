@@ -128,8 +128,6 @@ class ApiController extends Controller
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
 
-        var_dump($data);
-
         return $response;
 	}
 
