@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class GetProfileInfosCommand extends ContainerAwareCommand
+class getProfileInfosCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
