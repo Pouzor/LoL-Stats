@@ -9,7 +9,7 @@ class LeagueExtension extends \Twig_Extension {
     public function getFunctions()
     {
         return array(
-            'getLeague' => new \Twig_SimpleFunction($this, 'getLeague')
+            'getLeague' => new \Twig_Function($this, 'getLeague')
             );
     }
 
