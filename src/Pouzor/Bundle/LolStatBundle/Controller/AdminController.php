@@ -26,18 +26,6 @@ class AdminController extends Controller
 
        // $matchs_stats = $this->getDoctrine()->getRepository("PouzorLolStatBundle:Game")->dailyMatch();
 
-        $leagues = array(
-            1 => "Bronze",
-            2 => "Silver",
-            3 => "Or",
-            4 => "Platine",
-            5 => "Diamant",
-            6 => "Challenger"
-            );
-
-        $data = array();
-
-
         return array("summoners" => $summoners,
                      "games" => $games,
                      );

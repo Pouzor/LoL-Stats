@@ -97,7 +97,7 @@ class IndexController extends Controller
     * @Method("GET")
     * @Template()
     */
-    public function registerSuccessAction(Request $request) {
+    public function registerSuccessAction() {
 
         return array();
     }

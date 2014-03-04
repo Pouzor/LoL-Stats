@@ -24,7 +24,7 @@ class SummonerController extends Controller
 	*/
 	public function showAction($id, User $summoner) {
         $em = $this->getDoctrine()->getManager();
-		//$summoner = $em->getRepository("PouzorLolStatBundle:User")->find($id);
+		$summoner = $em->getRepository("PouzorLolStatBundle:User")->find($id);
         $stats = $em->getRepository("PouzorLolStatBundle:Game")->getCountStatsGlobal($summoner);
         $games = $em->getRepository("PouzorLolStatBundle:Game")->getRecentGames($summoner);
 
@@ -69,7 +69,7 @@ class SummonerController extends Controller
     * @Route("/showSummonerChampions/{id}", name="show_summoner_champions")
     * @Method({"GET"})
     */
-    public function showSummonerChampionsAction(Request $request, User $summoner) {
+    public function showSummonerChampionsAction(User $summoner) {
 
         $champions = $this->getDoctrine()->getManager()->getRepository("PouzorLolStatBundle:Champion")
         ->getFilter($summoner, "nb_match");
