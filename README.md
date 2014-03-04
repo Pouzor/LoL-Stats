@@ -1,6 +1,6 @@
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Pouzor/LoL-Stats/badges/quality-score.png?s=e9abed3afa30543dc9c97102a8af698040f02bce)](https://scrutinizer-ci.com/g/Pouzor/LoL-Stats/)
 [![Build Status](https://travis-ci.org/Pouzor/LoL-Stats.png?branch=master)](https://travis-ci.org/Pouzor/LoL-Stats)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe/big.png)](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe/mini.png)](https://insight.sensiolabs.com/projects/7527040b-2b75-4697-8987-5b5a94cb2dbe)
 LoL-Stats
 =========
 
