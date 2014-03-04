@@ -6,4 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ApiControllerTest extends WebTestCase
 {
+    public function testIndex() {
+        $this->assertEquals(true, true);
+    }
 }
