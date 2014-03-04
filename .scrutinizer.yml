@@ -41,4 +41,3 @@ tools:
     php_cpd: true
     php_loc: true
     php_pdepend: true
-    php_hhvm: true
