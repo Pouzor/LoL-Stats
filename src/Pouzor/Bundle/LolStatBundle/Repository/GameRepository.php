@@ -43,6 +43,9 @@ class GameRepository extends EntityRepository
     }
 
 
+    /**
+     * @param string $criteria
+     */
     public function getCountGameStats($id, $champName = null, $criteria = null, $value = null) {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()
@@ -75,6 +78,9 @@ class GameRepository extends EntityRepository
 
     }
 
+    /**
+     * @param string $type
+     */
     public function getWinRatesQuery($id, $type, $ranked = "all") {
         $qBuilder = $this->getEntityManager()
         ->createQueryBuilder()

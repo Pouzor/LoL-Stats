@@ -3,9 +3,7 @@
 namespace Pouzor\Bundle\LolStatBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Pouzor\Bundle\LolStatBundle\Entity\Game;
 use Pouzor\Bundle\LolStatBundle\Entity\UserRank;
@@ -23,6 +21,9 @@ class FetchMatchFromAPICommand extends ContainerAwareCommand
     ;
 }
 
+/**
+ * @param string $url
+ */
 private function get($url)
 {
     $ch = curl_init($url);

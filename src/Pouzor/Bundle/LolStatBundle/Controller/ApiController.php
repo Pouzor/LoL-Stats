@@ -22,6 +22,7 @@ class ApiController extends Controller
 	/**
 	*
 	*
+	* @param string $url
 	*/
 	private function getData($url)
 	{

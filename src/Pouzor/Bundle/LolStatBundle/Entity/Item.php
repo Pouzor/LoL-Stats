@@ -2,8 +2,6 @@
 
 namespace Pouzor\Bundle\LolStatBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Item
  */

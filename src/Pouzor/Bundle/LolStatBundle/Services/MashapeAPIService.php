@@ -22,6 +22,7 @@ class MashapeAPIService
 	/**
 	* Execute Curl API for specific url
 	*
+	* @param string $url
 	*/
 	private function getData($url)
 	{
