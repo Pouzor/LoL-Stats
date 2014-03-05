@@ -407,4 +407,32 @@ class User extends BaseUser
     {
         return $this->since;
     }
+    /**
+     * @var \Pouzor\Bundle\LolStatBundle\Entity\Register
+     */
+    private $idRegister;
+
+
+    /**
+     * Set idRegister
+     *
+     * @param \Pouzor\Bundle\LolStatBundle\Entity\Register $idRegister
+     * @return User
+     */
+    public function setIdRegister(\Pouzor\Bundle\LolStatBundle\Entity\Register $idRegister = null)
+    {
+        $this->idRegister = $idRegister;
+    
+        return $this;
+    }
+
+    /**
+     * Get idRegister
+     *
+     * @return \Pouzor\Bundle\LolStatBundle\Entity\Register 
+     */
+    public function getIdRegister()
+    {
+        return $this->idRegister;
+    }
 }
