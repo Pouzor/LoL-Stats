@@ -32,7 +32,16 @@ Status : pre-alpha
 - Get Mashape Api key on https://www.mashape.com and configure it on parameters.yml
 
 ### Use
-- Import recent game with this command 
+
+Process a register for a summoner then launch this command :
+
+``` 
+./app/console pouzor:createUser
+```
+
+This will fetch all game info (AccountId, SummonerId) to User Table.
+
+Then import recents games with this command
  
 ``` 
 ./app/console pouzor:getMatch
